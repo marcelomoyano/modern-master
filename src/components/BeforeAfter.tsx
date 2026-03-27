@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeftRight } from "lucide-react";
 
@@ -18,7 +18,7 @@ const PAIRS: BeforeAfterPair[] = [
         title: "Master Ensuite Transformation",
     },
     {
-        before: "/photos/before/house-before-2.jpg",
+        before: "/photos/before/IMG_1023.jpg",
         after: "/photos/after/bathroom-after-2.jpg",
         title: "Luxury Guest Bathroom",
     }
@@ -27,30 +27,33 @@ const PAIRS: BeforeAfterPair[] = [
 export function BeforeAfter() {
     const [activePairIndex, setActivePairIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [sliderPosition, setSliderPosition] = useState(50); // percentage 0-100
+    const [sliderPosition, setSliderPosition] = useState(50);
     const [isDragging, setIsDragging] = useState(false);
 
-    // Auto-center slider when changing pairs
     useEffect(() => {
         setSliderPosition(50);
     }, [activePairIndex]);
 
-    const handleMove = (clientX: number) => {
-        if (!containerRef.current) return;
+    const getPercent = (clientX: number) => {
+        if (!containerRef.current) return 50;
         const rect = containerRef.current.getBoundingClientRect();
         const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-        const percent = (x / rect.width) * 100;
-        setSliderPosition(percent);
+        return (x / rect.width) * 100;
     };
 
-    const handleMouseMove = (e: ReactMouseEvent) => {
-        if (!isDragging) return;
-        handleMove(e.clientX);
+    const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        setIsDragging(true);
+        setSliderPosition(getPercent(e.clientX));
     };
 
-    const handleTouchMove = (e: ReactTouchEvent) => {
+    const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDragging) return;
-        handleMove(e.touches[0].clientX);
+        setSliderPosition(getPercent(e.clientX));
+    };
+
+    const handlePointerUp = () => {
+        setIsDragging(false);
     };
 
     const pair = PAIRS[activePairIndex];
@@ -106,13 +109,10 @@ export function BeforeAfter() {
                     transition={{ duration: 0.8 }}
                     className="relative w-full aspect-video md:aspect-[21/9] max-h-[70vh] cursor-ew-resize select-none overflow-hidden group border border-white/10"
                     ref={containerRef}
-                    onMouseDown={() => setIsDragging(true)}
-                    onMouseUp={() => setIsDragging(false)}
-                    onMouseLeave={() => setIsDragging(false)}
-                    onMouseMove={handleMouseMove}
-                    onTouchStart={() => setIsDragging(true)}
-                    onTouchEnd={() => setIsDragging(false)}
-                    onTouchMove={handleTouchMove}
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerCancel={handlePointerUp}
                 >
                     {/* After Image (Background) */}
                     <div className="absolute inset-0 w-full h-full">
