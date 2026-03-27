@@ -13,14 +13,14 @@ interface BeforeAfterPair {
 
 const PAIRS: BeforeAfterPair[] = [
     {
-        before: "/photos/before/house-before-1.jpg",
-        after: "/photos/after/bathroom-after-1.jpg",
-        title: "Master Ensuite Transformation",
-    },
-    {
         before: "/photos/before/IMG_1023.jpg",
         after: "/photos/after/bathroom-after-2.jpg",
-        title: "Luxury Guest Bathroom",
+        title: "Luxury Master Bathroom",
+    },
+    {
+        before: "/photos/before/IMG_9563.jpeg",
+        after: "/photos/after/IMG_0134.jpeg",
+        title: "Full Bathroom Remodel",
     }
 ];
 
