@@ -5,19 +5,19 @@ import { Star, Quote } from "lucide-react";
 
 const TESTIMONIALS = [
     {
-        text: "Geza and his team transformed our master bathroom beyond what we imagined. The attention to detail is unmatched.",
-        author: "Homeowner",
-        location: "Princeton NJ",
+        text: "Geza and his team transformed our master bathroom beyond what we imagined. From selecting the tile to the final trim, the attention to detail is truly unmatched.",
+        author: "Sarah & Mark T.",
+        location: "Hillsborough, NJ",
     },
     {
-        text: "From day one, they protected our home like it was their own. The finished kitchen is absolutely stunning.",
-        author: "Homeowner",
-        location: "Hillsborough NJ",
+        text: "A friend recommended Modern Master for our bathroom renovation and I couldn't be happier. They delivered a luxurious master bath that completely exceeded our expectations.",
+        author: "Emily R.",
+        location: "Somerset, NJ",
     },
     {
-        text: "After two bad experiences with other contractors, Modern Master restored our faith. True professionals.",
-        author: "Homeowner",
-        location: "Warren NJ",
+        text: "After two bad experiences with other contractors, Modern Master restored our faith. They finished the basement and hardwood floors on time, within budget, and the craftsmanship speaks for itself.",
+        author: "James P.",
+        location: "Bridgewater, NJ",
     },
 ];
 
