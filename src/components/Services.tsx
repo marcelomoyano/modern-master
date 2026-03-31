@@ -6,8 +6,6 @@ import {
     ChefHat,
     Home,
     SplitSquareHorizontal,
-    Hammer,
-    ListOrdered
 } from "lucide-react";
 
 const SERVICES = [
@@ -30,16 +28,6 @@ const SERVICES = [
         title: "Floor Installation",
         description: "From hardwood to tile, installed with precision.",
         icon: SplitSquareHorizontal, // Proxy for flooring tiles/planks
-    },
-    {
-        title: "Carpentry & Trim Work",
-        description: "Handcrafted details that elevate every room.",
-        icon: Hammer,
-    },
-    {
-        title: "Railings & Balusters",
-        description: "Elegant staircases that make an entrance.",
-        icon: ListOrdered, // Proxy for staircase/railings
     },
 ];
 
@@ -89,7 +77,7 @@ export function Services() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
                 >
                     {SERVICES.map((service, index) => (
                         <motion.div
