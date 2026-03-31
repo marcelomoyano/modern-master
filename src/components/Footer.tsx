@@ -64,16 +64,16 @@ export function Footer() {
                         <h4 className="font-sans text-sm tracking-widest uppercase text-text-primary mb-6">Contact</h4>
                         <ul className="space-y-4 font-sans text-text-secondary">
                             <li>
-                                <a href="tel:+19085550123" className="hover:text-accent-GOLD transition-colors">
-                                    (908) 555-0123
+                                <a href="tel:+17326949197" className="hover:text-accent-GOLD transition-colors">
+                                    (732) 694-9197
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:info@modern-master.com" className="hover:text-accent-GOLD transition-colors">
-                                    info@modern-master.com
+                                <a href="mailto:Geza@Modern-Master.com" className="hover:text-accent-GOLD transition-colors">
+                                    Geza@Modern-Master.com
                                 </a>
                             </li>
-                            <li>Central New Jersey</li>
+                            <li>69 Nostrand Rd, Hillsborough NJ 08844</li>
                         </ul>
                     </div>
 

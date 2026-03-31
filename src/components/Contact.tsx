@@ -146,8 +146,8 @@ export function Contact() {
                                 </div>
                                 <div>
                                     <p className="font-sans text-sm tracking-widest uppercase text-text-secondary mb-1">Phone</p>
-                                    <a href="tel:+19085550123" className="font-serif text-xl text-text-primary hover:text-accent-GOLD transition-colors">
-                                        (908) 555-0123
+                                    <a href="tel:+17326949197" className="font-serif text-xl text-text-primary hover:text-accent-GOLD transition-colors">
+                                        (732) 694-9197
                                     </a>
                                 </div>
                             </div>
@@ -158,8 +158,8 @@ export function Contact() {
                                 </div>
                                 <div>
                                     <p className="font-sans text-sm tracking-widest uppercase text-text-secondary mb-1">Email</p>
-                                    <a href="mailto:info@modern-master.com" className="font-serif text-xl text-text-primary hover:text-accent-GOLD transition-colors">
-                                        info@modern-master.com
+                                    <a href="mailto:Geza@Modern-Master.com" className="font-serif text-xl text-text-primary hover:text-accent-GOLD transition-colors">
+                                        Geza@Modern-Master.com
                                     </a>
                                 </div>
                             </div>
@@ -169,9 +169,9 @@ export function Contact() {
                                     <MapPin className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <p className="font-sans text-sm tracking-widest uppercase text-text-secondary mb-1">Service Area</p>
+                                    <p className="font-sans text-sm tracking-widest uppercase text-text-secondary mb-1">Address</p>
                                     <p className="font-serif text-xl text-text-primary">
-                                        Central New Jersey
+                                        69 Nostrand Rd, Hillsborough NJ 08844
                                     </p>
                                 </div>
                             </div>
@@ -191,6 +191,27 @@ export function Contact() {
                     </motion.div>
 
                 </div>
+
+                {/* Map */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="mt-16 border border-white/5 overflow-hidden"
+                >
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.5!2d-74.636!3d40.496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3eb1e0f3b2b1d%3A0x0!2s69+Nostrand+Rd%2C+Hillsborough+Township%2C+NJ+08844!5e0!3m2!1sen!2sus!4v1"
+                        width="100%"
+                        height="400"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Modern Master Location"
+                        className="w-full"
+                    />
+                </motion.div>
             </div>
         </section>
     );
