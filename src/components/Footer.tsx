@@ -47,7 +47,7 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#portfolio" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
+                                <Link href="/portfolio" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
                                     Portfolio
                                 </Link>
                             </li>
