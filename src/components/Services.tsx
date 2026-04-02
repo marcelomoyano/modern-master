@@ -5,7 +5,7 @@ import {
     Bath,
     ChefHat,
     Home,
-    SplitSquareHorizontal,
+    Hammer,
 } from "lucide-react";
 
 const SERVICES = [
@@ -17,7 +17,7 @@ const SERVICES = [
     {
         title: "Kitchen Remodeling",
         description: "The heart of your home, reimagined.",
-        icon: ChefHat, // Using ChefHat as a proxy for kitchen/cooking
+        icon: ChefHat,
     },
     {
         title: "Finish Basement",
@@ -25,9 +25,9 @@ const SERVICES = [
         icon: Home,
     },
     {
-        title: "Floor Installation",
-        description: "From hardwood to tile, installed with precision.",
-        icon: SplitSquareHorizontal, // Proxy for flooring tiles/planks
+        title: "Carpentry & Trim Work",
+        description: "Handcrafted details that elevate every room.",
+        icon: Hammer,
     },
 ];
 

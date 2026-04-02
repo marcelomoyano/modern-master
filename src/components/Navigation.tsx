@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -39,11 +40,15 @@ export function Navigation() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         {/* Logo */}
-                        <Link href="/" className="flex-shrink-0 flex flex-col justify-center">
-                            <span className="font-serif text-2xl tracking-widest uppercase">
-                                Modern Master
-                            </span>
-                            <div className="h-[1px] w-full bg-accent-GOLD/50 mt-1" />
+                        <Link href="/" className="flex-shrink-0">
+                            <Image
+                                src="/logo.png"
+                                alt="Modern Master"
+                                width={180}
+                                height={79}
+                                className="h-14 w-auto"
+                                priority
+                            />
                         </Link>
 
                         {/* Desktop Navigation */}
@@ -62,12 +67,12 @@ export function Navigation() {
                         {/* Phone Number CTA - Desktop */}
                         <div className="hidden md:flex items-center">
                             <a
-                                href="tel:+19085550123"
+                                href="tel:+17326949197"
                                 className="flex items-center space-x-2 text-sm font-medium tracking-wider group"
                             >
                                 <Phone className="w-4 h-4 text-accent-GOLD group-hover:scale-110 transition-transform" />
                                 <span className="group-hover:text-accent-GOLD transition-colors">
-                                    (908) 555-0123
+                                    (732) 694-9197
                                 </span>
                             </a>
                         </div>
@@ -114,11 +119,11 @@ export function Navigation() {
                             ))}
                             <div className="pt-8 flex justify-center border-t border-white/10 mt-8">
                                 <a
-                                    href="tel:+19085550123"
+                                    href="tel:+17326949197"
                                     className="flex items-center space-x-3 text-lg font-medium text-accent-GOLD"
                                 >
                                     <Phone className="w-5 h-5" />
-                                    <span>(908) 555-0123</span>
+                                    <span>(732) 694-9197</span>
                                 </a>
                             </div>
                         </nav>

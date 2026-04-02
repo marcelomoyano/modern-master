@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Facebook } from "lucide-react";
 
 export function Footer() {
@@ -13,9 +14,13 @@ export function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="inline-block mb-4">
-                            <span className="font-serif text-2xl tracking-widest uppercase text-text-primary">
-                                Modern Master
-                            </span>
+                            <Image
+                                src="/logo.png"
+                                alt="Modern Master"
+                                width={180}
+                                height={79}
+                                className="h-14 w-auto"
+                            />
                         </Link>
                         <p className="font-sans text-text-secondary font-light max-w-sm mb-6">
                             Premium home remodeling in Central New Jersey. Specializing in luxury bathrooms, kitchens, and full interior transformations.
