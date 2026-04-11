@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Master | NJ Bathroom Renovation — Free Estimate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --white: #f5f2ec;
+    --cream: #ede8de;
+    --gold: #b89a5a;
+    --gold-light: #d4b87a;
+    --slate: #1e1e1e;
+    --muted: #6b6558;
+    --red: #c0392b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(184,154,90,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(184,154,90,0.06) 0%, transparent 60%),
+      var(--black);
+    z-index: 0;
+  }
+
+  /* Tile texture */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(184,154,90,0.03) 0px, rgba(184,154,90,0.03) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(0deg, rgba(184,154,90,0.03) 0px, rgba(184,154,90,0.03) 1px, transparent 1px, transparent 60px);
+    z-index: 0;
+  }
+
+  nav {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px;
+    border-bottom: 1px solid rgba(184,154,90,0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-phone {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-phone:hover { color: var(--gold-light); }
+
+  .nav-phone svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .hero-content {
+    position: relative; z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px 60px;
+    max-width: 820px;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s forwards;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.65);
+    max-width: 540px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .cta-group {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 36px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(184,154,90,0.4);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 36px;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-trust {
+    position: relative; z-index: 10;
+    display: flex; flex-wrap: wrap; gap: 32px;
+    padding: 32px 48px;
+    border-top: 1px solid rgba(184,154,90,0.12);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s forwards;
+  }
+
+  .trust-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.45);
+  }
+
+  .trust-item svg { width: 16px; height: 16px; fill: var(--gold); flex-shrink: 0; }
+
+  /* ── PAIN SECTION ── */
+  .pain {
+    background: var(--cream);
+    color: var(--black);
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .pain-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .pain-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+
+  .pain h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .pain p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a443a;
+    font-weight: 300;
+  }
+
+  .pain-list {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+
+  .pain-item {
+    display: flex; gap: 16px;
+    padding: 24px;
+    background: white;
+    border-left: 3px solid var(--gold);
+  }
+
+  .pain-item-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pain-item-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .pain-item-text span {
+    font-size: 0.875rem;
+    color: #6b6558;
+    line-height: 1.6;
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--slate);
+    padding: 100px 48px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .section-label::before,
+  .section-label::after { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+
+  .process h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 64px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 960px;
+    margin: 0 auto 64px;
+  }
+
+  .step {
+    background: rgba(255,255,255,0.04);
+    padding: 48px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .step:hover { background: rgba(184,154,90,0.08); }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(184,154,90,0.2);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .step p {
+    font-size: 0.875rem;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    background: var(--black);
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .form-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .form-left p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(245,242,236,0.5);
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .guarantee {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 24px;
+    border: 1px solid rgba(184,154,90,0.2);
+  }
+
+  .guarantee-icon { font-size: 2rem; flex-shrink: 0; }
+
+  .guarantee-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .guarantee-text span {
+    font-size: 0.825rem;
+    color: rgba(245,242,236,0.45);
+    line-height: 1.6;
+  }
+
+  .form-card {
+    background: var(--slate);
+    padding: 48px 40px;
+  }
+
+  .form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .form-card p {
+    font-size: 0.85rem;
+    color: rgba(245,242,236,0.4);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .form-group {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.45);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,154,90,0.2);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group select option { background: var(--slate); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .form-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .form-note {
+    font-size: 0.75rem;
+    color: rgba(245,242,236,0.25);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ── SOCIAL PROOF ── */
+  .social-proof {
+    background: var(--cream);
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .social-proof .section-label {
+    color: var(--gold);
+  }
+
+  .social-proof .section-label::before,
+  .social-proof .section-label::after { background: var(--gold); }
+
+  .social-proof h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 48px;
+  }
+
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .review {
+    background: white;
+    padding: 32px 28px;
+    text-align: left;
+    position: relative;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .review p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #4a443a;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .reviewer {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER CTA ── */
+  .footer-cta {
+    background: var(--gold);
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .footer-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: var(--black);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .footer-cta p {
+    font-size: 1rem;
+    color: rgba(13,13,13,0.6);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .footer-cta .btn-dark {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 48px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .footer-cta .btn-dark:hover {
+    background: #1e1e1e;
+    transform: translateY(-2px);
+  }
+
+  footer {
+    background: var(--black);
+    padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(184,154,90,0.1);
+  }
+
+  footer .logo { font-size: 1rem; }
+
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(245,242,236,0.2);
+  }
+
+  /* ── STICKY PHONE BAR (mobile) ── */
+  .sticky-bar {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--gold);
+    z-index: 100;
+    padding: 0;
+  }
+
+  .sticky-bar a {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 18px;
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sticky-bar svg { width: 18px; height: 18px; fill: var(--black); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero-content { padding: 60px 24px 40px; }
+    .hero-trust { padding: 24px; gap: 20px; flex-direction: column; }
+    .pain { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .process { padding: 60px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .form-section { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .reviews { grid-template-columns: 1fr; }
+    .social-proof { padding: 60px 24px; }
+    .footer-cta { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+    .sticky-bar { display: block; }
+    body { padding-bottom: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <nav>
+    <div class="logo">Modern <span>Master</span></div>
+    <a href="tel:+17326949197" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      (732) 694-9197
+    </a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-tag">Northern & Central New Jersey</div>
+    <h1>Your Bathroom,<br><em>Rebuilt Right.</em><br>Free Estimate.</h1>
+    <p class="hero-sub">No subcontractors. No surprises. Geza handles your project personally — from the first tile to the final fixture. Licensed, insured, and proud of every job.</p>
+    <div class="cta-group">
+      <a href="#estimate" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2zm-5.17 8.17l-.77 1.77A14.87 14.87 0 0 1 9 12.29C9.94 10.46 11.43 9.26 13 8.62l1.08 1.08-2.25 6.47z"/></svg>
+        Get My Free Estimate
+      </a>
+      <a href="tel:+17326949197" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Call Now
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      NJ Licensed & Insured
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      No Subcontractors
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      15+ Years Experience
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      Free Written Estimate
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div>
+    <div class="pain-label">The Problem</div>
+    <h2>Most homeowners get burned — once.</h2>
+    <p>Hiring the wrong contractor means delays, hidden costs, and work you're not proud of. Geza built Modern Master around a simple idea: treat every bathroom like it's going in his own home.</p>
+  </div>
+  <div class="pain-list">
+    <div class="pain-item">
+      <div class="pain-item-icon">🚫</div>
+      <div class="pain-item-text">
+        <strong>No strangers in your home</strong>
+        <span>Geza works the job personally. No rotating crew of subcontractors you've never met.</span>
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-item-icon">📋</div>
+      <div class="pain-item-text">
+        <strong>No surprise invoices</strong>
+        <span>You get a written estimate upfront. The price we agree on is the price you pay.</span>
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-item-icon">📞</div>
+      <div class="pain-item-text">
+        <strong>No chasing someone down</strong>
+        <span>Geza picks up his phone. Questions get answered same day — always.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-label">How It Works</div>
+  <h2>Simple from day one.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Free In-Home Estimate</h3>
+      <p>Geza visits, walks the space, and gives you a clear written quote — no pressure, no obligation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>We Agree on Everything</h3>
+      <p>Timeline, materials, scope. You know exactly what to expect before a single tile is touched.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Geza Does the Work</h3>
+      <p>He's on-site every day. You get a craftsman, not a project manager passing messages down the line.</p>
+    </div>
+  </div>
+  <a href="#estimate" class="btn-primary">Schedule My Free Estimate</a>
+</section>
+
+<!-- FORM -->
+<section id="estimate" style="background: var(--black); padding: 100px 48px;">
+  <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: start;">
+    <div class="form-left">
+      <div class="pain-label" style="margin-bottom: 20px;">Get Started</div>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem,3.5vw,3rem); font-weight:700; line-height:1.15; color: var(--white); margin-bottom:24px;">Tell us about<br>your project.</h2>
+      <p style="font-size:1rem; line-height:1.8; color:rgba(245,242,236,0.5); font-weight:300; margin-bottom:40px;">Fill out the form and Geza will reach out within 24 hours to schedule a free in-home walkthrough. No commitment required.</p>
+      <div class="guarantee">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-text">
+          <strong>Our Promise</strong>
+          <span>We respond within 24 hours. Your contact info is never shared. No sales calls, no spam — just a conversation about your bathroom.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Free Estimate Request</h3>
+      <p>Takes about 60 seconds</p>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(732) 694-9197">
+      </div>
+      <div class="form-group">
+        <label>Town / City</label>
+        <input type="text" placeholder="e.g. Westfield, Summit, Chatham…">
+      </div>
+      <div class="form-group">
+        <label>Project Type</label>
+        <select>
+          <option value="">Select one…</option>
+          <option>Full Bathroom Renovation</option>
+          <option>Master Bath Remodel</option>
+          <option>Shower / Tub Replacement</option>
+          <option>Tile Work Only</option>
+          <option>Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Anything else we should know? (optional)</label>
+        <textarea placeholder="Size of space, timeline, specific concerns…"></textarea>
+      </div>
+
+      <button class="form-submit">Request My Free Estimate →</button>
+      <p class="form-note">No spam. No obligation. Geza will call you personally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+  <div class="section-label" style="color: var(--gold);">What Homeowners Say</div>
+  <h2 style="color: var(--black);">Work that speaks for itself.</h2>
+  <div class="reviews">
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"Geza transformed our master bath completely. Every detail was exactly what we asked for — and he finished ahead of schedule."</p>
+      <div class="reviewer">— [Client Name], Westfield NJ</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"Finally a contractor who answers his phone. We've had bad experiences before. Geza was transparent from day one and the result is stunning."</p>
+      <div class="reviewer">— [Client Name], Summit NJ</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"He treated our home like his own. The tile work alone is worth every penny. We already recommended him to three neighbors."</p>
+      <div class="reviewer">— [Client Name], Chatham NJ</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2>Ready to get started?</h2>
+  <p>Free estimate. No pressure. Just an honest conversation about your bathroom.</p>
+  <a href="#estimate" class="btn-dark">Request My Free Estimate</a>
+</section>
+
+<footer>
+  <div class="logo">Modern <span style="color: var(--gold);">Master</span></div>
+  <p>© 2026 Modern Master LLC · NJ License #[XXXXXX] · Serving Northern & Central New Jersey</p>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <a href="tel:+17326949197">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    Call Geza Now — Free Estimate
+  </a>
+</div>
+
+<script>
+  // Smooth anchor scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
