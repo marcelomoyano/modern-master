@@ -88,7 +88,7 @@ export function Footer() {
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs font-sans text-text-secondary uppercase tracking-wider">
                     <p>&copy; {currentYear} Modern Master. All Rights Reserved.</p>
                     <div className="flex items-center gap-6">
-                        <p>NJ HIC License #13VHXXXXXXXXXX</p>
+                        <p>Serving Northern & Central New Jersey</p>
                         <iframe
                             style={{ border: 0, height: 171, width: 81 }}
                             src="https://seal-newjersey.bbb.org/frame/blue-seal-81-171-bbb-90231494.png?chk=DA61AB973B"
