@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowLeftRight } from "lucide-react";
 
 interface BeforeAfterPair {
     before: string;
@@ -26,35 +25,11 @@ const PAIRS: BeforeAfterPair[] = [
 
 export function BeforeAfter() {
     const [activePairIndex, setActivePairIndex] = useState(0);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [sliderPosition, setSliderPosition] = useState(50);
-    const [isDragging, setIsDragging] = useState(false);
+    const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {
-        setSliderPosition(50);
+        setAnimationKey((k) => k + 1);
     }, [activePairIndex]);
-
-    const getPercent = (clientX: number) => {
-        if (!containerRef.current) return 50;
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-        return (x / rect.width) * 100;
-    };
-
-    const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-        e.currentTarget.setPointerCapture(e.pointerId);
-        setIsDragging(true);
-        setSliderPosition(getPercent(e.clientX));
-    };
-
-    const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-        if (!isDragging) return;
-        setSliderPosition(getPercent(e.clientX));
-    };
-
-    const handlePointerUp = () => {
-        setIsDragging(false);
-    };
 
     const pair = PAIRS[activePairIndex];
 
@@ -101,18 +76,13 @@ export function BeforeAfter() {
                     ))}
                 </div>
 
-                {/* Slider Container */}
+                {/* Reveal Container */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="relative w-full aspect-video md:aspect-[21/9] max-h-[70vh] cursor-ew-resize select-none overflow-hidden group border border-white/10"
-                    ref={containerRef}
-                    onPointerDown={handlePointerDown}
-                    onPointerMove={handlePointerMove}
-                    onPointerUp={handlePointerUp}
-                    onPointerCancel={handlePointerUp}
+                    className="relative w-full aspect-video md:aspect-[21/9] max-h-[70vh] select-none overflow-hidden border border-white/10"
                 >
                     {/* After Image (Background) */}
                     <div className="absolute inset-0 w-full h-full">
@@ -124,16 +94,31 @@ export function BeforeAfter() {
                             sizes="100vw"
                             priority
                         />
-                        {/* Label */}
                         <div className="absolute bottom-4 right-4 bg-background-primary/80 backdrop-blur-sm px-4 py-2 border border-white/10 text-text-primary font-sans text-sm tracking-widest uppercase z-10">
                             After
                         </div>
                     </div>
 
-                    {/* Before Image (Clipped overlay) */}
-                    <div
+                    {/* Before Image (Animated reveal) */}
+                    <motion.div
+                        key={`before-${animationKey}`}
                         className="absolute inset-0 w-full h-full"
-                        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+                        initial={{ clipPath: "inset(0 0% 0 0)" }}
+                        animate={{
+                            clipPath: [
+                                "inset(0 0% 0 0)",
+                                "inset(0 0% 0 0)",
+                                "inset(0 100% 0 0)",
+                                "inset(0 100% 0 0)",
+                                "inset(0 0% 0 0)",
+                            ],
+                        }}
+                        transition={{
+                            duration: 8,
+                            times: [0, 0.15, 0.5, 0.65, 1],
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                        }}
                     >
                         <Image
                             src={pair.before}
@@ -143,21 +128,27 @@ export function BeforeAfter() {
                             sizes="100vw"
                             priority
                         />
-                        {/* Label */}
                         <div className="absolute bottom-4 left-4 bg-background-primary/80 backdrop-blur-sm px-4 py-2 border border-white/10 text-text-primary font-sans text-sm tracking-widest uppercase z-10">
                             Before
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Slider Handle */}
-                    <div
-                        className="absolute top-0 bottom-0 w-1 bg-accent-GOLD pointer-events-none z-20"
-                        style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
-                    >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background-primary border-2 border-accent-GOLD flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
-                            <ArrowLeftRight className="w-5 h-5 text-accent-GOLD" />
-                        </div>
-                    </div>
+                    {/* Animated Sweep Line */}
+                    <motion.div
+                        key={`line-${animationKey}`}
+                        className="absolute top-0 bottom-0 w-[2px] bg-accent-GOLD pointer-events-none z-20 shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+                        initial={{ left: "100%" }}
+                        animate={{
+                            left: ["100%", "100%", "0%", "0%", "100%"],
+                        }}
+                        transition={{
+                            duration: 8,
+                            times: [0, 0.15, 0.5, 0.65, 1],
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                        }}
+                        style={{ transform: "translateX(-50%)" }}
+                    />
                 </motion.div>
 
                 {/* Caption */}
