@@ -10,6 +10,8 @@ interface BeforeAfterPair {
     title: string;
 }
 
+type ViewMode = "auto" | "before" | "after";
+
 const PAIRS: BeforeAfterPair[] = [
     {
         before: "/photos/before/IMG_1023.jpg",
@@ -26,12 +28,28 @@ const PAIRS: BeforeAfterPair[] = [
 export function BeforeAfter() {
     const [activePairIndex, setActivePairIndex] = useState(0);
     const [animationKey, setAnimationKey] = useState(0);
+    const [mode, setMode] = useState<ViewMode>("auto");
 
     useEffect(() => {
         setAnimationKey((k) => k + 1);
+        setMode("auto");
     }, [activePairIndex]);
 
     const pair = PAIRS[activePairIndex];
+
+    const handleLabelClick = (label: "before" | "after") => {
+        setMode((current) => (current === label ? "auto" : label));
+        if (mode === label) {
+            setAnimationKey((k) => k + 1);
+        }
+    };
+
+    const beforeClipPath =
+        mode === "before"
+            ? "inset(0 0% 0 0)"
+            : mode === "after"
+                ? "inset(0 100% 0 0)"
+                : undefined;
 
     return (
         <section className="py-24 bg-background-secondary relative overflow-hidden">
@@ -94,61 +112,103 @@ export function BeforeAfter() {
                             sizes="100vw"
                             priority
                         />
-                        <div className="absolute bottom-4 right-4 bg-background-primary/80 backdrop-blur-sm px-4 py-2 border border-white/10 text-text-primary font-sans text-sm tracking-widest uppercase z-10">
+                        <button
+                            type="button"
+                            onClick={() => handleLabelClick("after")}
+                            aria-pressed={mode === "after"}
+                            className={`absolute bottom-4 right-4 backdrop-blur-sm px-4 py-2 border font-sans text-sm tracking-widest uppercase z-30 transition-all duration-300 cursor-pointer ${mode === "after"
+                                ? "bg-accent-GOLD/20 border-accent-GOLD text-accent-GOLD"
+                                : "bg-background-primary/80 border-white/10 text-text-primary hover:border-accent-GOLD hover:text-accent-GOLD"
+                                }`}
+                        >
                             After
-                        </div>
+                        </button>
                     </div>
 
-                    {/* Before Image (Animated reveal) */}
-                    <motion.div
-                        key={`before-${animationKey}`}
-                        className="absolute inset-0 w-full h-full"
-                        initial={{ clipPath: "inset(0 0% 0 0)" }}
-                        animate={{
-                            clipPath: [
-                                "inset(0 0% 0 0)",
-                                "inset(0 0% 0 0)",
-                                "inset(0 100% 0 0)",
-                                "inset(0 100% 0 0)",
-                                "inset(0 0% 0 0)",
-                            ],
-                        }}
-                        transition={{
-                            duration: 8,
-                            times: [0, 0.15, 0.5, 0.65, 1],
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                        }}
-                    >
-                        <Image
-                            src={pair.before}
-                            alt={`${pair.title} Before`}
-                            fill
-                            className="object-cover"
-                            sizes="100vw"
-                            priority
-                        />
-                        <div className="absolute bottom-4 left-4 bg-background-primary/80 backdrop-blur-sm px-4 py-2 border border-white/10 text-text-primary font-sans text-sm tracking-widest uppercase z-10">
-                            Before
+                    {/* Before Image (Animated reveal or static) */}
+                    {mode === "auto" ? (
+                        <motion.div
+                            key={`before-${animationKey}`}
+                            className="absolute inset-0 w-full h-full"
+                            initial={{ clipPath: "inset(0 0% 0 0)" }}
+                            animate={{
+                                clipPath: [
+                                    "inset(0 0% 0 0)",
+                                    "inset(0 0% 0 0)",
+                                    "inset(0 100% 0 0)",
+                                    "inset(0 100% 0 0)",
+                                    "inset(0 0% 0 0)",
+                                ],
+                            }}
+                            transition={{
+                                duration: 8,
+                                times: [0, 0.15, 0.5, 0.65, 1],
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            }}
+                        >
+                            <Image
+                                src={pair.before}
+                                alt={`${pair.title} Before`}
+                                fill
+                                className="object-cover"
+                                sizes="100vw"
+                                priority
+                            />
+                            <button
+                                type="button"
+                                onClick={() => handleLabelClick("before")}
+                                aria-pressed={false}
+                                className="absolute bottom-4 left-4 bg-background-primary/80 backdrop-blur-sm px-4 py-2 border border-white/10 text-text-primary font-sans text-sm tracking-widest uppercase z-30 transition-all duration-300 cursor-pointer hover:border-accent-GOLD hover:text-accent-GOLD"
+                            >
+                                Before
+                            </button>
+                        </motion.div>
+                    ) : (
+                        <div
+                            className="absolute inset-0 w-full h-full transition-[clip-path] duration-500 ease-in-out"
+                            style={{ clipPath: beforeClipPath }}
+                        >
+                            <Image
+                                src={pair.before}
+                                alt={`${pair.title} Before`}
+                                fill
+                                className="object-cover"
+                                sizes="100vw"
+                                priority
+                            />
+                            <button
+                                type="button"
+                                onClick={() => handleLabelClick("before")}
+                                aria-pressed={mode === "before"}
+                                className={`absolute bottom-4 left-4 backdrop-blur-sm px-4 py-2 border font-sans text-sm tracking-widest uppercase z-30 transition-all duration-300 cursor-pointer ${mode === "before"
+                                    ? "bg-accent-GOLD/20 border-accent-GOLD text-accent-GOLD"
+                                    : "bg-background-primary/80 border-white/10 text-text-primary hover:border-accent-GOLD hover:text-accent-GOLD"
+                                    }`}
+                            >
+                                Before
+                            </button>
                         </div>
-                    </motion.div>
+                    )}
 
-                    {/* Animated Sweep Line */}
-                    <motion.div
-                        key={`line-${animationKey}`}
-                        className="absolute top-0 bottom-0 w-[2px] bg-accent-GOLD pointer-events-none z-20 shadow-[0_0_20px_rgba(212,175,55,0.6)]"
-                        initial={{ left: "100%" }}
-                        animate={{
-                            left: ["100%", "100%", "0%", "0%", "100%"],
-                        }}
-                        transition={{
-                            duration: 8,
-                            times: [0, 0.15, 0.5, 0.65, 1],
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                        }}
-                        style={{ transform: "translateX(-50%)" }}
-                    />
+                    {/* Animated Sweep Line — only during auto mode */}
+                    {mode === "auto" && (
+                        <motion.div
+                            key={`line-${animationKey}`}
+                            className="absolute top-0 bottom-0 w-[2px] bg-accent-GOLD pointer-events-none z-20 shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+                            initial={{ left: "100%" }}
+                            animate={{
+                                left: ["100%", "100%", "0%", "0%", "100%"],
+                            }}
+                            transition={{
+                                duration: 8,
+                                times: [0, 0.15, 0.5, 0.65, 1],
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            }}
+                            style={{ transform: "translateX(-50%)" }}
+                        />
+                    )}
                 </motion.div>
 
                 {/* Caption */}
