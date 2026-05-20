@@ -191,24 +191,6 @@ export function BeforeAfter() {
                         </div>
                     )}
 
-                    {/* Animated Sweep Line — only during auto mode */}
-                    {mode === "auto" && (
-                        <motion.div
-                            key={`line-${animationKey}`}
-                            className="absolute top-0 bottom-0 w-[2px] bg-accent-GOLD pointer-events-none z-20 shadow-[0_0_20px_rgba(212,175,55,0.6)]"
-                            initial={{ left: "100%" }}
-                            animate={{
-                                left: ["100%", "100%", "0%", "0%", "100%"],
-                            }}
-                            transition={{
-                                duration: 8,
-                                times: [0, 0.15, 0.5, 0.65, 1],
-                                ease: "easeInOut",
-                                repeat: Infinity,
-                            }}
-                            style={{ transform: "translateX(-50%)" }}
-                        />
-                    )}
                 </motion.div>
 
                 {/* Caption */}
