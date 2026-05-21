@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ArrowRight } from "lucide-react";
 
 const TESTIMONIALS = [
     {
@@ -36,7 +37,7 @@ const itemVariants: Variants = {
 
 export function Testimonials() {
     return (
-        <section className="py-24 bg-background-secondary relative">
+        <section id="reviews" className="py-24 bg-background-secondary relative scroll-mt-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Section Header */}
@@ -95,6 +96,27 @@ export function Testimonials() {
                             </div>
                         </motion.div>
                     ))}
+                </motion.div>
+
+                {/* Leave a Review CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="mt-16 text-center"
+                >
+                    <p className="font-sans text-text-secondary font-light mb-6">
+                        Worked with us? We&apos;d love to hear your story.
+                    </p>
+                    <Link
+                        href="/review"
+                        className="group inline-flex items-center gap-3 border border-accent-GOLD text-accent-GOLD font-sans font-medium px-8 py-4 uppercase tracking-widest text-sm hover:bg-accent-GOLD hover:text-background-primary transition-colors duration-300"
+                    >
+                        <Star className="w-4 h-4 fill-current" />
+                        <span>Leave a Review on Google</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                 </motion.div>
             </div>
         </section>
