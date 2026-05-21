@@ -19,13 +19,13 @@ export function Gallery() {
 
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-                    <div>
+                    <Link href="#contact" className="group inline-block">
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="font-serif text-4xl md:text-5xl text-text-primary mb-4"
+                            className="font-serif text-4xl md:text-5xl text-text-primary mb-4 group-hover:text-accent-GOLD transition-colors duration-300"
                         >
                             Recent Work
                         </motion.h2>
@@ -34,9 +34,9 @@ export function Gallery() {
                             whileInView={{ opacity: 1, width: "64px" }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="h-[1px] bg-accent-GOLD"
+                            className="h-[1px] bg-accent-GOLD group-hover:w-24 transition-[width] duration-300"
                         />
-                    </div>
+                    </Link>
 
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
