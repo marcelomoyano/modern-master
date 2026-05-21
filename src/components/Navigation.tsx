@@ -44,9 +44,9 @@ export function Navigation() {
                             <Image
                                 src="/logo.png"
                                 alt="Modern Master"
-                                width={180}
-                                height={79}
-                                className="h-14 w-auto"
+                                width={220}
+                                height={97}
+                                className="h-16 md:h-14 w-auto"
                                 priority
                             />
                         </Link>
