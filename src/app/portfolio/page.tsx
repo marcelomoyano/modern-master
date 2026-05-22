@@ -12,7 +12,7 @@ const CATEGORIES = [
     {
         id: "bathrooms",
         label: "Bathrooms",
-        count: 15,
+        count: 7,
     },
     {
         id: "kitchens",
