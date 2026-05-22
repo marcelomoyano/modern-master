@@ -2,32 +2,32 @@
 
 import { motion, Variants } from "framer-motion";
 import {
-    Bath,
-    ChefHat,
-    Home,
-    Hammer,
-} from "lucide-react";
+    ShowerIcon,
+    StoveIcon,
+    StairsIcon,
+    HammerAxeIcon,
+} from "./icons/BrandIcons";
 
 const SERVICES = [
     {
         title: "Bathroom Remodeling",
         description: "Spa-worthy bathrooms designed for daily luxury.",
-        icon: Bath,
+        icon: ShowerIcon,
     },
     {
         title: "Kitchen Remodeling",
         description: "The heart of your home, reimagined.",
-        icon: ChefHat,
+        icon: StoveIcon,
     },
     {
         title: "Finish Basement",
         description: "Unlock your home's hidden potential.",
-        icon: Home,
+        icon: StairsIcon,
     },
     {
         title: "Carpentry & Trim Work",
         description: "Handcrafted details that elevate every room.",
-        icon: Hammer,
+        icon: HammerAxeIcon,
     },
 ];
 
