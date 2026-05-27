@@ -5,7 +5,7 @@ import {
     ShowerIcon,
     StoveIcon,
     StairsIcon,
-    HammerAxeIcon,
+    HammerSawIcon,
 } from "./icons/BrandIcons";
 
 const SERVICES = [
@@ -27,7 +27,7 @@ const SERVICES = [
     {
         title: "Carpentry & Trim Work",
         description: "Handcrafted details that elevate every room.",
-        icon: HammerAxeIcon,
+        icon: HammerSawIcon,
     },
 ];
 
