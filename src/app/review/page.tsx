@@ -6,11 +6,7 @@ import { ArrowLeft, Star, ExternalLink, Mail } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
-// TODO: Replace with the real Google review link from Google Business Profile
-// → Dashboard → "Get more reviews" → copy share link.
-// Looks like: https://g.page/r/XXXXXXXXXXXXXXXX/review
-//          or https://search.google.com/local/writereview?placeid=XXXXXXXXXXXX
-const GOOGLE_REVIEW_URL = "https://g.page/r/REPLACE_ME/review";
+const GOOGLE_REVIEW_URL = "https://g.page/r/CfrEDv64xZ_FEAI/review";
 
 export default function ReviewPage() {
     return (
