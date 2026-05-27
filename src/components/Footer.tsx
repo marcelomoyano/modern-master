@@ -90,7 +90,8 @@ export function Footer() {
                     <div className="flex items-center gap-6">
                         <p>Serving Northern & Central New Jersey</p>
                         <iframe
-                            style={{ border: 0, height: 171, width: 81 }}
+                            scrolling="no"
+                            style={{ border: 0, height: 185, width: 95 }}
                             src="https://seal-newjersey.bbb.org/frame/blue-seal-81-171-bbb-90231494.png?chk=DA61AB973B"
                             title="BBB Accredited Business"
                         />
