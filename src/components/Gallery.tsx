@@ -56,7 +56,7 @@ export function Gallery() {
                 </div>
 
                 {/* Gallery Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[300px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[260px] md:auto-rows-[300px]">
                     {PORTFOLIO_IMAGES.map((img, index) => (
                         <motion.div
                             key={index}
