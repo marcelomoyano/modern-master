@@ -4,19 +4,37 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
+const WEB3FORMS_ACCESS_KEY = "86b676a7-df89-4186-89d6-55e58261288d";
+
 export function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate form submission
-        setTimeout(() => {
+        setSubmitStatus("idle");
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await response.json();
+            if (data.success) {
+                setSubmitStatus("success");
+                form.reset();
+            } else {
+                setSubmitStatus("error");
+            }
+        } catch {
+            setSubmitStatus("error");
+        } finally {
             setIsSubmitting(false);
-            alert("Thank you for your inquiry. Geza will be in touch shortly.");
-            const target = e.target as HTMLFormElement;
-            target.reset();
-        }, 1500);
+        }
     };
 
     return (
@@ -56,12 +74,20 @@ export function Contact() {
                         className="bg-surface p-8 md:p-10 border border-white/5"
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            {/* Web3Forms hidden fields */}
+                            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+                            <input type="hidden" name="subject" value="New Consultation Request — Modern Master" />
+                            <input type="hidden" name="from_name" value="Modern Master Website" />
+                            {/* Honeypot: hidden from users, catches spam bots */}
+                            <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" style={{ display: "none" }} />
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="font-sans text-sm tracking-widest uppercase text-text-secondary">Name</label>
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
                                         required
                                         className="w-full bg-background-primary border border-white/10 px-4 py-3 text-text-primary focus:outline-none focus:border-accent-GOLD transition-colors"
                                     />
@@ -71,6 +97,7 @@ export function Contact() {
                                     <input
                                         type="tel"
                                         id="phone"
+                                        name="phone"
                                         required
                                         className="w-full bg-background-primary border border-white/10 px-4 py-3 text-text-primary focus:outline-none focus:border-accent-GOLD transition-colors"
                                     />
@@ -82,6 +109,7 @@ export function Contact() {
                                 <input
                                     type="email"
                                     id="email"
+                                    name="email"
                                     required
                                     className="w-full bg-background-primary border border-white/10 px-4 py-3 text-text-primary focus:outline-none focus:border-accent-GOLD transition-colors"
                                 />
@@ -91,6 +119,7 @@ export function Contact() {
                                 <label htmlFor="project" className="font-sans text-sm tracking-widest uppercase text-text-secondary">Project Type</label>
                                 <select
                                     id="project"
+                                    name="project"
                                     required
                                     className="w-full bg-background-primary border border-white/10 px-4 py-3 text-text-secondary focus:outline-none focus:border-accent-GOLD transition-colors appearance-none"
                                 >
@@ -108,6 +137,7 @@ export function Contact() {
                                 <label htmlFor="message" className="font-sans text-sm tracking-widest uppercase text-text-secondary">Message</label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     rows={4}
                                     required
                                     className="w-full bg-background-primary border border-white/10 px-4 py-3 text-text-primary focus:outline-none focus:border-accent-GOLD transition-colors resize-none"
@@ -121,6 +151,17 @@ export function Contact() {
                             >
                                 {isSubmitting ? "Sending..." : "Request Consultation"}
                             </button>
+
+                            {submitStatus === "success" && (
+                                <p className="font-sans text-sm text-center text-accent-GOLD">
+                                    Thank you for your inquiry. Geza will be in touch shortly.
+                                </p>
+                            )}
+                            {submitStatus === "error" && (
+                                <p className="font-sans text-sm text-center text-red-400">
+                                    Something went wrong. Please call us at (732) 694-9197.
+                                </p>
+                            )}
                         </form>
                     </motion.div>
 
