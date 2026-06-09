@@ -3,16 +3,17 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Bathroom & Kitchen Remodeling in Princeton, NJ | Modern Master",
   description:
-    "Premium bathroom remodels, kitchen renovations, and custom carpentry for Princeton, NJ homeowners. 20+ years of craftsmanship — licensed, insured, and Princeton-experienced.",
+    "Premium bathroom and kitchen remodeling for Princeton, NJ homeowners. Owner-operated craftsmanship, fully licensed and insured. Schedule a free consultation.",
   alternates: {
     canonical: "/princeton",
   },
   openGraph: {
     title: "Bathroom & Kitchen Remodeling in Princeton, NJ | Modern Master",
     description:
-      "Premium bathroom remodels, kitchen renovations, and custom carpentry for Princeton, NJ homeowners.",
+      "Premium bathroom and kitchen remodeling for Princeton, NJ homeowners. Owner-operated craftsmanship, fully licensed and insured.",
     url: "/princeton",
     type: "website",
+    images: ["/photos/after/bathroom-after-1.jpg"],
   },
 };
 

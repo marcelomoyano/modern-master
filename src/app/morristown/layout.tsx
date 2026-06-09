@@ -3,16 +3,17 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Bathroom & Kitchen Remodeling in Morristown, NJ | Modern Master",
   description:
-    "Bathroom, kitchen, and custom carpentry remodels for Morristown, NJ. Experienced with historic homes, period trim restoration, and downtown condo renovations. Licensed and insured.",
+    "Premium remodeling for Morristown, NJ homeowners — from historic homes to modern renovations. Owner-operated, licensed and insured. Free consultation.",
   alternates: {
     canonical: "/morristown",
   },
   openGraph: {
     title: "Bathroom & Kitchen Remodeling in Morristown, NJ | Modern Master",
     description:
-      "Bathroom, kitchen, and custom carpentry remodels for Morristown, NJ — including historic homes and downtown condos.",
+      "Premium remodeling for Morristown, NJ homeowners — from historic homes to modern renovations. Owner-operated, licensed and insured.",
     url: "/morristown",
     type: "website",
+    images: ["/photos/after/bathroom-after-4.jpg"],
   },
 };
 

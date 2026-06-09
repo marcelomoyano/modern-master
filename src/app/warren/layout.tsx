@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home Remodeling in Warren, NJ | Bathrooms, Kitchens & Basements | Modern Master",
+  title: "Bathroom & Kitchen Remodeling in Warren, NJ | Modern Master",
   description:
-    "Custom home remodels for Warren Township, NJ — luxury bathrooms, kitchen renovations, finished basements with home theaters and wet bars. Licensed, insured, 20+ years.",
+    "Luxury bathroom and kitchen remodeling for Warren, NJ homeowners. Owner-operated, licensed and insured craftsmanship. Schedule a free consultation.",
   alternates: {
     canonical: "/warren",
   },
   openGraph: {
-    title: "Home Remodeling in Warren, NJ | Modern Master",
+    title: "Bathroom & Kitchen Remodeling in Warren, NJ | Modern Master",
     description:
-      "Custom home remodels for Warren Township, NJ — luxury bathrooms, kitchens, and finished basements.",
+      "Luxury bathroom and kitchen remodeling for Warren, NJ homeowners. Owner-operated, licensed and insured craftsmanship.",
     url: "/warren",
     type: "website",
+    images: ["/photos/after/bathroom-after-2.jpg"],
   },
 };
 
