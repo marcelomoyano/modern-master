@@ -13,21 +13,25 @@ const CATEGORIES = [
         id: "bathrooms",
         label: "Bathrooms",
         count: 13,
+        altPrefix: "Custom bathroom remodel by Modern Master in Central New Jersey",
     },
     {
         id: "kitchens",
         label: "Kitchens",
         count: 3,
+        altPrefix: "Kitchen renovation by Modern Master in Central New Jersey",
     },
     {
         id: "carpentry",
         label: "Carpentry & Trim",
         count: 18,
+        altPrefix: "Custom carpentry and trim work by Modern Master in Central New Jersey",
     },
     {
         id: "basements",
         label: "Basements",
         count: 17,
+        altPrefix: "Finished basement by Modern Master in Central New Jersey",
     },
 ];
 
@@ -120,7 +124,7 @@ export default function PortfolioPage() {
                             <div className="relative overflow-hidden border border-white/5 group-hover:border-accent-GOLD/30 transition-colors duration-300">
                                 <Image
                                     src={src}
-                                    alt={`${CATEGORIES.find((c) => c.id === activeCategory)?.label} project ${i + 1}`}
+                                    alt={`${CATEGORIES.find((c) => c.id === activeCategory)?.altPrefix} — project ${i + 1}`}
                                     width={800}
                                     height={600}
                                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
@@ -156,7 +160,7 @@ export default function PortfolioPage() {
                         >
                             <Image
                                 src={lightboxImage}
-                                alt="Portfolio photo"
+                                alt={`${CATEGORIES.find((c) => c.id === activeCategory)?.altPrefix} — full-size view`}
                                 width={1600}
                                 height={1200}
                                 className="w-full h-auto max-h-[90vh] object-contain"

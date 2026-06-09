@@ -1,17 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 
-const AREAS = [
-    "Hillsborough",
-    "Princeton",
-    "Warren",
-    "Morristown",
-    "Flemington",
-    "Bridgewater",
-    "Somerset",
-    "Bernardsville",
+const AREAS: { name: string; href?: string }[] = [
+    { name: "Hillsborough" },
+    { name: "Princeton", href: "/princeton" },
+    { name: "Warren", href: "/warren" },
+    { name: "Morristown", href: "/morristown" },
+    { name: "Flemington" },
+    { name: "Bridgewater" },
+    { name: "Somerset" },
+    { name: "Bernardsville" },
 ];
 
 const containerVariants = {
@@ -64,17 +65,26 @@ export function ServiceAreas() {
                             viewport={{ once: true, margin: "-50px" }}
                             className="grid grid-cols-2 md:grid-cols-4 gap-4"
                         >
-                            {AREAS.map((area, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={itemVariants}
-                                    className="bg-surface border border-white/5 py-3 px-4 text-center hover:border-accent-GOLD/30 transition-colors"
-                                >
+                            {AREAS.map((area, index) => {
+                                const inner = (
                                     <span className="font-sans text-text-primary text-sm tracking-wide">
-                                        {area}
+                                        {area.name}
                                     </span>
-                                </motion.div>
-                            ))}
+                                );
+                                const baseClass =
+                                    "bg-surface border border-white/5 py-3 px-4 text-center hover:border-accent-GOLD/30 transition-colors block";
+                                return (
+                                    <motion.div key={index} variants={itemVariants}>
+                                        {area.href ? (
+                                            <Link href={area.href} className={baseClass}>
+                                                {inner}
+                                            </Link>
+                                        ) : (
+                                            <div className={baseClass}>{inner}</div>
+                                        )}
+                                    </motion.div>
+                                );
+                            })}
                         </motion.div>
                     </div>
 
