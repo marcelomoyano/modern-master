@@ -12,7 +12,7 @@ const CATEGORIES = [
     {
         id: "bathrooms",
         label: "Bathrooms",
-        count: 7,
+        count: 13,
     },
     {
         id: "kitchens",
@@ -22,22 +22,12 @@ const CATEGORIES = [
     {
         id: "carpentry",
         label: "Carpentry & Trim",
-        count: 14,
+        count: 18,
     },
     {
         id: "basements",
         label: "Basements",
-        count: 14,
-    },
-    {
-        id: "flooring",
-        label: "Flooring",
-        count: 10,
-    },
-    {
-        id: "railings",
-        label: "Railings & Balusters",
-        count: 9,
+        count: 17,
     },
 ];
 
