@@ -12,7 +12,7 @@ const CATEGORIES = [
     {
         id: "bathrooms",
         label: "Bathrooms",
-        count: 13,
+        count: 53,
         altPrefix: "Custom bathroom remodel by Modern Master in Central New Jersey",
     },
     {
