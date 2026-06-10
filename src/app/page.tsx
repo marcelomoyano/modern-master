@@ -7,6 +7,7 @@ import { Gallery } from "@/components/Gallery";
 import { About } from "@/components/About";
 import { ServiceAreas } from "@/components/ServiceAreas";
 import { Contact } from "@/components/Contact";
+import { ReviewCallout } from "@/components/ReviewCallout";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <About />
       <ServiceAreas />
       <Contact />
+      <ReviewCallout />
       <Footer />
     </main>
   );
