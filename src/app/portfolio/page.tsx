@@ -24,7 +24,7 @@ const CATEGORIES = [
     {
         id: "carpentry",
         label: "Carpentry & Trim",
-        count: 18,
+        count: 55,
         altPrefix: "Custom carpentry and trim work by Modern Master in Central New Jersey",
     },
     {
