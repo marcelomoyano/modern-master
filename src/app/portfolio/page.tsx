@@ -30,7 +30,7 @@ const CATEGORIES = [
     {
         id: "basements",
         label: "Basements",
-        count: 17,
+        count: 23,
         altPrefix: "Finished basement by Modern Master in Central New Jersey",
     },
 ];
