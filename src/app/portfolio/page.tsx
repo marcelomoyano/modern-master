@@ -18,7 +18,7 @@ const CATEGORIES = [
     {
         id: "kitchens",
         label: "Kitchens",
-        count: 3,
+        count: 25,
         altPrefix: "Kitchen renovation by Modern Master in Central New Jersey",
     },
     {
