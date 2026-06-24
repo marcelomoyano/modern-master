@@ -8,10 +8,10 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "/#services" },
     { label: "Portfolio", href: "/portfolio" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
 ];
 
 export function Navigation() {
