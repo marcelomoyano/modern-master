@@ -23,10 +23,26 @@ const config: Config = {
         surface: {
           DEFAULT: "#161616", // Subtle dark with slight warm undertone
         },
+        // Scoped to the /landing lead-page experiments ONLY. Do not use these
+        // outside src/components/landing — the main site keeps its single
+        // accent-GOLD. Delete this group if the experiments are retired.
+        landing: {
+          cream: "#F5F1EA", // Option A page background
+          paper: "#FFFDF9", // Raised cards on cream
+          ink: "#17150F", // Option B page background / headings on cream
+          body: "#4A4438", // Body copy on cream
+          muted: "#6E6558", // Micro-labels, captions
+          bronze: "#9A6B33", // Primary CTA fill
+          brass: "#C79A5C", // Accent on dark
+          sand: "#A9946F", // Eyebrow labels on dark
+        },
       },
       fontFamily: {
         serif: ["var(--font-playfair-display)", "serif"],
         sans: ["var(--font-dm-sans)", "sans-serif"],
+        // /landing experiments only — see the `landing` color group above.
+        display: ["var(--font-instrument-serif)", "serif"],
+        grotesk: ["var(--font-manrope)", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
