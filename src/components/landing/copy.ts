@@ -11,7 +11,12 @@
  * The site-wide rule is "real address, real phone, real email — never
  * placeholders". The mockup shipped a fake number (908-555-0100) and a
  * placeholder licence (13VH0000000); both are corrected/flagged below.
+ *
+ * Money lives in pricing.ts, not here. As of 3 August 2026 all of it is real —
+ * the mockup's invented bands have been deleted.
  */
+
+import { PACKAGE_ROOMS, usd } from "./pricing";
 
 /* ------------------------------------------------------------------ */
 /* VERIFIED                                                            */
@@ -37,6 +42,29 @@ export const TOWNS = [
 
 /** Deep link to Modern Master's Google Business Profile review flow. */
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CfrEDv64xZ_FEAI/review";
+
+/**
+ * Option B's three price cards — one per room type, spanning base build to
+ * designer led. Derived from PACKAGE_ROOMS so there is exactly one place a
+ * number can be wrong.
+ */
+export const PRICE_TIERS = PACKAGE_ROOMS.map((r) => ({
+  name: r.label,
+  range: `${usd(r.tiers[0].price)}–${usd(r.tiers[2].price)}`,
+  body: `${r.qualifier}. The base build sits at the bottom of that range; the top is a room a designer draws with you first, on me.`,
+}));
+
+/**
+ * The band quoted in Option A's hero. A full bathroom is the most common job,
+ * so this is that room from base build to full custom — not the widest possible
+ * spread, which would be true but useless.
+ */
+export const TYPICAL_RANGE = `${usd(PACKAGE_ROOMS[1].tiers[0].price)}–${usd(
+  PACKAGE_ROOMS[1].tiers[1].price,
+)}`;
+
+/** Lowest published entry point — a half bath, base build. */
+export const BUDGET_FLOOR = usd(PACKAGE_ROOMS[0].tiers[0].price);
 
 export interface BeforeAfterPair {
   id: string;
@@ -106,36 +134,6 @@ export const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
  * deliberately generic. Fill these in once Geza confirms the actual jobs.
  */
 export const PROJECT_PROVENANCE_CONFIRMED = false;
-
-/**
- * UNVERIFIED — price bands.
- * These numbers came from the mockup, not from Geza. They are the entire spine
- * of Option B, so they are rendered as-is for the demo, but they must be
- * replaced with his real ranges before this page takes a single click of spend.
- */
-export const PRICE_TIERS = [
-  {
-    name: "Full gut, refined finishes",
-    range: "$38–52k",
-    body: "Down to the studs, new waterproofing, porcelain, custom vanity, honest craftsmanship throughout.",
-  },
-  {
-    name: "Custom primary bath",
-    range: "$55–85k",
-    body: "Curbless walk-in, heated floor, natural stone, built-in niches, glass to the ceiling.",
-  },
-  {
-    name: "Whole-floor / multi-bath",
-    range: "$95k +",
-    body: "Two or more baths, layout changes, plumbing relocated. Scheduled as one continuous build.",
-  },
-];
-
-/** UNVERIFIED — the headline band quoted in Option A's hero. */
-export const TYPICAL_RANGE = "$38k–$85k";
-
-/** UNVERIFIED — the floor used by Option B's budget acknowledgement gate. */
-export const BUDGET_FLOOR = "$35,000";
 
 /**
  * UNVERIFIED — review count.
@@ -236,17 +234,23 @@ export const DIFFERENTIATORS_SHORT = [
 ];
 
 export const SCOPE_OPTIONS = [
-  "Full gut renovation",
-  "Primary bath, taken to the studs",
+  "Half bathroom",
+  "Full bathroom — tub or shower",
+  "Primary bathroom — shower and tub",
   "Two or more bathrooms",
   "Not sure yet — I want your read",
 ];
 
+/**
+ * Bands drawn straight off the package sheet: half-bath base at the bottom,
+ * primary-suite designer tier at the top. Index 3 is the "below the floor"
+ * answer and Option A keys its honest-exit copy off it — keep it last.
+ */
 export const BUDGET_OPTIONS = [
-  { label: "$38k – $55k", note: "most common" },
-  { label: "$55k – $85k", note: "full custom" },
-  { label: "$85k +", note: "no limits" },
-  { label: "Under $38k", note: "I'll be honest with you" },
+  { label: `${usd(7500)} – ${usd(15000)}`, note: "half bath, or a simple full" },
+  { label: `${usd(15000)} – ${usd(26000)}`, note: "most common" },
+  { label: `${usd(26000)} +`, note: "primary suite / designer led" },
+  { label: `Under ${usd(7500)}`, note: "I'll be honest with you" },
 ];
 
 export const TIMING_OPTIONS = ["ASAP", "3–6 months", "Just planning"];

@@ -382,11 +382,13 @@ Set in Vercel project env (not committed):
 
 ## 11. Landing-page experiments (`/landing`)
 
-Two mobile lead-page directions for paid traffic, built from a design-canvas mockup. **Not part of the main site** — they are `noindex`, disallowed in `robots.ts`, and absent from `sitemap.ts`.
+Four mobile lead-page directions for paid traffic. **Not part of the main site** — they are `noindex`, disallowed in `robots.ts`, and absent from `sitemap.ts`.
 
 | Route | Direction |
 | --- | --- |
-| `/landing` | Index — both options side by side, plus the outstanding sign-off checklist |
+| `/landing` | Index — all four side by side, the two-sheet pricing reconciliation, and the outstanding sign-off checklist |
+| `/landing/packages` | Fixed price. Tap a bathroom, three package prices appear. Built on Geza's package sheet |
+| `/landing/estimate` | Starting budget + add-ons wired to a running total. Built on the budgets he works at today |
 | `/landing/a` | Owner-first. Geza's portrait and voice lead; a four-question fit check qualifies, budget asked second |
 | `/landing/b` | Work-first. Draggable before/after *is* the hero; published price tiers filter; CTA is a booked walkthrough |
 
@@ -402,20 +404,29 @@ Deleting `src/app/landing/`, `src/components/landing/`, and the two namespaced b
 ### 11.2 Structure
 
 ```
-src/app/landing/{layout.tsx,page.tsx,a/page.tsx,b/page.tsx}
+src/app/landing/{layout.tsx,page.tsx,packages/page.tsx,estimate/page.tsx,a/page.tsx,b/page.tsx}
 src/components/landing/
-├── copy.ts               ← all shared content, split VERIFIED / UNVERIFIED
+├── pricing.ts            ← every dollar figure on every page, nowhere else
+├── copy.ts               ← all other shared content, split VERIFIED / UNVERIFIED
 ├── BeforeAfterSlider.tsx ← drag-to-reveal comparison
 ├── DraftRibbon.tsx       ← internal-draft banner (delete on sign-off)
+├── PackagesPage.tsx
+├── EstimatePage.tsx
 ├── OptionA.tsx
 └── OptionB.tsx
 ```
 
-Both pages are client components with no `framer-motion` — 105 kB first load against the homepage's 159 kB, which matters when the traffic is paid and mobile.
+All four pages are client components with no `framer-motion` — 107–108 kB first load against the homepage's 159 kB, which matters when the traffic is paid and mobile.
 
-### 11.3 `copy.ts` is the contract
+### 11.3 `pricing.ts` and `copy.ts` are the contract
 
 The mockup shipped a fake phone number, a placeholder licence number, invented testimonials, invented price bands and invented capacity claims. `copy.ts` separates what the business actually backs from what it doesn't, and **every unverified value renders bracketed or flagged rather than as fact**. The `/landing` index lists what's outstanding. Do not remove a flag without Geza confirming the underlying number.
+
+Money is different enough to live on its own. `pricing.ts` holds every dollar figure across all four pages — Option A's hero band and Option B's tier cards are *derived* from the same arrays the two pricing pages use, so a price can only be wrong in one place. Geza supplied the numbers on 3 August 2026.
+
+He sent **two sheets that disagree** for identical scope: fixed packages (half $7,500 / full $15,500 / primary $26,500 base) and the starting budgets he actually works at (half $5,800 / full $12,500 / primary $18,500). They reconcile through his own add-on list — $12,500 plus the four extras homeowners usually pick ($3,800) lands on the $15,500 package. So they are a fixed price and a starting point, not one product at two prices. **That story only holds if a visitor never sees both pages in one sitting**: `/landing/packages` and `/landing/estimate` deliberately do not link to each other, and they are meant for different traffic. Don't cross-link them.
+
+Every figure excludes finish materials. That exclusion renders as a bordered callout on all four pages, never as fine print — it is the difference between a price a homeowner trusts and one they feel ambushed by.
 
 ### 11.4 BeforeAfterSlider
 

@@ -4,8 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 import { DraftRibbon } from "./DraftRibbon";
+import { MATERIALS_NOTE } from "./pricing";
 import {
   BEFORE_AFTER_PAIRS,
+  BUDGET_FLOOR,
   BUDGET_OPTIONS,
   DIFFERENTIATORS,
   PHONE_DISPLAY,
@@ -135,12 +137,22 @@ export function OptionA() {
         </div>
 
         {/* Budget band */}
-        <div className="mx-6 mt-5 flex items-center gap-[10px] rounded-[10px] border border-landing-ink/[0.14] bg-landing-paper px-[14px] py-3">
-          <div className="whitespace-nowrap font-display text-[19px] text-landing-bronze">
-            {TYPICAL_RANGE}
+        <div className="mx-6 mt-5 rounded-[10px] border border-landing-ink/[0.14] bg-landing-paper px-[14px] py-3">
+          <div className="flex items-center gap-[10px]">
+            <div className="whitespace-nowrap font-display text-[19px] text-landing-bronze">
+              {TYPICAL_RANGE}
+            </div>
+            <div className="text-[12px] leading-[1.4] text-landing-muted">
+              is where most full bathrooms land. A half bath starts at{" "}
+              {BUDGET_FLOOR}.
+            </div>
           </div>
-          <div className="text-[12px] leading-[1.4] text-landing-muted">
-            is where most of my bathrooms land. Worth knowing before we talk.
+          <div className="mt-2 border-t border-landing-ink/[0.1] pt-2 text-[11.5px] leading-[1.45] text-landing-muted">
+            <span className="font-bold text-landing-bronze">
+              {MATERIALS_NOTE}
+            </span>{" "}
+            That is the build — tile, stone and fixtures are yours to choose and
+            buy.
           </div>
         </div>
 

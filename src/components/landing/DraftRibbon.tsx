@@ -10,10 +10,10 @@ import Link from "next/link";
 export function DraftRibbon({ label }: { label: string }) {
   return (
     <div className="bg-[#7A2E2E] px-4 py-2 text-center font-grotesk text-[11px] leading-snug tracking-[0.08em] text-[#FFE8E2]">
-      INTERNAL DRAFT · {label} · pricing, review quotes &amp; credentials pending
-      sign-off ·{" "}
+      INTERNAL DRAFT · {label} · review quotes &amp; credentials pending sign-off
+      ·{" "}
       <Link href="/landing" className="underline underline-offset-2">
-        both options
+        all four
       </Link>
     </div>
   );

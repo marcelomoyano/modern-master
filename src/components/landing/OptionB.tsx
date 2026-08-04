@@ -19,6 +19,7 @@ import {
   TOWNS,
   submitLead,
 } from "./copy";
+import { MATERIALS_NOTE } from "./pricing";
 
 /**
  * Option B — work-first.
@@ -66,7 +67,7 @@ export function OptionB() {
         Name: name,
         Phone: phone,
         Preferred_time: preference,
-        Budget_acknowledged: `Yes — understands project starts around ${BUDGET_FLOOR}`,
+        Budget_acknowledged: `Yes — has seen the package prices (from ${BUDGET_FLOOR}, materials excluded)`,
       });
       setBooked(true);
     } catch {
@@ -145,6 +146,15 @@ export function OptionB() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="mt-3 rounded-[10px] border border-landing-brass/40 bg-landing-brass/[0.07] px-[14px] py-3">
+            <div className="text-[13px] font-bold text-landing-brass">
+              {MATERIALS_NOTE}
+            </div>
+            <div className="mt-[5px] text-[12.5px] leading-[1.5] text-landing-cream/65">
+              Tile, stone, vanity, fixtures — you buy those and you own the
+              choice. What is priced here is the build.
+            </div>
           </div>
           <div className="mt-3 text-[12.5px] leading-[1.6] text-landing-cream/50">
             If your number is below that first band I&apos;ll say so on the
@@ -305,8 +315,8 @@ export function OptionB() {
                       {acked ? "✓" : ""}
                     </span>
                     <span className="text-[12.5px] leading-[1.5] text-landing-cream/[0.78]">
-                      I understand my project starts around {BUDGET_FLOOR} and
-                      I&apos;m planning at that level.
+                      I&apos;ve read the prices above, I know finish materials
+                      are on top, and I&apos;m planning at that level.
                     </span>
                   </button>
 
