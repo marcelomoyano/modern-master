@@ -14,15 +14,20 @@ type ViewMode = "auto" | "before" | "after";
 
 const PAIRS: BeforeAfterPair[] = [
     {
-        before: "/photos/before/IMG_1023.jpg",
-        after: "/photos/after/bathroom-after-2.jpg",
-        title: "Luxury Master Bathroom",
+        before: "/photos/before/IMG_3665-before.jpg",
+        after: "/photos/after/IMG_3665-after.jpg",
+        title: "Tub to Walk-In Shower",
     },
     {
         before: "/photos/before/IMG_9563.jpeg",
         after: "/photos/after/IMG_0134.jpeg",
         title: "Full Bathroom Remodel",
-    }
+    },
+    {
+        before: "/photos/before/IMG_1023.jpg",
+        after: "/photos/after/bathroom-after-2.jpg",
+        title: "Luxury Master Bathroom",
+    },
 ];
 
 export function BeforeAfter() {
