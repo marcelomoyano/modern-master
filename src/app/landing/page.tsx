@@ -90,11 +90,6 @@ const SIGN_OFF = [
       "“47 reviews” was invented. The badge shows “5.0 on Google” with no count until the real number is confirmed.",
   },
   {
-    item: "NJ HIC licence number",
-    detail:
-      "The mockup shipped 13VH0000000, a placeholder pattern. Currently renders “NJ HIC #[Geza to supply]”.",
-  },
-  {
     item: "Capacity and scarcity",
     detail:
       "“Nine bathrooms a year” and “2 build slots left” are unverified. Both render as [N] on option B until confirmed.",
@@ -104,17 +99,14 @@ const SIGN_OFF = [
     detail:
       "The hero was captioned “Warren, NJ · 6 weeks”. Neither photo's town nor timeline is recorded anywhere, so captions are generic for now.",
   },
-  {
-    item: "Owner portrait",
-    detail:
-      "Using the only headshot in the repo — a 400×400 crop in front of a Christmas tree. Every one of these pages leans on it.",
-  },
 ];
 
 const FIXED = [
   "All pricing replaced with Geza's real figures — the mockup's $38–52k / $55–85k / $95k+ bands are deleted",
   "“Finish materials are not included” promoted from fine print to a bordered callout on all four pages",
   "Phone corrected from the mockup's 908-555-0100 to the real (732) 694-9197",
+  "NJ HIC licence is now the real number (13VH08744800), read off the new van wrap — it had been rendering “[Geza to supply]” on all four live pages",
+  "Owner portrait replaced — Geza in the branded polo, standing in a bathroom he built, instead of the 400×400 Christmas-tree crop",
   "Every number lives in one file (pricing.ts), so a price can only be wrong in one place",
   "All four forms post to the same Web3Forms inbox as the homepage, with a honeypot and a distinct subject line",
   "/landing is noindex and disallowed in robots.txt",

@@ -10,7 +10,8 @@
  *
  * The site-wide rule is "real address, real phone, real email — never
  * placeholders". The mockup shipped a fake number (908-555-0100) and a
- * placeholder licence (13VH0000000); both are corrected/flagged below.
+ * placeholder licence (13VH0000000). Both are now real: the phone was
+ * corrected earlier, and the licence came off the van wrap on 17 August 2026.
  *
  * Money lives in pricing.ts, not here. As of 3 August 2026 all of it is real —
  * the mockup's invented bands have been deleted.
@@ -163,16 +164,18 @@ export const REVIEWS: { quote: string; who: string }[] = [
 ];
 
 /**
- * UNVERIFIED — credentials.
- * "NJ HIC #13VH0000000" in the mockup is a placeholder pattern, not a licence.
- * "Schluter-certified" was invented. Only the first three are backed by the
- * live site (TrustBar + Footer BBB seal).
+ * VERIFIED — credentials.
+ * The licence number was read off the new van wrap (photographed 17 August
+ * 2026): "NJ LIC. #13VH08744800". That replaces the "[Geza to supply]"
+ * placeholder, which was rendering literally on all four live lead pages.
+ * The mockup's "13VH0000000" was a placeholder pattern and its
+ * "Schluter-certified" claim was invented; neither appears here.
  */
 export const SEALS = [
   "20+ years", // verified — About.tsx
   "Licensed & insured", // verified — TrustBar.tsx
-  "BBB accredited", // verified — Footer.tsx seal
-  "NJ HIC #[Geza to supply]", // UNVERIFIED
+  "BBB accredited", // verified — Footer.tsx seal + van wrap badge
+  "NJ HIC #13VH08744800", // verified — van wrap
 ];
 
 /** UNVERIFIED — capacity and scarcity claims used by Option B. */
