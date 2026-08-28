@@ -1,26 +1,27 @@
 /**
- * Shared content for the /landing lead-page experiments.
+ * Shared content for the /landing lead page.
  *
- * Everything in this file is split into two buckets:
+ * Two rules govern this file.
  *
- *   VERIFIED   — pulled from the live site / real business records. Safe.
- *   UNVERIFIED — carried over from the design mockup and NOT yet confirmed by
- *                Geza. Every one of these is marked. Nothing marked UNVERIFIED
- *                may ship to a public route until he signs off.
+ * 1. NO PRICES ON THE PAGE. Geza ruled on 27 August 2026 that what a project
+ *    costs is settled in conversation, not published — a number on the page
+ *    anchors the negotiation before he is in the room. The only dollar figures
+ *    that survive here are BUDGET_OPTIONS, which ask the *homeowner* what they
+ *    have set aside. A price he publishes anchors him; a budget they volunteer
+ *    arms him. Those are different things and only the first was rejected.
+ *    Money still lives in pricing.ts for a future quote page. It must not be
+ *    imported into anything the lead page renders.
  *
- * The site-wide rule is "real address, real phone, real email — never
- * placeholders". The mockup shipped a fake number (908-555-0100) and a
- * placeholder licence (13VH0000000). Both are now real: the phone was
- * corrected earlier, and the licence came off the van wrap on 17 August 2026.
- *
- * Money lives in pricing.ts, not here. As of 3 August 2026 all of it is real —
- * the mockup's invented bands have been deleted.
+ * 2. NOTHING IS INVENTED. Every claim below traces to a business record: the
+ *    Google Business Profile, the van wrap, or something Geza wrote down.
+ *    Where a fact is still missing it stays bracketed and visible rather than
+ *    filled in. See docs/google-reviews.md for the sources.
  */
 
-import { PACKAGE_ROOMS, usd } from "./pricing";
+import { usd } from "./pricing";
 
 /* ------------------------------------------------------------------ */
-/* VERIFIED                                                            */
+/* Contact                                                             */
 /* ------------------------------------------------------------------ */
 
 export const PHONE_HREF = "tel:+17326949197";
@@ -29,43 +30,148 @@ export const SMS_HREF = "sms:+17326949197";
 export const EMAIL = "geza@modern-master.com";
 export const EMAIL_HREF = `mailto:${EMAIL}`;
 
-/** Same eight towns as ServiceAreas.tsx, in the same order. */
+/* ------------------------------------------------------------------ */
+/* Service area                                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The service area, per Geza on 28 August 2026: "the original listing without
+ * Somerset and Morristown.. plus we should list the wealthy towns sounding me."
+ *
+ * So this list is three things joined:
+ *   1. The old site-wide list (ServiceAreas.tsx) minus the two he cut. Warren,
+ *      Flemington, Bridgewater and Bernardsville were parked pending his
+ *      townships screenshot; that instruction rules them back in.
+ *   2. The towns from the screenshot he sent — Far Hills, Montgomery, Basking
+ *      Ridge. All are 15-30 minutes from Hillsborough, inside his own hour.
+ *      NOTE: that screenshot is cut off mid-entry after Warren. If it listed
+ *      more towns below the fold, they are not here yet.
+ *   3. The towns his own reviews and last-ten list put him in. Those are the
+ *      evidenced ones and they stay regardless of any wish list.
+ *
+ * A town on this list is a place he will drive to. It is not a claim that he
+ * has worked there — only the ones marked "review" or "last-ten" are that.
+ */
 export const TOWNS = [
-  "Hillsborough",
-  "Princeton",
-  "Warren",
-  "Morristown",
-  "Flemington",
-  "Bridgewater",
-  "Somerset",
-  "Bernardsville",
+  "Hillsborough", // base; two reviews
+  "Montgomery", // screenshot; borders Hillsborough
+  "Branchburg", // review (Cita Ken)
+  "Bridgewater", // original listing
+  "Flemington", // original listing
+  "Far Hills", // screenshot
+  "Bernardsville", // original listing
+  "Basking Ridge", // screenshot (Bernards Township)
+  "Warren", // original listing; screenshot
+  "Princeton", // review (Minesh Vallabh); last-ten list
+  "Franklin Park", // review (Mark Berk); working there now
+  "Monmouth Junction", // review (Sanjay Khulbe); last-ten list
+  "Monroe Township", // review (Bob Bilotta); last-ten list; next job
 ];
+
+/** Where he is actually working, as told to us on the date below. */
+export const CURRENT_JOB_TOWN = "Franklin Park";
+export const NEXT_JOB_TOWN = "Monroe";
+
+/* ------------------------------------------------------------------ */
+/* Google Business Profile                                             */
+/* ------------------------------------------------------------------ */
 
 /** Deep link to Modern Master's Google Business Profile review flow. */
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CfrEDv64xZ_FEAI/review";
 
-/**
- * Option B's three price cards — one per room type, spanning base build to
- * designer led. Derived from PACKAGE_ROOMS so there is exactly one place a
- * number can be wrong.
- */
-export const PRICE_TIERS = PACKAGE_ROOMS.map((r) => ({
-  name: r.label,
-  range: `${usd(r.tiers[0].price)}–${usd(r.tiers[2].price)}`,
-  body: `${r.qualifier}. The base build sits at the bottom of that range; the top is a room a designer draws with you first, on me.`,
-}));
+/** Read off the profile on 27 August 2026 with manager access. */
+export const GOOGLE_RATING = "5.0";
+export const REVIEW_COUNT = 32;
 
 /**
- * The band quoted in Option A's hero. A full bathroom is the most common job,
- * so this is that room from base build to full custom — not the widest possible
- * spread, which would be true but useless.
+ * Real Google reviews, quoted from the profile, each matched to a town by the
+ * deep-links Geza sent. Excerpted for length but never reworded.
+ *
+ * Deliberately NOT included: Sanjay Khulbe (Monmouth Junction). Geza asked for
+ * that one on the site, but it thanks "Geza and Bobby" twice and he has since
+ * said not to present Bobby as a partner. A review is quoted verbatim or not
+ * at all, so it waits on his decision.
+ *
+ * Also excluded: Marcelo's own review. The agency cannot be its own proof.
  */
-export const TYPICAL_RANGE = `${usd(PACKAGE_ROOMS[1].tiers[0].price)}–${usd(
-  PACKAGE_ROOMS[1].tiers[1].price,
-)}`;
+export const REVIEWS: { quote: string; who: string }[] = [
+  {
+    quote:
+      "Geza Papp did an excellent job of giving our primary bathroom a beautiful spa-like feel with expertly installed tiles and glass door in the shower. His workmanship and attention to detail are top notch and we will definitely use him again for future projects.",
+    who: "Sally Williams · Hillsborough",
+  },
+  {
+    quote:
+      "They kept everything clean, showed up on time, and communicated clearly every step of the way. I would definitely recommend them to anyone looking for honest, high-quality work.",
+    who: "Cita Ken · Branchburg",
+  },
+  {
+    quote:
+      "Quality and coordination excellent. Used them for 3 projects. Trust them for all of our renovations. There is not much he hasn't upgraded in our townhouse.",
+    who: "Mark Berk · Franklin Park",
+  },
+  {
+    quote:
+      "They were always professional and helped to plan everything with meticulous attention to detail. I really appreciated the timeous nature of the entire project. I would definitely hire them again.",
+    who: "Minesh Vallabh · Princeton",
+  },
+  {
+    quote:
+      "Prompt, clean and provided quality and impeccable service. I would recommend them for any home construction project, no matter how big or small.",
+    who: "Bob Bilotta · Monroe Township",
+  },
+];
 
-/** Lowest published entry point — a half bath, base build. */
-export const BUDGET_FLOOR = usd(PACKAGE_ROOMS[0].tiers[0].price);
+/**
+ * The long one, used on its own. Venkatraman describes the daily routine in
+ * more detail than any marketing copy could, which is exactly why it carries
+ * the "your house stays livable" claim instead of us asserting it.
+ */
+export const ANCHOR_REVIEW = {
+  quote:
+    "He and his team mate coming to our place without fail every day at 8 am and laying out all the covers for the job on the stairs etc and doing a clean job every day, making incredible progress. And at the end of each day, they would clean up, vacuum all the dust and leave the place clean. They kept to the timeline as well.",
+  who: "Venkatraman B. · repeat client since 2021",
+};
+
+/* ------------------------------------------------------------------ */
+/* Capacity                                                            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Geza, 27 August 2026: "We can handle 2 regular sized bathrooms in a month..
+ * Large luxury bathroom would take a month for two of us.. This year we have
+ * still 2-4 openings.. otherwise we booked for this year."
+ *
+ * A scarcity claim rots. CAPACITY_AS_OF is rendered on the page so a stale
+ * number is visibly stale rather than quietly false — and so whoever reads
+ * this next knows when to go ask again.
+ *
+ * NOT used here: his "20-24 bedrooms in a year" line. Almost certainly a typo
+ * for bathrooms (2/month x 12 = 24) but a capacity claim is not something to
+ * infer. Confirm before publishing it.
+ */
+export const CAPACITY_AS_OF = "August 2026";
+export const CAPACITY_CLAIM = "Two bathrooms a month";
+export const OPENINGS_CLAIM = "2 to 4 openings left this year";
+
+/* ------------------------------------------------------------------ */
+/* Credentials                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The licence number was read off the van wrap (photographed 17 August 2026):
+ * "NJ LIC. #13VH08744800". Fixed at four — don't add a fifth without asking.
+ */
+export const SEALS = [
+  "20+ years", // About.tsx
+  "Licensed & insured", // TrustBar.tsx
+  "BBB accredited", // Footer.tsx seal + van wrap badge
+  "NJ HIC #13VH08744800", // van wrap
+];
+
+/* ------------------------------------------------------------------ */
+/* Before / after                                                      */
+/* ------------------------------------------------------------------ */
 
 export interface BeforeAfterPair {
   id: string;
@@ -87,12 +193,18 @@ export interface BeforeAfterPair {
 }
 
 /**
- * The two before/after pairs the site already treats as verified — they are the
- * same two pairs wired into src/components/BeforeAfter.tsx on the homepage.
+ * UNVERIFIED provenance — the town and duration of each job are still not
+ * recorded anywhere, so the captions stay generic. Geza has been asked twice.
+ */
+export const PROJECT_PROVENANCE_CONFIRMED = false;
+
+/**
+ * The two pairs the site already treats as verified — the same two wired into
+ * src/components/BeforeAfter.tsx on the homepage.
  *
- * Pair 1 is the strong one: identical arched window and vaulted ceiling in both
- * frames, so the transformation reads instantly. Pair 2 is a genuine pair but
- * the "before" is a cluttered handheld shot.
+ * Pair 1 is the strong one: identical arched window and vaulted ceiling in
+ * both frames, so the transformation reads instantly. Pair 2 is a genuine pair
+ * but the "before" is a cluttered handheld shot.
  */
 export const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
   {
@@ -125,116 +237,57 @@ export const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* UNVERIFIED — Geza must confirm before any of this goes public       */
+/* Voice                                                               */
 /* ------------------------------------------------------------------ */
 
 /**
- * UNVERIFIED — project location and duration.
- * The mockup captioned the hero "Warren, NJ · 6 weeks". Neither photo's town
- * nor timeline is recorded anywhere in this repo, so the captions above are
- * deliberately generic. Fill these in once Geza confirms the actual jobs.
+ * Reframed 27 August 2026 around outcomes rather than price, and away from the
+ * lone-operator framing. Nine of his Google reviews describe a crew arriving
+ * together; owner-operator is true and is the pitch, "works alone" is not.
+ * Bobby is not named here — Geza's instruction, since Bobby holds no share of
+ * the business.
  */
-export const PROJECT_PROVENANCE_CONFIRMED = false;
-
-/**
- * UNVERIFIED — review count.
- * The site's TrustBar claims "5 ★ Google Rating" but no count. The mockup's
- * "47 reviews" is invented. Pull the real number off the GBP before shipping.
- */
-export const REVIEW_COUNT: number | null = null;
-
-/**
- * UNVERIFIED — testimonial quotes.
- * The mockup's quotes ("Karen D. · Warren", "Michael R. · Princeton") were
- * written by the designer, not by customers. src/components/Testimonials.tsx is
- * hidden from the homepage for exactly this reason. Rather than fabricate
- * social proof, the cards render this bracketed prompt so Geza can paste real
- * Google reviews straight in.
- */
-export const REVIEWS: { quote: string; who: string }[] = [
-  {
-    quote:
-      "[Paste a real Google review here — Geza to pick two from the Business Profile]",
-    who: "[Reviewer first name + last initial · town]",
-  },
-  {
-    quote: "[Paste a second real Google review here]",
-    who: "[Reviewer first name + last initial · town]",
-  },
-];
-
-/**
- * VERIFIED — credentials.
- * The licence number was read off the new van wrap (photographed 17 August
- * 2026): "NJ LIC. #13VH08744800". That replaces the "[Geza to supply]"
- * placeholder, which was rendering literally on all four live lead pages.
- * The mockup's "13VH0000000" was a placeholder pattern and its
- * "Schluter-certified" claim was invented; neither appears here.
- */
-export const SEALS = [
-  "20+ years", // verified — About.tsx
-  "Licensed & insured", // verified — TrustBar.tsx
-  "BBB accredited", // verified — Footer.tsx seal + van wrap badge
-  "NJ HIC #13VH08744800", // verified — van wrap
-];
-
-/** UNVERIFIED — capacity and scarcity claims used by Option B. */
-export const CAPACITY_CLAIM = "[N] bathrooms a year";
-export const SCARCITY_CLAIM = "[N] build slots left this season";
-
-/**
- * UNVERIFIED — consult slots.
- * The mockup hard-coded three dates. A static site has no calendar, so these
- * are day-part preferences instead of real appointments: nothing is actually
- * held, and the copy says so.
- */
-export const SLOT_PREFERENCES = [
-  { id: "weekday-morning", label: "Weekday morning", note: "before 11am" },
-  { id: "weekend", label: "Saturday", note: "weekend" },
-  { id: "weekday-evening", label: "Weekday evening", note: "after work" },
-];
-
-/* ------------------------------------------------------------------ */
-/* Copy blocks carried from the mockup (voice, not claims)             */
-/* ------------------------------------------------------------------ */
-
 export const DIFFERENTIATORS = [
   {
     n: "01",
-    t: "One project at a time",
-    b: "Your bathroom isn't job number seven this month. It's the only one on my calendar.",
+    t: "Your house, not a job site",
+    b: "Covers down on the stairs before the first tool comes out. Dust vacuumed before we leave. It is the thing customers mention first, and it is the reason they let us back in.",
   },
   {
     n: "02",
-    t: "No commission, no showroom",
-    b: "A company adds for salespeople and overhead. That money goes into your stone and your waterproofing instead.",
+    t: "Two bathrooms a month, on purpose",
+    b: "Yours is not waiting behind six other jobs. That is why the finish date I give you is a date I can actually keep.",
   },
   {
     n: "03",
-    t: "My phone, not a portal",
-    b: "Text me at 7am about the niche placement. You get an answer, not a ticket number.",
+    t: "You deal with me",
+    b: "Text me at 7am about where the niche goes. You get an answer from the person setting the tile, not a ticket number.",
   },
   {
     n: "04",
-    t: "I sign the work",
-    b: "20 years in Central New Jersey and every referral is a neighbor. That is the whole business plan.",
+    t: "Twenty years of neighbours",
+    b: "Every job is within an hour of my own house in Hillsborough. Referrals are the whole business plan — you cannot outrun a bad one locally.",
   },
 ];
 
 export const DIFFERENTIATORS_SHORT = [
   {
     t: "The same hands, start to finish",
-    b: "No rotating subs. Demo, waterproofing, tile, trim — me.",
+    b: "No rotating subs. Demo, waterproofing, tile, trim.",
   },
   {
-    t: "Overhead you never pay for",
-    b: "No showroom, no closers. That budget goes into materials you can touch.",
+    t: "Clean at the end of every day",
+    b: "Covers on the stairs, dust vacuumed, tools out of your way.",
   },
   {
     t: "Deliberate capacity",
-    b: "A limited number of bathrooms a year. It is why the last detail gets the same attention as the first.",
+    b: "Two bathrooms a month. It is why the last detail gets the same attention as the first.",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Fit check                                                           */
+/* ------------------------------------------------------------------ */
 
 export const SCOPE_OPTIONS = [
   "Half bathroom",
@@ -245,18 +298,58 @@ export const SCOPE_OPTIONS = [
 ];
 
 /**
- * Bands drawn straight off the package sheet: half-bath base at the bottom,
- * primary-suite designer tier at the top. Index 3 is the "below the floor"
- * answer and Option A keys its honest-exit copy off it — keep it last.
+ * What the homeowner has set aside. Geza rewrote these himself on 28 August
+ * 2026 and attached, in his own words, what each band actually buys.
+ *
+ * That is a reversal of a kind, and a deliberate one: he ruled out publishing
+ * prices on the page, then chose to put a rough map of them inside the form.
+ * The difference is who is being anchored. A price in the hero anchors him
+ * before he is in the room; a band the reader self-selects against tells a
+ * $6,000 homeowner in one second that they are shopping for a half bath, and
+ * saves them both a phone call. CONSULT_NOTE, also his line, is the hedge.
+ *
+ * Index 0 is the below-floor answer and the page keys its honest-exit copy off
+ * it — keep it first. Index 5 is the escape hatch; it is a weaker lead but a
+ * truer one than a guessed number.
+ *
+ * GAP — ASK GEZA: he gave no scope for $7,500-$15,000. He jumped from the half
+ * bath at $7,500 straight to the full bath at $15,000. The band has to exist
+ * (a homeowner with $10,000 needs somewhere to click) but its note is his to
+ * write. Do not guess it.
  */
+export const BUDGET_FLOOR_BAND = usd(5500);
+
+/** Geza's line, kept close to verbatim. It is what makes the bands safe. */
+export const CONSULT_NOTE =
+  "Accurate price calculation after a home consultation.";
+
 export const BUDGET_OPTIONS = [
-  { label: `${usd(7500)} – ${usd(15000)}`, note: "half bath, or a simple full" },
-  { label: `${usd(15000)} – ${usd(26000)}`, note: "most common" },
-  { label: `${usd(26000)} +`, note: "primary suite / designer led" },
-  { label: `Under ${usd(7500)}`, note: "I'll be honest with you" },
+  { label: `Under ${usd(5500)}`, note: "" },
+  { label: `${usd(5500)} – ${usd(7500)}`, note: "Covers a half bath" },
+  { label: `${usd(7500)} – ${usd(15000)}`, note: "" },
+  {
+    label: `${usd(15000)} – ${usd(26000)}`,
+    note: "Full bath, shower or tub installed",
+  },
+  {
+    label: `${usd(26000)} – ${usd(40000)}`,
+    note: "Large primary bath, shower and tub",
+  },
+  { label: "Still working that out", note: "" },
 ];
 
 export const TIMING_OPTIONS = ["ASAP", "3–6 months", "Just planning"];
+
+/**
+ * UNVERIFIED — consult slots.
+ * A static site has no calendar, so these are day-part preferences rather than
+ * real appointments: nothing is held, and the copy says so.
+ */
+export const SLOT_PREFERENCES = [
+  { id: "weekday-morning", label: "Weekday morning", note: "before 11am" },
+  { id: "weekend", label: "Saturday", note: "weekend" },
+  { id: "weekday-evening", label: "Weekday evening", note: "after work" },
+];
 
 /* ------------------------------------------------------------------ */
 /* Web3Forms                                                           */

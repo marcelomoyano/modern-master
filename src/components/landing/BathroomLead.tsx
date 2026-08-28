@@ -4,20 +4,26 @@ import { useState } from "react";
 import Image from "next/image";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 import { DraftRibbon } from "./DraftRibbon";
-import { MATERIALS_NOTE } from "./pricing";
 import {
+  ANCHOR_REVIEW,
   BEFORE_AFTER_PAIRS,
-  BUDGET_FLOOR,
   BUDGET_OPTIONS,
+  CONSULT_NOTE,
+  CAPACITY_AS_OF,
+  CAPACITY_CLAIM,
+  CURRENT_JOB_TOWN,
   DIFFERENTIATORS,
+  GOOGLE_RATING,
+  NEXT_JOB_TOWN,
+  OPENINGS_CLAIM,
   PHONE_DISPLAY,
   PHONE_HREF,
   REVIEWS,
+  REVIEW_COUNT,
   SCOPE_OPTIONS,
   SEALS,
   TIMING_OPTIONS,
   TOWNS,
-  TYPICAL_RANGE,
   submitLead,
 } from "./copy";
 
@@ -31,13 +37,20 @@ const STEP_LABELS: Record<number, string> = {
 };
 
 /**
- * Option A — owner-first.
+ * The bathroom lead page.
  *
- * Geza's face and voice carry the page. The lead capture is a four-question
- * qualifier disguised as a conversation, with the budget band asked second so
- * unfit leads self-exit before he spends a Saturday on them.
+ * Replaces the four-page A/B/packages/estimate experiment, all of which were
+ * built around a published price. Geza killed that on 27 August 2026, so the
+ * page now argues from outcomes and from his own customers' words instead.
+ *
+ * The one thing that survived the rewrite is the fit check, because it does
+ * the job price used to do: it qualifies. Budget is asked *inside* the form,
+ * where the homeowner volunteers it, rather than quoted on the page where it
+ * would anchor him before he is in the room.
+ *
+ * Written for a 430px phone — Meta traffic is where this is going.
  */
-export function OptionA() {
+export function BathroomLead() {
   const [step, setStep] = useState<Step>(0);
   const [scope, setScope] = useState("");
   const [budget, setBudget] = useState("");
@@ -55,7 +68,8 @@ export function OptionA() {
       ?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const underBudget = budget === BUDGET_OPTIONS[3].label;
+  /** Index 0 is the below-floor band — see the comment on BUDGET_OPTIONS. */
+  const underBudget = budget === BUDGET_OPTIONS[0].label;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,7 +81,7 @@ export function OptionA() {
     setError("");
     try {
       await submitLead({
-        subject: "Landing A (fit check) — new lead",
+        subject: "Bathroom lead page — new enquiry",
         Name: name,
         Phone: phone,
         Scope: scope,
@@ -89,11 +103,24 @@ export function OptionA() {
     "min-h-[48px] rounded-[10px] border border-landing-cream/20 bg-transparent p-[14px] text-left font-grotesk text-sm text-landing-cream transition-colors hover:border-landing-bronze hover:bg-landing-bronze/[0.16]";
   const field =
     "w-full rounded-[10px] border border-landing-cream/20 bg-landing-cream/5 p-[15px] font-grotesk text-[15px] text-landing-cream outline-none placeholder:text-landing-cream/40 focus:border-landing-brass";
+  const eyebrow = "text-[11px] uppercase tracking-[0.14em] text-landing-muted";
+
+  const reviewCard = (r: { quote: string; who: string }, key: string) => (
+    <div
+      key={key}
+      className="rounded-xl border border-landing-ink/[0.12] bg-landing-paper p-4"
+    >
+      <div className="font-display text-[17px] italic leading-[1.35] text-landing-ink">
+        &ldquo;{r.quote}&rdquo;
+      </div>
+      <div className="mt-2 text-[12px] text-landing-muted">{r.who}</div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-landing-ink/95">
       <div className="mx-auto min-h-screen max-w-[430px] bg-landing-cream font-grotesk antialiased">
-        <DraftRibbon label="Option A · owner-first fit check" />
+        <DraftRibbon label="Bathroom lead page" />
 
         {/* Masthead */}
         <div className="flex items-center justify-between px-6 pt-[22px]">
@@ -128,31 +155,32 @@ export function OptionA() {
         {/* Hero */}
         <div className="px-6 pt-5">
           <h1 className="text-pretty font-display text-[41px] font-normal leading-[1.06] tracking-[-0.015em] text-landing-ink">
-            I build one bathroom at a time — and mine is the only name on it.
+            The bathroom gets finished. Your house stays livable.
           </h1>
           <p className="mt-4 text-pretty text-[15px] leading-[1.6] text-landing-body">
-            No salesman in your kitchen. No crew you&apos;ve never met. You hire
-            me, you get me — tile-setting, waterproofing, the final caulk line.
+            Twenty years of bathrooms in Central New Jersey. No salesman in your
+            kitchen, no crew you&apos;ve never met — you hire me, you get me, and
+            you get your house back clean at the end of every day.
           </p>
         </div>
 
-        {/* Budget band */}
+        {/* Proof band — this is where the price block used to be. */}
         <div className="mx-6 mt-5 rounded-[10px] border border-landing-ink/[0.14] bg-landing-paper px-[14px] py-3">
           <div className="flex items-center gap-[10px]">
             <div className="whitespace-nowrap font-display text-[19px] text-landing-bronze">
-              {TYPICAL_RANGE}
+              {GOOGLE_RATING} ★
             </div>
             <div className="text-[12px] leading-[1.4] text-landing-muted">
-              is where most full bathrooms land. A half bath starts at{" "}
-              {BUDGET_FLOOR}.
+              across {REVIEW_COUNT} Google reviews — every one of them from a
+              homeowner within an hour of here.
             </div>
           </div>
           <div className="mt-2 border-t border-landing-ink/[0.1] pt-2 text-[11.5px] leading-[1.45] text-landing-muted">
             <span className="font-bold text-landing-bronze">
-              {MATERIALS_NOTE}
+              {CAPACITY_CLAIM}.
             </span>{" "}
-            That is the build — tile, stone and fixtures are yours to choose and
-            buy.
+            {OPENINGS_CLAIM} — as of {CAPACITY_AS_OF}. Currently building in{" "}
+            {CURRENT_JOB_TOWN}, {NEXT_JOB_TOWN} after that.
           </div>
         </div>
 
@@ -218,8 +246,9 @@ export function OptionA() {
                 What have you set aside for it?
               </div>
               <div className="mt-[6px] text-[12.5px] leading-[1.5] text-landing-cream/60">
-                Honest answer helps us both. I&apos;d rather point you elsewhere
-                than waste your Saturday.
+                Every bathroom is different, so the number for yours comes after
+                I&apos;ve stood in it. These are the ranges the work lands in —
+                pick the one that matches what you&apos;ve put aside.
               </div>
               <div className="mt-[14px] flex flex-col gap-2">
                 {BUDGET_OPTIONS.map((opt) => (
@@ -230,14 +259,19 @@ export function OptionA() {
                       setBudget(opt.label);
                       setStep(3);
                     }}
-                    className={`${optionButton} flex items-center justify-between gap-3 font-semibold`}
+                    className={`${optionButton} flex flex-col items-start gap-[3px]`}
                   >
-                    <span>{opt.label}</span>
-                    <span className="text-[11.5px] font-medium text-landing-cream/55">
-                      {opt.note}
-                    </span>
+                    <span className="font-semibold">{opt.label}</span>
+                    {opt.note && (
+                      <span className="text-[11.5px] font-normal text-landing-cream/55">
+                        {opt.note}
+                      </span>
+                    )}
                   </button>
                 ))}
+              </div>
+              <div className="mt-[10px] text-[11.5px] leading-[1.5] text-landing-cream/45">
+                {CONSULT_NOTE}
               </div>
             </div>
           )}
@@ -332,7 +366,7 @@ export function OptionA() {
               </div>
               <div className="mt-[10px] text-[13.5px] leading-[1.6] text-landing-cream/70">
                 {underBudget
-                  ? "Your budget sits below where I can do this work properly — I'll still call and point you to someone good."
+                  ? "That budget sits below where I can do this work properly — I'll still call, and I'll point you to someone good."
                   : `${scope}${town ? ` in ${town}` : ""}, ${timing.toLowerCase()}.`}
               </div>
               <div className="mt-[14px] text-[13.5px] leading-[1.6] text-landing-cream/70">
@@ -343,17 +377,20 @@ export function OptionA() {
           )}
         </div>
 
-        {/* Proof — before/after */}
+        {/* Outcome — before/after */}
         <div className="mt-[34px] px-6">
-          <div className="text-[11px] uppercase tracking-[0.14em] text-landing-muted">
-            {BEFORE_AFTER_PAIRS[0].eyebrow}
-          </div>
+          <div className={eyebrow}>{BEFORE_AFTER_PAIRS[0].eyebrow}</div>
           <div className="mt-[10px]">
             <BeforeAfterSlider pair={BEFORE_AFTER_PAIRS[0]} initial={45} />
           </div>
           <div className="mt-[10px] text-[12.5px] leading-[1.5] text-landing-muted">
             Drag to see it. {BEFORE_AFTER_PAIRS[0].caption}
           </div>
+        </div>
+
+        {/* Two reviews, straight after the proof they describe */}
+        <div className="mt-6 flex flex-col gap-[14px] px-6">
+          {REVIEWS.slice(0, 2).map((r, i) => reviewCard(r, `early-${i}`))}
         </div>
 
         {/* Differentiators */}
@@ -378,13 +415,21 @@ export function OptionA() {
               </div>
             ))}
           </div>
+
+          {/* The customer says it better than the copy above does. */}
+          <div className="mt-6 border-l-2 border-landing-bronze pl-4">
+            <div className="font-display text-[17px] italic leading-[1.4] text-landing-ink">
+              &ldquo;{ANCHOR_REVIEW.quote}&rdquo;
+            </div>
+            <div className="mt-2 text-[12px] text-landing-muted">
+              {ANCHOR_REVIEW.who}
+            </div>
+          </div>
         </div>
 
         {/* Second before/after */}
         <div className="mt-8 px-6">
-          <div className="text-[11px] uppercase tracking-[0.14em] text-landing-muted">
-            {BEFORE_AFTER_PAIRS[1].eyebrow}
-          </div>
+          <div className={eyebrow}>{BEFORE_AFTER_PAIRS[1].eyebrow}</div>
           <div className="mt-[10px]">
             <BeforeAfterSlider pair={BEFORE_AFTER_PAIRS[1]} initial={55} />
           </div>
@@ -393,38 +438,24 @@ export function OptionA() {
           </div>
         </div>
 
-        {/* Reviews */}
+        {/* The rest of the reviews */}
         <div className="px-6 pt-7">
           <div className="flex items-center gap-2">
             <div className="text-sm tracking-[0.1em] text-landing-bronze">
               ★★★★★
             </div>
             <div className="text-[12.5px] text-landing-muted">
-              5.0 on Google
+              {GOOGLE_RATING} on Google · {REVIEW_COUNT} reviews
             </div>
           </div>
           <div className="mt-4 flex flex-col gap-[14px]">
-            {REVIEWS.map((r, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-landing-ink/[0.12] bg-landing-paper p-4"
-              >
-                <div className="font-display text-[17px] italic leading-[1.35] text-landing-ink">
-                  &ldquo;{r.quote}&rdquo;
-                </div>
-                <div className="mt-2 text-[12px] text-landing-muted">
-                  {r.who}
-                </div>
-              </div>
-            ))}
+            {REVIEWS.slice(2).map((r, i) => reviewCard(r, `late-${i}`))}
           </div>
         </div>
 
         {/* Coverage */}
         <div className="px-6 pt-[26px]">
-          <div className="text-[11px] uppercase tracking-[0.14em] text-landing-muted">
-            Where I work
-          </div>
+          <div className={eyebrow}>Where I work</div>
           <div className="mt-[10px] flex flex-wrap gap-[6px]">
             {TOWNS.map((t) => (
               <div
@@ -434,6 +465,10 @@ export function OptionA() {
                 {t}
               </div>
             ))}
+          </div>
+          <div className="mt-[10px] text-[12px] leading-[1.5] text-landing-muted">
+            Nothing more than an hour from Hillsborough. That is not modesty —
+            it is how the job stays clean and the timeline stays honest.
           </div>
           <div className="mt-[18px] flex flex-wrap items-center gap-[14px]">
             {SEALS.map((s) => (

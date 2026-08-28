@@ -1,307 +1,196 @@
 import Link from "next/link";
-import { ADD_ONS, ESTIMATE_ROOMS, PACKAGE_ROOMS, usd } from "@/components/landing/pricing";
-
-const PRICING_OPTIONS = [
-  {
-    href: "/landing/packages",
-    tag: "P",
-    title: "Packages · fixed price, three levels",
-    blurb:
-      "Geza's package sheet, made into the whole page. Tap a bathroom, see three prices. No form before a number, no “call for pricing”, and the designer-led tier is the hook — he brings the designer and pays them.",
-    bets: [
-      "Publishing every price filters harder than any qualifying form",
-      "Three named levels beats one wide range",
-      "“I pay for the designer” is the strongest line in his email",
-    ],
-  },
-  {
-    href: "/landing/estimate",
-    tag: "E",
-    title: "Estimate · starting budget + add-ons",
-    blurb:
-      "The budgets he actually builds at, plus the four add-ons homeowners usually pick, wired to a running total. The homeowner assembles their own number, and the lead arrives carrying that spec instead of just a name.",
-    bets: [
-      "A number you built yourself is one you believe",
-      "Ticking add-ons self-qualifies without feeling like qualifying",
-      "A lead with a spec is worth several without one",
-    ],
-  },
-];
-
-const STRUCTURE_OPTIONS = [
-  {
-    href: "/landing/a",
-    tag: "A",
-    title: "Owner-first · 4-question fit check",
-    blurb:
-      "Geza's face and voice carry the page. The lead capture is a qualifier disguised as a conversation, so unfit leads self-exit before he spends a Saturday on them.",
-  },
-  {
-    href: "/landing/b",
-    tag: "B",
-    title: "Work-first · price tiers, booked walkthrough",
-    blurb:
-      "The headline sits on a draggable before/after. Price tiers sit high as the filter, and the ask is a booked walkthrough rather than a form.",
-  },
-];
+import {
+  CAPACITY_AS_OF,
+  REVIEWS,
+  REVIEW_COUNT,
+  TOWNS,
+} from "@/components/landing/copy";
 
 /**
- * The two sheets Geza sent on 3 August 2026, side by side. They differ for the
- * same room, which is the one thing that has to be resolved before either page
- * takes paid traffic — so it is shown rather than buried.
+ * Internal status page for the lead-page work. Not a landing page itself —
+ * it exists so that whoever opens /landing next can see what is real, what is
+ * still missing, and what must not happen yet.
+ *
+ * It replaced a four-way index (packages / estimate / option A / option B).
+ * All four of those pages were built around a published price, which Geza
+ * ruled out on 27 August 2026.
  */
-const SHEET_ROWS = PACKAGE_ROOMS.map((p, i) => ({
-  room: p.short,
-  pkg: p.tiers[0].price,
-  budget: ESTIMATE_ROOMS[i].base,
-}));
 
-const ADD_ON_SUM = ADD_ONS.reduce((s, a) => s + a.price, 0);
+const DONE = [
+  `Prices removed from the page entirely. The only dollar figures left are the budget bands inside the form, which ask what the homeowner has set aside — not what Geza charges.`,
+  `Four pages collapsed to one. /landing/packages, /landing/estimate and the A/B split are deleted, along with their components.`,
+  `${REVIEWS.length} real Google reviews, quoted verbatim, each matched to a real town from the deep-links Geza sent.`,
+  `Real rating and count on the page: 5.0 across ${REVIEW_COUNT} reviews, read off the Business Profile with manager access.`,
+  `Service area set to the ${TOWNS.length} towns Geza named on 28 August: the original site listing minus Somerset and Morristown, plus the wealthy towns around him (Far Hills, Montgomery, Basking Ridge). All inside his own one-hour rule.`,
+  `Budget bands rewritten to Geza's own numbers, with his note on what each one covers and his "accurate price calculation after a home consultation" line under them.`,
+  `Real capacity: two bathrooms a month, 2-4 openings left this year, date-stamped ${CAPACITY_AS_OF} so a stale claim is visibly stale.`,
+  `Differentiators rewritten around outcomes, and away from implying Geza works alone — nine of his reviews describe a crew.`,
+];
 
-const SIGN_OFF = [
+const BLOCKING = [
   {
-    item: "Which page goes to which traffic",
+    item: "No analytics in production",
     detail:
-      "Packages and Estimate quote the same rooms at different numbers. They read as one offer at two prices unless they are pointed at different audiences and never linked to each other. Decide the split before either runs.",
+      "NEXT_PUBLIC_GA_ID is wired but unset, and there is no Meta pixel. Nothing fires on form submit. Running Facebook ads against this page would spend Geza's money with no way to tell a working campaign from a wasted one. This is the first thing to fix.",
   },
   {
-    item: "What the fixed package includes that the starting budget does not",
+    item: "Geza has not seen the page",
     detail:
-      "The reconciliation above is inferred from the add-on list, not stated. Geza needs to write down, in one sentence, what a base package covers — otherwise the higher price has no story behind it.",
-  },
-  {
-    item: "Materials allowance",
-    detail:
-      "Every number excludes finish materials. Both pages say so loudly and give no figure. A homeowner still hears “$12,500 is what my bathroom costs” — a typical allowance range would fix that.",
-  },
-  {
-    item: "Multi-bath deal",
-    detail:
-      "“We need to discuss what type of deal we can provide.” No percentage is published; both pages surface it as a conversation and the form flags the lead.",
-  },
-  {
-    item: "Review quotes",
-    detail:
-      "The mockup's two testimonials were written by the designer. All four pages render a bracketed prompt — paste two real Google reviews in.",
-  },
-  {
-    item: "Review count",
-    detail:
-      "“47 reviews” was invented. The badge shows “5.0 on Google” with no count until the real number is confirmed.",
-  },
-  {
-    item: "Capacity and scarcity",
-    detail:
-      "“Nine bathrooms a year” and “2 build slots left” are unverified. Both render as [N] on option B until confirmed.",
-  },
-  {
-    item: "Project provenance",
-    detail:
-      "The hero was captioned “Warren, NJ · 6 weeks”. Neither photo's town nor timeline is recorded anywhere, so captions are generic for now.",
+      "The content is real but the page itself is unapproved. He asked for outcomes and no pricing; this is that, and he should read it before anyone points traffic at it.",
   },
 ];
 
-const FIXED = [
-  "All pricing replaced with Geza's real figures — the mockup's $38–52k / $55–85k / $95k+ bands are deleted",
-  "“Finish materials are not included” promoted from fine print to a bordered callout on all four pages",
-  "Phone corrected from the mockup's 908-555-0100 to the real (732) 694-9197",
-  "NJ HIC licence is now the real number (13VH08744800), read off the new van wrap — it had been rendering “[Geza to supply]” on all four live pages",
-  "Owner portrait replaced — Geza in the branded polo, standing in a bathroom he built, instead of the 400×400 Christmas-tree crop",
-  "Every number lives in one file (pricing.ts), so a price can only be wrong in one place",
-  "All four forms post to the same Web3Forms inbox as the homepage, with a honeypot and a distinct subject line",
-  "/landing is noindex and disallowed in robots.txt",
+const ASK_GEZA = [
+  {
+    item: "The $7,500–$15,000 band has no label",
+    detail:
+      "He gave a scope for every other band — half bath at $5,500–$7,500, full bath at $15,000–$26,000, large primary at $26,000–$40,000 — and skipped straight over this one. The band has to exist so a homeowner with $10,000 has somewhere to click, but what it buys is his sentence to write, not ours.",
+  },
+  {
+    item: "Is the townships screenshot complete?",
+    detail:
+      "The one he sent is cut off mid-entry after Warren Township. Far Hills, Montgomery and Basking Ridge are in from it. If there were more towns below the fold, they are not on the page.",
+  },
+  {
+    item: "Bathrooms or bedrooms?",
+    detail:
+      '"20-24 bedrooms in a year can be handled." Almost certainly bathrooms — two a month for twelve months is 24 — but a capacity claim does not get inferred. The page uses only "two bathrooms a month", which he stated plainly.',
+  },
+  {
+    item: "Sanjay Khulbe's review",
+    detail:
+      "He asked for it on the site. It thanks \"Geza and Bobby\" twice, and he has since said not to present Bobby as a partner. A review is quoted verbatim or not at all, so it is off the page pending his call.",
+  },
+  {
+    item: "A name for the Concordia testimonial",
+    detail:
+      "The written one he forwarded is the best piece of proof we have — self-designed bathroom, repeat client, Monroe Township, where he is working next. It cannot go up unattributed.",
+  },
+  {
+    item: "Bob Bilotta as a reference",
+    detail:
+      'His review ends "if anybody would like to speak to me about their service, I would be happy to give you a verbal review." That is worth more than a pull-quote. Ask before taking him up on it.',
+  },
+  {
+    item: "Photo provenance",
+    detail:
+      "Neither before/after pair has a recorded town or duration, so both captions stay generic. Asked twice now.",
+  },
 ];
+
+const ELSEWHERE = [
+  "ServiceAreas.tsx and the areaServed schema in layout.tsx still list Morristown and Somerset, and neither carries the new towns. Geza's 28 August instruction applies to these too — but they are live public pages, so making the edit is a decision, not a chore.",
+  "src/app/morristown/ is a full location page, /morristown is in sitemap.ts, and ServiceAreas.tsx links to it. Deleting a live indexed page is not reversible for free. With no analytics installed we cannot see what it currently earns, which is one more reason the GA4 tag comes first.",
+  "Testimonials.tsx still carries three testimonials of unknown origin (Sarah & Mark T., Emily R., James P.), placed in Somerset and Bridgewater. Hidden from the homepage, but still in the repo.",
+  "Both social icons in Footer.tsx are href=\"#\" — dead links on the live site. Fix once we have the real Facebook page URL, and add it to sameAs in the JSON-LD.",
+];
+
+function Section({
+  title,
+  tone,
+  children,
+}: {
+  title: string;
+  tone?: "warn";
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="mt-12">
+      <h2
+        className={`font-display text-[22px] ${
+          tone === "warn" ? "text-[#7A2E2E]" : "text-landing-ink"
+        }`}
+      >
+        {title}
+      </h2>
+      <div className="mt-4">{children}</div>
+    </section>
+  );
+}
 
 export default function LandingIndexPage() {
   return (
     <main className="min-h-screen bg-[#E7E2D9] px-6 py-14 font-grotesk text-landing-ink sm:px-10">
       <div className="mx-auto max-w-3xl">
-        <div className="flex flex-wrap items-baseline gap-4">
-          <h1 className="font-display text-[34px] tracking-[-0.01em]">
-            Modern Master — bathroom lead pages
-          </h1>
-          <div className="text-[13px] uppercase tracking-[0.08em] text-landing-muted">
-            Four directions · internal preview
-          </div>
-        </div>
-
-        <p className="mt-4 max-w-xl text-sm leading-[1.6] text-landing-muted">
-          All four are built mobile-first at a 430px column — open them on a
-          phone, or narrow the window. Every before/after is draggable.
+        <h1 className="font-display text-[34px] tracking-[-0.01em]">
+          Bathroom lead page — status
+        </h1>
+        <p className="mt-3 max-w-xl text-[14px] leading-[1.6] text-landing-body">
+          One page, built around outcomes and Geza&apos;s own customers rather
+          than a published price. Everything on it is sourced; see{" "}
+          <span className="font-mono text-[13px]">docs/google-reviews.md</span>{" "}
+          for where each fact came from.
         </p>
 
-        <h2 className="mt-12 font-display text-[26px]">
-          Built on Geza&apos;s pricing
-        </h2>
-        <p className="mt-2 max-w-xl text-[13.5px] leading-[1.6] text-landing-muted">
-          One page per sheet he sent. Neither invents a number.
-        </p>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          {PRICING_OPTIONS.map((o) => (
-            <Link
-              key={o.href}
-              href={o.href}
-              className="group flex flex-col rounded-2xl border border-landing-ink/[0.14] bg-landing-paper p-6 transition-colors hover:border-landing-bronze"
-            >
-              <div className="flex items-center gap-[10px]">
-                <span className="rounded bg-landing-bronze px-[10px] py-[5px] text-xs font-bold tracking-[0.1em] text-landing-cream">
-                  {o.tag}
-                </span>
-                <span className="text-[15px] font-semibold">{o.title}</span>
-              </div>
-              <p className="mt-3 text-[13.5px] leading-[1.55] text-landing-muted">
-                {o.blurb}
-              </p>
-              <div className="mt-4 text-[11px] uppercase tracking-[0.14em] text-landing-muted">
-                What it bets on
-              </div>
-              <ul className="mt-2 flex flex-col gap-[6px]">
-                {o.bets.map((b) => (
-                  <li
-                    key={b}
-                    className="flex gap-2 text-[13px] leading-[1.5] text-landing-body"
-                  >
-                    <span className="text-landing-bronze">·</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <span className="mt-5 text-sm font-bold text-landing-bronze group-hover:underline">
-                Open →
-              </span>
-            </Link>
-          ))}
-        </div>
+        <Link
+          href="/landing/bathroom"
+          className="mt-7 inline-flex min-h-[48px] items-center rounded-[10px] bg-landing-ink px-5 font-grotesk text-[15px] font-bold text-landing-cream transition-colors hover:bg-landing-bronze"
+        >
+          Open the page →
+        </Link>
 
-        {/* The conflict, stated plainly */}
-        <section className="mt-12 rounded-2xl border border-[#7A2E2E]/30 bg-[#7A2E2E]/[0.05] p-6">
-          <h2 className="font-display text-[24px] text-[#7A2E2E]">
-            The two sheets disagree — here is how they reconcile
-          </h2>
-          <p className="mt-2 text-[13.5px] leading-[1.6] text-landing-body">
-            Geza sent fixed package prices and, separately, the budgets he works
-            at today. For the same room they are 23–30% apart.
-          </p>
-          <div className="mt-5 overflow-x-auto">
-            <table className="w-full min-w-[380px] border-collapse text-left text-[13.5px]">
-              <thead>
-                <tr className="border-b border-landing-ink/15 text-[11px] uppercase tracking-[0.1em] text-landing-muted">
-                  <th className="py-2 pr-4 font-semibold">Room</th>
-                  <th className="py-2 pr-4 font-semibold">Package (base)</th>
-                  <th className="py-2 pr-4 font-semibold">Starting budget</th>
-                  <th className="py-2 font-semibold">Gap</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SHEET_ROWS.map((r) => (
-                  <tr key={r.room} className="border-b border-landing-ink/10">
-                    <td className="py-[10px] pr-4 font-semibold">{r.room}</td>
-                    <td className="py-[10px] pr-4 tabular-nums">
-                      {usd(r.pkg)}
-                    </td>
-                    <td className="py-[10px] pr-4 tabular-nums">
-                      {usd(r.budget)}
-                    </td>
-                    <td className="py-[10px] tabular-nums text-landing-muted">
-                      +{usd(r.pkg - r.budget)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-5 text-[13.5px] leading-[1.6] text-landing-body">
-            His own add-on list closes the gap. The four extras homeowners
-            usually pick come to {usd(ADD_ON_SUM)}, so a full bathroom at{" "}
-            {usd(ESTIMATE_ROOMS[1].base)} plus the usual extras is{" "}
-            {usd(ESTIMATE_ROOMS[1].base + ADD_ON_SUM)} — effectively the{" "}
-            {usd(PACKAGE_ROOMS[1].tiers[0].price)} package. They are not two
-            prices for one thing; they are a fixed price and a starting point
-            that lands in the same place.
-          </p>
-          <p className="mt-3 text-[13.5px] leading-[1.6] text-landing-body">
-            That story only holds if a visitor never sees both pages in one
-            sitting. Neither links to the other, and they should be pointed at
-            different traffic.
-          </p>
-        </section>
-
-        <h2 className="mt-14 font-display text-[26px]">Earlier directions</h2>
-        <p className="mt-2 max-w-xl text-[13.5px] leading-[1.6] text-landing-muted">
-          The two structural experiments from the first round. Their pricing has
-          been swapped over to the real package sheet, so nothing invented is
-          left standing.
-        </p>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          {STRUCTURE_OPTIONS.map((o) => (
-            <Link
-              key={o.href}
-              href={o.href}
-              className="group flex flex-col rounded-2xl border border-landing-ink/[0.14] bg-landing-paper p-6 transition-colors hover:border-landing-bronze"
-            >
-              <div className="flex items-center gap-[10px]">
-                <span className="rounded bg-landing-ink px-[10px] py-[5px] text-xs font-bold tracking-[0.1em] text-landing-cream">
-                  {o.tag}
-                </span>
-                <span className="text-[15px] font-semibold">{o.title}</span>
-              </div>
-              <p className="mt-3 text-[13.5px] leading-[1.55] text-landing-muted">
-                {o.blurb}
-              </p>
-              <span className="mt-5 text-sm font-bold text-landing-bronze group-hover:underline">
-                Open option {o.tag} →
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        <section className="mt-14">
-          <h2 className="font-display text-[26px]">
-            Before this takes any spend
-          </h2>
-          <p className="mt-2 max-w-xl text-[13.5px] leading-[1.6] text-landing-muted">
-            The money is settled. These are what is left — nothing unconfirmed
-            renders as if it were fact.
-          </p>
-          <ol className="mt-6 flex flex-col gap-4">
-            {SIGN_OFF.map((s, i) => (
-              <li key={s.item} className="flex gap-4">
-                <span className="w-5 shrink-0 pt-[2px] font-display text-base text-landing-bronze">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <div className="text-[14px] font-bold">{s.item}</div>
-                  <div className="mt-1 text-[13.5px] leading-[1.55] text-landing-body">
-                    {s.detail}
-                  </div>
+        <Section title="Blocking — do not run traffic yet" tone="warn">
+          <div className="flex flex-col gap-4">
+            {BLOCKING.map((b) => (
+              <div
+                key={b.item}
+                className="rounded-[10px] border border-[#7A2E2E]/30 bg-[#7A2E2E]/[0.06] p-4"
+              >
+                <div className="text-[14px] font-bold">{b.item}</div>
+                <div className="mt-1 text-[13.5px] leading-[1.55] text-landing-body">
+                  {b.detail}
                 </div>
-              </li>
+              </div>
             ))}
-          </ol>
-        </section>
+          </div>
+        </Section>
 
-        <section className="mt-12 rounded-2xl border border-landing-ink/[0.14] bg-landing-paper p-6">
-          <h2 className="text-[11px] uppercase tracking-[0.14em] text-landing-muted">
-            Already corrected
-          </h2>
-          <ul className="mt-3 flex flex-col gap-2">
-            {FIXED.map((f) => (
+        <Section title="Still to ask Geza">
+          <div className="flex flex-col gap-4">
+            {ASK_GEZA.map((a) => (
+              <div key={a.item}>
+                <div className="text-[14px] font-bold">{a.item}</div>
+                <div className="mt-1 text-[13.5px] leading-[1.55] text-landing-body">
+                  {a.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Done in this pass">
+          <ul className="flex flex-col gap-[10px]">
+            {DONE.map((d) => (
               <li
-                key={f}
-                className="flex gap-2 text-[13.5px] leading-[1.55] text-landing-body"
+                key={d}
+                className="flex gap-3 text-[13.5px] leading-[1.55] text-landing-body"
               >
                 <span className="text-landing-bronze">✓</span>
-                {f}
+                <span>{d}</span>
               </li>
             ))}
           </ul>
-        </section>
+        </Section>
 
-        <div className="mt-12 text-[13px] text-landing-muted">
-          <Link href="/" className="underline underline-offset-2">
-            ← Back to the live site
-          </Link>
-        </div>
+        <Section title="Knock-on effects elsewhere in the site">
+          <ul className="flex flex-col gap-[10px]">
+            {ELSEWHERE.map((e) => (
+              <li
+                key={e}
+                className="flex gap-3 text-[13.5px] leading-[1.55] text-landing-body"
+              >
+                <span className="text-landing-muted">·</span>
+                <span>{e}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <p className="mt-14 border-t border-landing-ink/15 pt-5 text-[12.5px] leading-[1.6] text-landing-muted">
+          /landing is noindex and disallowed in robots.txt. Money still lives in{" "}
+          <span className="font-mono">pricing.ts</span> for the quote page that
+          comes later — it must not be imported into anything this page renders.
+        </p>
       </div>
     </main>
   );

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
 
 /**
- * Fonts for the /landing lead-page experiments only. The rest of the site uses
+ * Fonts for the /landing lead page only. The rest of the site uses
  * Playfair Display + DM Sans from the root layout; those variables stay on
  * <html>, so anything here that doesn't opt into font-display/font-grotesk
  * still falls back to the site typefaces.
@@ -20,11 +20,11 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Modern Master — Lead Page Concepts (Internal)",
+  title: "Modern Master — Bathroom Lead Page (Internal)",
   description:
-    "Internal preview of the mobile bathroom lead-page directions. Not for public traffic.",
-  // These are unpublished drafts: keep them out of Google entirely. /landing is
-  // also disallowed in src/app/robots.ts.
+    "Internal preview of the bathroom lead page. Not for public traffic.",
+  // Unpublished draft: keep it out of Google entirely. /landing is also
+  // disallowed in src/app/robots.ts.
   robots: { index: false, follow: false, nocache: true },
 };
 
