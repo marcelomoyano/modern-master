@@ -42,7 +42,7 @@ export function Footer() {
                         <h4 className="font-sans text-sm tracking-widest uppercase text-text-primary mb-6">Quick Links</h4>
                         <ul className="space-y-4">
                             <li>
-                                <Link href="#services" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
+                                <Link href="/#services" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
                                     Services
                                 </Link>
                             </li>
@@ -52,12 +52,12 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#about" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
+                                <Link href="/#about" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
                                     About
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#contact" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
+                                <Link href="/#contact" className="font-sans text-text-secondary hover:text-accent-GOLD transition-colors">
                                     Contact
                                 </Link>
                             </li>
