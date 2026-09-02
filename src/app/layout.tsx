@@ -76,15 +76,24 @@ const localBusinessSchema = {
     latitude: 40.5476334,
     longitude: -74.6041505,
   },
+  // Kept in step with TOWNS in src/components/landing/copy.ts and AREAS in
+  // src/components/ServiceAreas.tsx. Morristown and Somerset were removed on
+  // 2 September 2026 on Geza's instruction — both are outside the one-hour
+  // radius he works to, so a lead from either is a lead he turns down.
   areaServed: [
     "Hillsborough, NJ",
-    "Princeton, NJ",
-    "Warren, NJ",
-    "Morristown, NJ",
-    "Flemington, NJ",
+    "Montgomery, NJ",
+    "Branchburg, NJ",
     "Bridgewater, NJ",
-    "Somerset, NJ",
+    "Flemington, NJ",
+    "Far Hills, NJ",
     "Bernardsville, NJ",
+    "Basking Ridge, NJ",
+    "Warren, NJ",
+    "Princeton, NJ",
+    "Franklin Park, NJ",
+    "Monmouth Junction, NJ",
+    "Monroe Township, NJ",
   ].map((name) => ({ "@type": "City", name })),
   openingHoursSpecification: [
     {

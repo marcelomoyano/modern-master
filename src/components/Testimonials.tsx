@@ -4,21 +4,32 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Star, Quote, ArrowRight } from "lucide-react";
 
+// Real, named, and traceable. These replaced three invented quotes on
+// 2 September 2026 — placeholder copy attributed to people who do not exist
+// ("Sarah & Mark T.", "Emily R.", "James P."), two of them placed in towns
+// Geza has since dropped. This component is not currently rendered anywhere,
+// so none of that was ever public; it was one import away from being public,
+// which is close enough.
+//
+// Sources: the first is a written testimonial Geza forwarded with permission,
+// named by him on 2 September 2026. The other two are verbatim excerpts from
+// the Google Business Profile. Full text for all three, plus the town
+// attribution, is in docs/google-reviews.md. Do not add a fourth from memory.
 const TESTIMONIALS = [
     {
-        text: "Geza and his team transformed our master bathroom beyond what we imagined. From selecting the tile to the final trim, the attention to detail is truly unmatched.",
-        author: "Sarah & Mark T.",
+        text: "Last year, I designed our master bathroom myself, and Geza brought my vision to life with incredible craftsmanship and attention to detail. We were so impressed that we had him return this year to complete the labor for my other personally designed bathrooms.",
+        author: "Robin Mandel",
+        location: "Monroe Township, NJ",
+    },
+    {
+        text: "Geza Papp did an excellent job of giving our primary bathroom a beautiful spa-like feel with expertly installed tiles and glass door in the shower. His workmanship and attention to detail are top notch and we will definitely use him again for future projects.",
+        author: "Sally Williams",
         location: "Hillsborough, NJ",
     },
     {
-        text: "A friend recommended Modern Master for our bathroom renovation and I couldn't be happier. They delivered a luxurious master bath that completely exceeded our expectations.",
-        author: "Emily R.",
-        location: "Somerset, NJ",
-    },
-    {
-        text: "After two bad experiences with other contractors, Modern Master restored our faith. They finished the basement and hardwood floors on time, within budget, and the craftsmanship speaks for itself.",
-        author: "James P.",
-        location: "Bridgewater, NJ",
+        text: "Quality and coordination excellent. Used them for 3 projects. Trust them for all of our renovations. There is not much he hasn't upgraded in our townhouse.",
+        author: "Mark Berk",
+        location: "Franklin Park, NJ",
     },
 ];
 

@@ -21,9 +21,14 @@ const DONE = [
   `Four pages collapsed to one. /landing/packages, /landing/estimate and the A/B split are deleted, along with their components.`,
   `${REVIEWS.length} real Google reviews, quoted verbatim, each matched to a real town from the deep-links Geza sent.`,
   `Real rating and count on the page: 5.0 across ${REVIEW_COUNT} reviews, read off the Business Profile with manager access.`,
-  `Service area set to the ${TOWNS.length} towns Geza named on 28 August: the original site listing minus Somerset and Morristown, plus the wealthy towns around him (Far Hills, Montgomery, Basking Ridge). All inside his own one-hour rule.`,
-  `Budget bands rewritten to Geza's own numbers, with his note on what each one covers and his "accurate price calculation after a home consultation" line under them.`,
-  `Real capacity: two bathrooms a month, 2-4 openings left this year, date-stamped ${CAPACITY_AS_OF} so a stale claim is visibly stale.`,
+  `Service area set to the ${TOWNS.length} towns Geza named: the original site listing minus Somerset and Morristown, plus the wealthy towns around him (Far Hills, Montgomery, Basking Ridge), plus the towns his own reviews put him in. All inside his one-hour rule.`,
+  `The same ${TOWNS.length} towns applied site-wide — ServiceAreas.tsx and the areaServed schema in layout.tsx both now match, instead of listing two towns he refuses to drive to.`,
+  `/morristown deleted and 301-redirected to the homepage. It was a full location page for a town outside his radius; every lead it produced was a lead he turned down. The redirect keeps whatever ranking the URL earned.`,
+  `Budget bands rewritten to Geza's own numbers, each with his own note on what it covers, and his "accurate price calculation after a home consultation" line under them.`,
+  `The $7,500–$15,000 band now carries his label — "a partial renovation, not a complete bathroom". It was the one band shipped blank rather than guessed at.`,
+  `Real capacity: two bathrooms a month, 2-4 openings left, and his actual next start dates — date-stamped ${CAPACITY_AS_OF} so a stale claim is visibly stale.`,
+  `Both before/after pairs now carry a real town and a real duration: Monmouth Junction, four weeks and about a month. "Four weeks" is the single most persuasive fact on the page.`,
+  `Three invented testimonials in Testimonials.tsx replaced with three named, sourced ones. The component is not rendered anywhere, so it was never public — but it was one import away.`,
   `Differentiators rewritten around outcomes, and away from implying Geza works alone — nine of his reviews describe a crew.`,
 ];
 
@@ -42,47 +47,40 @@ const BLOCKING = [
 
 const ASK_GEZA = [
   {
-    item: "The $7,500–$15,000 band has no label",
+    item: "The full townships screenshot",
     detail:
-      "He gave a scope for every other band — half bath at $5,500–$7,500, full bath at $15,000–$26,000, large primary at $26,000–$40,000 — and skipped straight over this one. The band has to exist so a homeowner with $10,000 has somewhere to click, but what it buys is his sentence to write, not ours.",
+      "This one is on us, not him. The screenshot he sent is cut off mid-entry after Warren Township, and he says the complete version is further back in the text thread: \"please scroll back at text messages and you will see the full picture with the townships.\" Far Hills, Montgomery and Basking Ridge came off the visible part. Anything below that fold is still missing from the service area.",
   },
   {
-    item: "Is the townships screenshot complete?",
+    item: "Robin Mandel's Google review",
     detail:
-      "The one he sent is cut off mid-entry after Warren Township. Far Hills, Montgomery and Basking Ridge are in from it. If there were more towns below the fold, they are not on the page.",
+      "He calls it \"a fresh comment\" — posted after the profile was pulled on 27 August, so it is not in our records. The written testimonial she gave is on the site; if she also left a Google review, it should be quoted from the profile rather than paraphrased.",
   },
   {
-    item: "Bathrooms or bedrooms?",
+    item: "Where the Facebook page lives",
     detail:
-      '"20-24 bedrooms in a year can be handled." Almost certainly bathrooms — two a month for twelve months is 24 — but a capacity claim does not get inferred. The page uses only "two bathrooms a month", which he stated plainly.',
-  },
-  {
-    item: "Sanjay Khulbe's review",
-    detail:
-      "He asked for it on the site. It thanks \"Geza and Bobby\" twice, and he has since said not to present Bobby as a partner. A review is quoted verbatim or not at all, so it is off the page pending his call.",
-  },
-  {
-    item: "A name for the Concordia testimonial",
-    detail:
-      "The written one he forwarded is the best piece of proof we have — self-designed bathroom, repeat client, Monroe Township, where he is working next. It cannot go up unattributed.",
-  },
-  {
-    item: "Bob Bilotta as a reference",
-    detail:
-      'His review ends "if anybody would like to speak to me about their service, I would be happy to give you a verbal review." That is worth more than a pull-quote. Ask before taking him up on it.',
-  },
-  {
-    item: "Photo provenance",
-    detail:
-      "Neither before/after pair has a recorded town or duration, so both captions stay generic. Asked twice now.",
+      "Still running under Sam's personal account. It needs moving into a Meta Business Portfolio in Geza's name — not replacing with a new page, which would throw away the followers and the page's age. Nothing else can start until this is settled.",
   },
 ];
 
+/**
+ * Answered on 2 September 2026, kept here because the answers are the sourcing
+ * record for what is now on the page.
+ */
+const ANSWERED = [
+  "The $7,500–$15,000 band: \"that's not working because I won't be able to serve them.. Base full size bathroom price is 12,500.. Or we can have an option as (partial bath renovation maybe...)\" — his phrase is now the band's label. The $12,500 stays in the source and off the page.",
+  "Bathrooms, not bedrooms: \"My spelling was incorrect.. 20-24 bathrooms what I was trying to mention.\" Which is what two a month for a year comes to, so the two claims agree.",
+  "Sanjay Khulbe's review is cleared, and Bobby's name may stay in a customer's own words — but our copy still must not call him a partner. The review is now on the page.",
+  "The Concordia testimonial is Robin Mandel, Monroe Township. \"We just finished her 2 bathrooms.\"",
+  "Bob Bilotta can be offered as a live phone reference — multiple jobs over several years, bathrooms through to a complete house renovation.",
+  "Photo provenance: both pairs are Monmouth Junction. The freestanding-tub project took four weeks, the second about a month.",
+  "Availability: mid-November, late November and December. That line expires — someone has to re-ask him in the autumn or take it down.",
+];
+
 const ELSEWHERE = [
-  "ServiceAreas.tsx and the areaServed schema in layout.tsx still list Morristown and Somerset, and neither carries the new towns. Geza's 28 August instruction applies to these too — but they are live public pages, so making the edit is a decision, not a chore.",
-  "src/app/morristown/ is a full location page, /morristown is in sitemap.ts, and ServiceAreas.tsx links to it. Deleting a live indexed page is not reversible for free. With no analytics installed we cannot see what it currently earns, which is one more reason the GA4 tag comes first.",
-  "Testimonials.tsx still carries three testimonials of unknown origin (Sarah & Mark T., Emily R., James P.), placed in Somerset and Bridgewater. Hidden from the homepage, but still in the repo.",
+  "Testimonials.tsx now holds real, named quotes but is still not imported by any page. Worth putting back on the homepage — that is a design call, not a content one.",
   "Both social icons in Footer.tsx are href=\"#\" — dead links on the live site. Fix once we have the real Facebook page URL, and add it to sameAs in the JSON-LD.",
+  "/princeton and /warren survive and are the right shape. The location-page set now matches the service area for the first time, which is the foundation any SEO work builds on.",
 ];
 
 function Section({
@@ -167,6 +165,20 @@ export default function LandingIndexPage() {
               >
                 <span className="text-landing-bronze">✓</span>
                 <span>{d}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section title="Answered by Geza — 2 September">
+          <ul className="flex flex-col gap-[10px]">
+            {ANSWERED.map((a) => (
+              <li
+                key={a}
+                className="flex gap-3 text-[13.5px] leading-[1.55] text-landing-body"
+              >
+                <span className="text-landing-bronze">✓</span>
+                <span>{a}</span>
               </li>
             ))}
           </ul>

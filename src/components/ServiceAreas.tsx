@@ -4,15 +4,25 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 
+// Mirrors TOWNS in src/components/landing/copy.ts — same order, same list.
+// Geza set it on 2 September 2026: the original eight minus Morristown and
+// Somerset (both outside his one-hour rule), plus the towns from his
+// screenshot, plus the towns his own Google reviews put him in.
+// If you change one list, change the other, and areaServed in app/layout.tsx.
 const AREAS: { name: string; href?: string }[] = [
     { name: "Hillsborough" },
-    { name: "Princeton", href: "/princeton" },
-    { name: "Warren", href: "/warren" },
-    { name: "Morristown", href: "/morristown" },
-    { name: "Flemington" },
+    { name: "Montgomery" },
+    { name: "Branchburg" },
     { name: "Bridgewater" },
-    { name: "Somerset" },
+    { name: "Flemington" },
+    { name: "Far Hills" },
     { name: "Bernardsville" },
+    { name: "Basking Ridge" },
+    { name: "Warren", href: "/warren" },
+    { name: "Princeton", href: "/princeton" },
+    { name: "Franklin Park" },
+    { name: "Monmouth Junction" },
+    { name: "Monroe Township" },
 ];
 
 const containerVariants = {
@@ -51,7 +61,7 @@ export function ServiceAreas() {
                                 <span className="text-accent-GOLD italic">Central New Jersey</span>
                             </h2>
                             <p className="font-sans text-text-secondary font-light">
-                                We bring master craftsmanship to homes across Somerset, Hunterdon, and Morris counties.
+                                Every project is within an hour of Geza&apos;s own home in Hillsborough &mdash; across Somerset, Hunterdon, Mercer and Middlesex counties.
                             </p>
                         </motion.div>
                     </div>

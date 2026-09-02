@@ -316,3 +316,137 @@ still comes from the reviews, which carry their own towns.
 and `src/app/morristown/` are live public pages. His instruction reaches them,
 but removing an indexed page with no analytics running is a decision to take
 deliberately, not a cleanup to fold into this change.
+
+---
+
+## 2 September 2026 — Geza's answers to the seven open questions
+
+Sent as one message. Every one of the seven asks on the punch list came back
+answered, which is the first time that has happened. Quoted below close to
+verbatim, with what each one changed in the repo.
+
+### 1. The $7,500–$15,000 band
+
+> "I think 7,500-15,000 that's not working because I won't be able to serve
+> them (Base full size bathroom price is 12,500 so we won't be able to do
+> anything under.. just the half bathroom.. no tub or shower.. just toilet and
+> sink.. Or we can have an option as (partial bath renovation maybe…)"
+
+and, on what a $10,000 job gets:
+
+> "10k bathrooms would be partially finished only.. not a complete renovation"
+
+This was the one band we shipped with a blank label rather than guess at. It
+now carries his own phrase: **"A partial renovation, not a complete
+bathroom"**. The neighbouring band picked up his half-bath spec at the same
+time — "toilet and sink, no tub or shower".
+
+**His $12,500 floor for a full bathroom is deliberately not on the page.** It
+is a price he charges, and rule 1 of `copy.ts` says those are not published.
+The band already does the qualifying work without it: it tells the homeowner
+what their money buys, not what he charges. The number lives in the source
+comment and in this file.
+
+### 2. The townships screenshot — STILL OPEN
+
+> "the screen shot (I look up at Google, which is the most wealthy town's
+> surrounding Hillsborough) and I made a screenshot for you.., please scroll
+> back at text messages and you will see the full picture with the townships."
+
+So the complete screenshot exists and is in the text thread; the copy we were
+forwarded is cut off mid-entry after Warren Township. Far Hills, Montgomery
+and Basking Ridge came off the visible portion. **This is now an ask on
+Marcelo, not on Geza** — find the original message.
+
+### 3. Bathrooms, not bedrooms — RESOLVED
+
+> "My spelling was incorrect.., my mistake.. 20-24 bathrooms what I was trying
+> to mention."
+
+Two a month for twelve months is 24, so his two capacity claims agree and
+either is safe to publish. The page still uses "two bathrooms a month", which
+is the more concrete of the two.
+
+### 4. Sanjay Khulbe and Bobby — RESOLVED
+
+> "You can use Sanjay's review.., You can also keep Bobby's name on the
+> reviews.., but please don't list additionally as a business partner.. we are
+> friends and we work together but he has his own business as well."
+
+That is a cleaner rule than the one we were working to. The line is not "never
+print the name Bobby" — it is **never describe him as a partner in our own
+voice**. A customer thanking him is the customer's sentence. So Sanjay's
+review is now on the page.
+
+Note the wrinkle for anyone reading the older material in this repo: Geza
+himself wrote "you know Bobby it's my partner so I split the money with him"
+in an earlier message. He means it colloquially. His explicit instruction —
+twice, with emphasis — is that Bobby holds no share. Follow the instruction.
+
+### 5. The Concordia testimonial — RESOLVED
+
+> "Robin Mandel… that's a fresh comment.. we just finished her 2 bathrooms
+> (she's actually very cheaply dressed out both bathrooms but she was very
+> happy) that's what matters..!"
+
+**Robin Mandel, Concordia, Monroe Township.** The written testimonial can now
+be attributed, and it is in `Testimonials.tsx`.
+
+His aside about her budget is not for publication, but it is worth recording
+for the strategy: a homeowner at the low end of his range finished delighted.
+That is an argument for keeping the lower budget bands on the form rather than
+filtering those people out at the door.
+
+He calls it "a fresh comment", which suggests she may also have posted to
+Google after our 27 August pull. Worth checking the profile.
+
+### 6. Bob Bilotta as a reference — CLEARED
+
+> "Bob is a nice person.., we did a lot of jobs from him in the past years..
+> multiple jobs.. bathroom remodeling, molding / wood work, complete house
+> renovation at a 55 older private residence."
+
+He can be offered by phone to a lead who is hesitating. That is a sales tool
+for Geza to use, not page content, and Bob's number stays out of the repo.
+The 55+ residence is Concordia — the same community as Robin Mandel, which
+makes Monroe Township the densest referral pocket he has.
+
+### 7. Photo provenance — RESOLVED, after three asks
+
+> "The gray tiles with the freestanding tub located is in Monmouth junction.
+> This big project was completed in four weeks! The second pictures is also in
+> the same town, this was also taken about a month."
+
+Pair 1 is the only pair in the repo with a freestanding tub, so that match is
+unambiguous. Pair 2 rides on his "same town" sentence.
+
+**Four weeks is the most valuable sentence in this entire message.** A
+homeowner who has been remodelled before is braced for three months of a
+stranger in the house. Nothing else on the page answers the fear as directly.
+
+### Service area, restated
+
+> "Service area should have all the city's we have from originally just taking
+> down 2 towns and adding the screenshot ones to the rest.. It's too much??"
+
+Answer to his question: no. Thirteen towns inside a one-hour radius is a
+normal service area for a remodeler, and it is not a claim to have worked in
+all of them — it is a statement of where he will drive. Four of the thirteen
+carry a named review, which is more evidence than most contractors publish.
+
+This instruction was applied site-wide on 2 September 2026, which the
+28 August pass had deliberately left alone:
+
+- `ServiceAreas.tsx` and `areaServed` in `layout.tsx` now match `TOWNS`.
+- `src/app/morristown/` **deleted**, `/morristown` removed from `sitemap.ts`,
+  and a permanent redirect to `/` added in `next.config.mjs`. A live indexed
+  URL should not simply start returning 404; the redirect passes whatever it
+  earned to the homepage. He has now asked for Morristown gone twice.
+
+### Availability — new, and perishable
+
+> "Schedule availability is in middle and end of November and December"
+
+Now on the page next to the openings count. `AVAILABILITY_CLAIM` in `copy.ts`
+carries a comment saying so: **someone has to re-ask him in the autumn or take
+the line down.** A scarcity claim that has gone stale is a fabricated claim.

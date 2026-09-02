@@ -9,6 +9,7 @@ import {
   BEFORE_AFTER_PAIRS,
   BUDGET_OPTIONS,
   CONSULT_NOTE,
+  AVAILABILITY_CLAIM,
   CAPACITY_AS_OF,
   CAPACITY_CLAIM,
   CURRENT_JOB_TOWN,
@@ -179,8 +180,9 @@ export function BathroomLead() {
             <span className="font-bold text-landing-bronze">
               {CAPACITY_CLAIM}.
             </span>{" "}
-            {OPENINGS_CLAIM} — as of {CAPACITY_AS_OF}. Currently building in{" "}
-            {CURRENT_JOB_TOWN}, {NEXT_JOB_TOWN} after that.
+            {OPENINGS_CLAIM} — as of {CAPACITY_AS_OF}, {AVAILABILITY_CLAIM}.
+            Currently building in {CURRENT_JOB_TOWN}, {NEXT_JOB_TOWN} after
+            that.
           </div>
         </div>
 

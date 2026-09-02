@@ -37,6 +37,12 @@ export const EMAIL_HREF = `mailto:${EMAIL}`;
 /**
  * The service area, per Geza on 28 August 2026: "the original listing without
  * Somerset and Morristown.. plus we should list the wealthy towns sounding me."
+ * Restated 2 September 2026: "all the city's we have from originally just
+ * taking down 2 towns and adding the screenshot ones to the rest."
+ *
+ * As of 2 September 2026 this is also the site-wide list. ServiceAreas.tsx and
+ * the areaServed JSON-LD in layout.tsx were brought into line with it and the
+ * /morristown page was retired. Change them together or they drift apart.
  *
  * So this list is three things joined:
  *   1. The old site-wide list (ServiceAreas.tsx) minus the two he cut. Warren,
@@ -44,8 +50,9 @@ export const EMAIL_HREF = `mailto:${EMAIL}`;
  *      townships screenshot; that instruction rules them back in.
  *   2. The towns from the screenshot he sent — Far Hills, Montgomery, Basking
  *      Ridge. All are 15-30 minutes from Hillsborough, inside his own hour.
- *      NOTE: that screenshot is cut off mid-entry after Warren. If it listed
- *      more towns below the fold, they are not here yet.
+ *      NOTE: the screenshot we were sent is cut off mid-entry after Warren.
+ *      Geza confirmed on 2 September 2026 that the full version is further
+ *      back in the text thread. Any town below that fold is still missing.
  *   3. The towns his own reviews and last-ten list put him in. Those are the
  *      evidenced ones and they stay regardless of any wish list.
  *
@@ -87,10 +94,19 @@ export const REVIEW_COUNT = 32;
  * Real Google reviews, quoted from the profile, each matched to a town by the
  * deep-links Geza sent. Excerpted for length but never reworded.
  *
- * Deliberately NOT included: Sanjay Khulbe (Monmouth Junction). Geza asked for
- * that one on the site, but it thanks "Geza and Bobby" twice and he has since
- * said not to present Bobby as a partner. A review is quoted verbatim or not
- * at all, so it waits on his decision.
+ * Sanjay Khulbe's was held back because it thanks "Geza and Bobby" twice and
+ * Geza had said not to present Bobby as a partner. He ruled on 2 September
+ * 2026: "You can use Sanjay's review.., You can also keep Bobby's name on the
+ * reviews.., but please don't list additionally as a business partner." So the
+ * line is ours to hold, not the reviewer's: a customer may thank Bobby, our own
+ * copy still must not call him one. The excerpt below is cut for length at the
+ * same place every other review here is cut.
+ *
+ * Bob Bilotta offered in his review to give a verbal reference by phone. Geza
+ * cleared that on 2 September 2026 — "Bob is a nice person.., we did a lot of
+ * jobs from him in the past years.. bathroom remodeling, molding / wood work,
+ * complete house renovation" — so he can be offered to a hesitant lead. That
+ * is a sales tool, not page content; his number goes nowhere near this file.
  *
  * Also excluded: Marcelo's own review. The agency cannot be its own proof.
  */
@@ -104,6 +120,11 @@ export const REVIEWS: { quote: string; who: string }[] = [
     quote:
       "They kept everything clean, showed up on time, and communicated clearly every step of the way. I would definitely recommend them to anyone looking for honest, high-quality work.",
     who: "Cita Ken · Branchburg",
+  },
+  {
+    quote:
+      "From start to finish, the team was professional, responsive, and detail-oriented. They took the time to understand my requirements, explained options clearly, and delivered exactly what they promised. The quality of workmanship is outstanding — from plumbing and tiling to fixtures and finishing touches, everything was done with precision and care.",
+    who: "Sanjay Khulbe · Monmouth Junction",
   },
   {
     quote:
@@ -133,6 +154,21 @@ export const ANCHOR_REVIEW = {
   who: "Venkatraman B. · repeat client since 2021",
 };
 
+/**
+ * Not a Google review — Geza forwarded this one by text with permission to
+ * use it. It sat unattributed for a week because we had no name. He supplied it
+ * on 2 September 2026: Robin Mandel, in Concordia, a 55+ community in Monroe
+ * Township. "That's a fresh comment.. we just finished her 2 bathrooms."
+ *
+ * Excerpted hard. The full text runs seven paragraphs and finishes with her
+ * chihuahua, which is charming and does not sell a bathroom.
+ */
+export const WRITTEN_TESTIMONIAL = {
+  quote:
+    "Last year, I designed our master bathroom myself, and Geza brought my vision to life with incredible craftsmanship and attention to detail. We were so impressed that we had him return this year to complete the labor for my other personally designed bathrooms.",
+  who: "Robin Mandel · Monroe Township",
+};
+
 /* ------------------------------------------------------------------ */
 /* Capacity                                                            */
 /* ------------------------------------------------------------------ */
@@ -146,13 +182,20 @@ export const ANCHOR_REVIEW = {
  * number is visibly stale rather than quietly false — and so whoever reads
  * this next knows when to go ask again.
  *
- * NOT used here: his "20-24 bedrooms in a year" line. Almost certainly a typo
- * for bathrooms (2/month x 12 = 24) but a capacity claim is not something to
- * infer. Confirm before publishing it.
+ * His "20-24 bedrooms in a year" line was held here as an unconfirmed typo
+ * rather than assumed. Confirmed 2 September 2026: "My spelling was incorrect..
+ * my mistake.. 20-24 bathrooms what I was trying to mention." Which is what two
+ * a month for a year comes to, so the two claims agree.
+ *
+ * AVAILABILITY_CLAIM is the line with a real expiry date on it. He gave those
+ * dates on 2 September 2026 and by January they are false. Whoever is reading
+ * this in November: go ask him again, or take the line off the page.
  */
-export const CAPACITY_AS_OF = "August 2026";
+export const CAPACITY_AS_OF = "September 2026";
 export const CAPACITY_CLAIM = "Two bathrooms a month";
 export const OPENINGS_CLAIM = "2 to 4 openings left this year";
+export const AVAILABILITY_CLAIM =
+  "the next starts are mid-November, late November and December";
 
 /* ------------------------------------------------------------------ */
 /* Credentials                                                         */
@@ -193,10 +236,19 @@ export interface BeforeAfterPair {
 }
 
 /**
- * UNVERIFIED provenance — the town and duration of each job are still not
- * recorded anywhere, so the captions stay generic. Geza has been asked twice.
+ * Provenance confirmed by Geza on 2 September 2026, third time of asking:
+ * "The gray tiles with the freestanding tub located is in Monmouth junction.
+ * This big project was completed in four weeks! The second pictures is also in
+ * the same town, this was also taken about a month."
+ *
+ * Pair 1 is the only pair with a freestanding tub, so that match is
+ * unambiguous. Pair 2 rides on his "same town" sentence. Both durations are
+ * his, quoted, not rounded.
+ *
+ * The four weeks is the most useful sentence anyone has given us for this page.
+ * A homeowner who has been remodelled before is braced for three months.
  */
-export const PROJECT_PROVENANCE_CONFIRMED = false;
+export const PROJECT_PROVENANCE_CONFIRMED = true;
 
 /**
  * The two pairs the site already treats as verified — the same two wired into
@@ -211,9 +263,9 @@ export const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
     id: "primary-bath",
     before: "/photos/before/IMG_1023.jpg",
     after: "/photos/after/bathroom-after-2.jpg",
-    eyebrow: "Primary bath · taken to the studs",
+    eyebrow: "Primary bath · Monmouth Junction · four weeks",
     caption:
-      "Same room, same arched window. Freestanding tub, marble-look porcelain, full glass shower — set by hand.",
+      "Same room, same arched window. Freestanding tub, marble-look porcelain, full glass shower — set by hand, start to finish in four weeks.",
     beforeAlt:
       "Primary bathroom stripped to the studs and subfloor before renovation",
     afterAlt:
@@ -225,7 +277,7 @@ export const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
     id: "full-remodel",
     before: "/photos/before/IMG_9563.jpeg",
     after: "/photos/after/IMG_0134.jpeg",
-    eyebrow: "Full bathroom remodel",
+    eyebrow: "Full bathroom remodel · Monmouth Junction · about a month",
     caption:
       "Dated oak double vanity and a drop-in tub, replaced end to end without moving a single wall.",
     beforeAlt:
@@ -312,10 +364,20 @@ export const SCOPE_OPTIONS = [
  * it — keep it first. Index 5 is the escape hatch; it is a weaker lead but a
  * truer one than a guessed number.
  *
- * GAP — ASK GEZA: he gave no scope for $7,500-$15,000. He jumped from the half
- * bath at $7,500 straight to the full bath at $15,000. The band has to exist
- * (a homeowner with $10,000 needs somewhere to click) but its note is his to
- * write. Do not guess it.
+ * GAP — CLOSED 2 September 2026. He gave no scope for $7,500-$15,000 first
+ * time round, so the band shipped unlabelled rather than guessed at. His
+ * answer: "I think 7,500-15,000 that's not working because I won't be able to
+ * serve them.. Base full size bathroom price is 12,500 so we won't be able to
+ * do anything under.. just the half bathroom.. no tub or shower.. just toilet
+ * and sink.. Or we can have an option as (partial bath renovation maybe...)"
+ * And on a $10,000 job: "would be partially finished only.. not a complete
+ * renovation."
+ *
+ * So the band keeps its boundaries and takes his own phrase as its note. His
+ * $12,500 floor for a full bathroom stays in this comment and out of the UI:
+ * rule 1 above says his prices are not published, and the band already does the
+ * work without it. It tells a homeowner what their money buys. It does not tell
+ * them what he charges.
  */
 export const BUDGET_FLOOR_BAND = usd(5500);
 
@@ -325,8 +387,14 @@ export const CONSULT_NOTE =
 
 export const BUDGET_OPTIONS = [
   { label: `Under ${usd(5500)}`, note: "" },
-  { label: `${usd(5500)} – ${usd(7500)}`, note: "Covers a half bath" },
-  { label: `${usd(7500)} – ${usd(15000)}`, note: "" },
+  {
+    label: `${usd(5500)} – ${usd(7500)}`,
+    note: "A half bath — toilet and sink, no tub or shower",
+  },
+  {
+    label: `${usd(7500)} – ${usd(15000)}`,
+    note: "A partial renovation, not a complete bathroom",
+  },
   {
     label: `${usd(15000)} – ${usd(26000)}`,
     note: "Full bath, shower or tub installed",
