@@ -19,12 +19,23 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
+// This is what a homeowner sees in the browser tab after tapping an ad, and
+// what Facebook shows if the link is shared, so it reads as the business —
+// not as an internal preview.
 export const metadata: Metadata = {
-  title: "Modern Master — Bathroom Lead Page (Internal)",
+  title: "Bathroom Remodeling in Central New Jersey | Modern Master",
   description:
-    "Internal preview of the bathroom lead page. Not for public traffic.",
-  // Unpublished draft: keep it out of Google entirely. /landing is also
-  // disallowed in src/app/robots.ts.
+    "Twenty years of bathrooms in Central New Jersey, rated 5.0 across 32 Google reviews. Take the 40-second fit check and Geza calls you himself.",
+  openGraph: {
+    title: "The bathroom gets finished. Your house stays livable.",
+    description:
+      "Twenty years of bathrooms in Central New Jersey, rated 5.0 across 32 Google reviews.",
+    url: "/landing/bathroom",
+    type: "website",
+    images: ["/photos/after/bathroom-after-2.jpg"],
+  },
+  // An ads page, not a search page: kept out of Google so it never competes
+  // with the town pages. /landing is also disallowed in src/app/robots.ts.
   robots: { index: false, follow: false, nocache: true },
 };
 

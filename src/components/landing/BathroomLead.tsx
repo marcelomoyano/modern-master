@@ -5,6 +5,12 @@ import Image from "next/image";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 import { DraftRibbon } from "./DraftRibbon";
 import {
+  TRACKING_READY,
+  leadSource,
+  trackFitCheckStart,
+  trackLead,
+} from "@/lib/analytics";
+import {
   ANCHOR_REVIEW,
   BEFORE_AFTER_PAIRS,
   BUDGET_OPTIONS,
@@ -63,6 +69,7 @@ export function BathroomLead() {
   const [error, setError] = useState("");
 
   const start = () => {
+    if (step === 0) trackFitCheckStart();
     setStep(1);
     document
       .getElementById("fit-check")
@@ -89,6 +96,13 @@ export function BathroomLead() {
         Budget: budget,
         Town: town || "(not given)",
         Timing: timing,
+        "Came from": leadSource(),
+      });
+      trackLead({
+        form: "bathroom_fit_check",
+        qualified: !underBudget,
+        scope,
+        budget,
       });
       setStep(5);
     } catch {
@@ -121,7 +135,7 @@ export function BathroomLead() {
   return (
     <div className="min-h-screen bg-landing-ink/95">
       <div className="mx-auto min-h-screen max-w-[430px] bg-landing-cream font-grotesk antialiased">
-        <DraftRibbon label="Bathroom lead page" />
+        {!TRACKING_READY && <DraftRibbon label="Bathroom lead page" />}
 
         {/* Masthead */}
         <div className="flex items-center justify-between px-6 pt-[22px]">

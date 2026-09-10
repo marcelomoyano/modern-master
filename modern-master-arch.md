@@ -17,7 +17,7 @@ This document captures how the Modern Master marketing site is structured, style
 | Hosting | **Vercel** | Auto deploy from `main` |
 | Domain | `modern-master.com` | A `@` → `216.198.79.1`, CNAME `www` → `cname.vercel-dns.com`. Nameservers stay at GoDaddy so the MX records keep email working. |
 | Forms | **Web3Forms** | Public endpoint, hidden honeypot field |
-| Analytics | GA4 (env-var hook) | Wired but inactive until `NEXT_PUBLIC_GA_ID` is set in Vercel |
+| Analytics | GA4 + Meta Pixel (env-var hooks) | All events live in `src/lib/analytics.ts`. Inactive until **both** `NEXT_PUBLIC_GA_ID` (`G-…`) and `NEXT_PUBLIC_META_PIXEL_ID` (digits) are set in Vercel; malformed values switch tracking off. Events: `generate_lead` / Meta `Lead` (qualified only — under-budget enquiries go to Meta as `LeadUnderBudget`), `form_start`, `contact_click` / Meta `Contact` on every tel/sms/mailto tap. Lead emails carry a `Came from` line built from UTM tags. The lead page's draft ribbon shows until tracking is configured |
 
 There is **no backend** — every page is statically prerendered HTML + JSON-LD + client-side JS for animations and form submission. Forms go straight to Web3Forms via `fetch`.
 

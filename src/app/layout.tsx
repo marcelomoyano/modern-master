@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import Script from "next/script";
+import { TrackingEvents } from "@/components/TrackingEvents";
+import { GA_ID, META_PIXEL_ID } from "@/lib/analytics";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -14,7 +16,6 @@ const playfairDisplay = Playfair_Display({
 });
 
 const SITE_URL = "https://modern-master.com";
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -122,6 +123,9 @@ export default function RootLayout({
         className={`${dmSans.variable} ${playfairDisplay.variable} font-sans bg-background-primary text-text-primary antialiased selection:bg-accent-GOLD selection:text-background-primary`}
       >
         {children}
+        {/* Tracking. Both IDs are validated in src/lib/analytics.ts before
+            they reach these inline scripts; unset or malformed, nothing loads. */}
+        <TrackingEvents />
         {GA_ID && (
           <>
             <Script
@@ -136,6 +140,31 @@ export default function RootLayout({
                 gtag('config', '${GA_ID}');
               `}
             </Script>
+          </>
+        )}
+        {META_PIXEL_ID && (
+          <>
+            <Script id="meta-pixel" strategy="afterInteractive">
+              {`
+                !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+                document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '${META_PIXEL_ID}');
+                fbq('track', 'PageView');
+              `}
+            </Script>
+            <noscript>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                height="1"
+                width="1"
+                style={{ display: "none" }}
+                alt=""
+                src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+              />
+            </noscript>
           </>
         )}
       </body>

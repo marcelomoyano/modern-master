@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { leadSource, trackLead } from "@/lib/analytics";
 
 const WEB3FORMS_ACCESS_KEY = "86b676a7-df89-4186-89d6-55e58261288d";
 
@@ -17,6 +18,7 @@ export function Contact() {
 
         const form = e.currentTarget;
         const formData = new FormData(form);
+        formData.append("Came from", leadSource());
 
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
@@ -25,6 +27,13 @@ export function Contact() {
             });
             const data = await response.json();
             if (data.success) {
+                // No budget question on this form, so every enquiry counts as
+                // qualified. See trackLead in src/lib/analytics.ts.
+                trackLead({
+                    form: "homepage_contact",
+                    qualified: true,
+                    scope: String(formData.get("project") ?? ""),
+                });
                 setSubmitStatus("success");
                 form.reset();
             } else {
