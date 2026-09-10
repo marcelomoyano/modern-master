@@ -86,8 +86,8 @@ Folders not under `public/` or `src/` (e.g. `seo/`, `svg/`, `photos/`) are worki
 | `/portfolio` | `src/app/portfolio/page.tsx` (client) | Static | Filterable photo gallery (4 categories) with lightbox |
 | `/review` | `src/app/review/page.tsx` (client) | Static | Soft funnel page driving customers to leave a Google review; `noindex` |
 | `/landing`, `/landing/a`, `/landing/b` | `src/app/landing/**` | Static | Mobile lead-page experiments for paid traffic; `noindex` + robots-disallowed. See §11 |
-| `/princeton`, `/warren`, `/morristown` | `src/app/<town>/page.tsx` | Static | SEO landing pages per town — all use `LocationPage.tsx` |
-| `/sitemap.xml` | `src/app/sitemap.ts` | Static | Lists `/`, `/portfolio`, and the three location pages |
+| `/princeton`, `/warren`, `/monmouth-junction`, `/monroe-township`, `/franklin-park` | `src/app/<town>/page.tsx` | Static | SEO landing pages per town — all use `LocationPage.tsx`. Built only for towns with real proof (a named review, a confirmed job). `/morristown` was retired 2 Sep 2026 and 301s to `/` |
+| `/sitemap.xml` | `src/app/sitemap.ts` | Static | Lists `/`, `/portfolio`, and every location page |
 | `/robots.txt` | `src/app/robots.ts` | Static | Allows everything except `/review`; points to sitemap |
 
 Each route's `layout.tsx` exports its own `Metadata` so titles, descriptions, and canonical URLs are unique per page. The root `layout.tsx` sets `metadataBase = https://modern-master.com` so all relative OG/Twitter image URLs resolve to production.

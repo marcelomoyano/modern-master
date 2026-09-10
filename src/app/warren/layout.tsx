@@ -13,7 +13,7 @@ export const metadata: Metadata = {
       "Luxury bathroom and kitchen remodeling for Warren, NJ homeowners. Owner-operated, licensed and insured craftsmanship.",
     url: "/warren",
     type: "website",
-    images: ["/photos/after/bathroom-after-2.jpg"],
+    images: ["/portfolio/kitchens/21.jpg"],
   },
 };
 

@@ -20,9 +20,9 @@ const AREAS: { name: string; href?: string }[] = [
     { name: "Basking Ridge" },
     { name: "Warren", href: "/warren" },
     { name: "Princeton", href: "/princeton" },
-    { name: "Franklin Park" },
-    { name: "Monmouth Junction" },
-    { name: "Monroe Township" },
+    { name: "Franklin Park", href: "/franklin-park" },
+    { name: "Monmouth Junction", href: "/monmouth-junction" },
+    { name: "Monroe Township", href: "/monroe-township" },
 ];
 
 const containerVariants = {

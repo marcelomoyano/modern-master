@@ -455,3 +455,32 @@ This instruction was applied site-wide on 2 September 2026, which the
 Now on the page next to the openings count. `AVAILABILITY_CLAIM` in `copy.ts`
 carries a comment saying so: **someone has to re-ask him in the autumn or take
 the line down.** A scarcity claim that has gone stale is a fabricated claim.
+
+---
+
+## 10 September 2026 — Which photos are which job
+
+Found while building the town pages. Geza placed "the gray tiles with the
+freestanding tub" and "the second pictures" in Monmouth Junction. Matching the
+photos in `public/` by eye against those two rooms turns up more than the two
+before/after pairs we had:
+
+| Job | Files |
+|---|---|
+| **Monmouth Junction — primary bath** (freestanding tub, arched window, four weeks) | `photos/before/IMG_1023.jpg`, `photos/after/bathroom-after-1.jpg` … `-4.jpg`, `portfolio/bathrooms/04.jpg`, `05.jpg`, `06.jpg`, `11.jpg` |
+| **Monmouth Junction — second bath** (skylight, jetted tub, gray vanity, brass; about a month) | `photos/before/IMG_9563.jpeg`, `photos/after/IMG_0134.jpeg`, `portfolio/bathrooms/01.jpg`, `02.jpg` |
+
+So the whole "hero set" the site leans on — `bathroom-after-1` to `-4` — is one
+Monmouth Junction bathroom. That is fine on the homepage, where nothing claims
+a town. It was not fine on the town pages: Princeton used two of them and Warren
+used one, with alt text saying each photo was from that town.
+
+**The rule now:** a town page names a town in its alt text only when the job was
+in that town, and it does not lead with a photo from a job we know was
+somewhere else. Monmouth Junction photos appear only on `/monmouth-junction`.
+The other town pages use portfolio photos of unknown location, described by
+what is in the frame.
+
+Every other portfolio photo is still unplaced. Ask Geza for a town on any new
+job photo at the time he sends it — it is far easier than reconstructing it
+afterwards.
