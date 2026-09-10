@@ -47,11 +47,6 @@ const BLOCKING = [
 
 const ASK_GEZA = [
   {
-    item: "The full townships screenshot",
-    detail:
-      "This one is on us, not him. The screenshot he sent is cut off mid-entry after Warren Township, and he says the complete version is further back in the text thread: \"please scroll back at text messages and you will see the full picture with the townships.\" Far Hills, Montgomery and Basking Ridge came off the visible part. Anything below that fold is still missing from the service area.",
-  },
-  {
     item: "Robin Mandel's Google review",
     detail:
       "He calls it \"a fresh comment\" — posted after the profile was pulled on 27 August, so it is not in our records. The written testimonial she gave is on the site; if she also left a Google review, it should be quoted from the profile rather than paraphrased.",
@@ -68,6 +63,7 @@ const ASK_GEZA = [
  * record for what is now on the page.
  */
 const ANSWERED = [
+  "The townships screenshot was complete (confirmed 10 September). It looked cut off after Warren, but Far Hills, Montgomery, Basking Ridge and Warren are every town it held, so the service area has no gaps.",
   "The $7,500–$15,000 band: \"that's not working because I won't be able to serve them.. Base full size bathroom price is 12,500.. Or we can have an option as (partial bath renovation maybe...)\" — his phrase is now the band's label. The $12,500 stays in the source and off the page.",
   "Bathrooms, not bedrooms: \"My spelling was incorrect.. 20-24 bathrooms what I was trying to mention.\" Which is what two a month for a year comes to, so the two claims agree.",
   "Sanjay Khulbe's review is cleared, and Bobby's name may stay in a customer's own words — but our copy still must not call him a partner. The review is now on the page.",

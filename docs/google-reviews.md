@@ -347,7 +347,12 @@ The band already does the qualifying work without it: it tells the homeowner
 what their money buys, not what he charges. The number lives in the source
 comment and in this file.
 
-### 2. The townships screenshot — STILL OPEN
+### 2. The townships screenshot — RESOLVED 10 September 2026
+
+Marcelo confirmed the screenshot held no more towns than the ones we could
+see: Far Hills, Montgomery, Basking Ridge (Bernards Township) and Warren. It
+only looked cut off. The service area is complete as committed. The original
+note is kept below for the record.
 
 > "the screen shot (I look up at Google, which is the most wealthy town's
 > surrounding Hillsborough) and I made a screenshot for you.., please scroll

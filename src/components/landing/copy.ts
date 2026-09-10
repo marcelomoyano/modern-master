@@ -50,9 +50,9 @@ export const EMAIL_HREF = `mailto:${EMAIL}`;
  *      townships screenshot; that instruction rules them back in.
  *   2. The towns from the screenshot he sent — Far Hills, Montgomery, Basking
  *      Ridge. All are 15-30 minutes from Hillsborough, inside his own hour.
- *      NOTE: the screenshot we were sent is cut off mid-entry after Warren.
- *      Geza confirmed on 2 September 2026 that the full version is further
- *      back in the text thread. Any town below that fold is still missing.
+ *      The screenshot looked cut off mid-entry after Warren, so we asked.
+ *      Confirmed 10 September 2026: those are all the towns it held. The
+ *      list is complete; nothing is waiting below a fold.
  *   3. The towns his own reviews and last-ten list put him in. Those are the
  *      evidenced ones and they stay regardless of any wish list.
  *
