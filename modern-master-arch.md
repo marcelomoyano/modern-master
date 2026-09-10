@@ -85,7 +85,7 @@ Folders not under `public/` or `src/` (e.g. `seo/`, `svg/`, `photos/`) are worki
 | `/` | `src/app/page.tsx` | Static | Homepage — hero, trust bar, before/after, services, gallery, about, service areas, contact |
 | `/portfolio` | `src/app/portfolio/page.tsx` (client) | Static | Filterable photo gallery (4 categories) with lightbox |
 | `/review` | `src/app/review/page.tsx` (client) | Static | Soft funnel page driving customers to leave a Google review; `noindex` |
-| `/landing`, `/landing/a`, `/landing/b` | `src/app/landing/**` | Static | Mobile lead-page experiments for paid traffic; `noindex` + robots-disallowed. See §11 |
+| `/landing/bathroom` | `src/app/landing/bathroom/` | Static | The Facebook-ads lead page; `noindex` + robots-disallowed. `/landing` redirects here. See §11 |
 | `/princeton`, `/warren`, `/monmouth-junction`, `/monroe-township`, `/franklin-park` | `src/app/<town>/page.tsx` | Static | SEO landing pages per town — all use `LocationPage.tsx`. Built only for towns with real proof (a named review, a confirmed job). `/morristown` was retired 2 Sep 2026 and 301s to `/` |
 | `/sitemap.xml` | `src/app/sitemap.ts` | Static | Lists `/`, `/portfolio`, and every location page |
 | `/robots.txt` | `src/app/robots.ts` | Static | Allows everything except `/review`; points to sitemap |
@@ -380,17 +380,11 @@ Set in Vercel project env (not committed):
 
 ---
 
-## 11. Landing-page experiments (`/landing`)
+## 11. The ads lead page (`/landing/bathroom`)
 
-Four mobile lead-page directions for paid traffic. **Not part of the main site** — they are `noindex`, disallowed in `robots.ts`, and absent from `sitemap.ts`.
+One mobile lead page for Facebook traffic, rebuilt around proof instead of price on 27–28 August 2026 after Geza ruled out published prices. **Not part of the main site** — it is `noindex`, disallowed in `robots.ts`, and absent from `sitemap.ts`, so it never competes with the town pages in search.
 
-| Route | Direction |
-| --- | --- |
-| `/landing` | Index — all four side by side, the two-sheet pricing reconciliation, and the outstanding sign-off checklist |
-| `/landing/packages` | Fixed price. Tap a bathroom, three package prices appear. Built on Geza's package sheet |
-| `/landing/estimate` | Starting budget + add-ons wired to a running total. Built on the budgets he works at today |
-| `/landing/a` | Owner-first. Geza's portrait and voice lead; a four-question fit check qualifies, budget asked second |
-| `/landing/b` | Work-first. Draggable before/after *is* the hero; published price tiers filter; CTA is a booked walkthrough |
+The four earlier price-led experiments (`/landing/packages`, `/estimate`, `/a`, `/b`) are deleted. So is the internal status page that used to live at `/landing`: it went public with a deploy and quoted a price, so `/landing` now redirects to `/landing/bathroom`. **Internal notes about the client never go in `src/`** — everything under `src/app` is a public URL once it deploys. They go in `docs/`.
 
 ### 11.1 Why these break the design system
 
@@ -399,7 +393,7 @@ They deliberately do **not** use `accent-GOLD`, Playfair, or DM Sans. They are c
 - Colors: the `landing` group in `tailwind.config.ts` (`landing-cream`, `landing-ink`, `landing-bronze`, …)
 - Fonts: `font-display` (Instrument Serif) and `font-grotesk` (Manrope), loaded in `src/app/landing/layout.tsx` so the rest of the site never pays for them
 
-Deleting `src/app/landing/`, `src/components/landing/`, and the two namespaced blocks in `tailwind.config.ts` removes the experiment completely. Nothing else imports from them.
+Deleting `src/app/landing/`, `src/components/landing/`, and the two namespaced blocks in `tailwind.config.ts` removes the lead page completely — except that `LocationPage.tsx` imports `GOOGLE_RATING`, `REVIEW_COUNT` and `SEALS` from `copy.ts`, so move those first.
 
 ### 11.2 Structure
 

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 /**
  * Internal-only banner.
  *
@@ -14,10 +12,7 @@ import Link from "next/link";
 export function DraftRibbon({ label }: { label: string }) {
   return (
     <div className="bg-[#7A2E2E] px-4 py-2 text-center font-grotesk text-[11px] leading-snug tracking-[0.08em] text-[#FFE8E2]">
-      INTERNAL DRAFT · {label} · no tracking installed, not for paid traffic ·{" "}
-      <Link href="/landing" className="underline underline-offset-2">
-        status
-      </Link>
+      INTERNAL DRAFT · {label} · no tracking installed, not for paid traffic
     </div>
   );
 }
