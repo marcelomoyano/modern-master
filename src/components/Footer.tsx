@@ -86,7 +86,12 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs font-sans text-text-secondary uppercase tracking-wider">
-                    <p>&copy; {currentYear} Modern Master. All Rights Reserved.</p>
+                    <div className="flex items-center gap-4">
+                        <p>&copy; {currentYear} Modern Master. All Rights Reserved.</p>
+                        <Link href="/privacy" className="hover:text-accent-GOLD transition-colors">
+                            Privacy
+                        </Link>
+                    </div>
                     <div className="flex items-center gap-6">
                         <p>Serving Northern & Central New Jersey</p>
                         <iframe

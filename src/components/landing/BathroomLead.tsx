@@ -498,6 +498,12 @@ export function BathroomLead() {
           </div>
         </div>
 
+        <div className="mt-6 px-6 text-center text-[11.5px] text-landing-muted">
+          <a href="/privacy" className="underline underline-offset-2">
+            Privacy notice
+          </a>
+        </div>
+
         <div className="h-[120px]" />
 
         {/* Sticky action bar */}
