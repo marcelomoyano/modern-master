@@ -22,7 +22,7 @@ import { TRACKING_READY } from "@/lib/analytics";
  * house, not an internet company, and the notice should read like it.
  */
 
-const LAST_UPDATED = "8 October 2026";
+const LAST_UPDATED = "13 October 2026";
 
 const linkClass =
   "text-accent-GOLD underline underline-offset-4 hover:text-white transition-colors";
