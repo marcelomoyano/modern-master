@@ -25,6 +25,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  /**
+   * Google Search Console ownership, added 30 October 2026. Verifying through
+   * metadata rather than a DNS TXT record keeps us out of GoDaddy, where the
+   * MX records for geza@modern-master.com live. Removing this un-verifies the
+   * property and we lose the search data, so it stays.
+   */
+  verification: {
+    google: "5e9hqDtuOKiB1MVAwUuGwLukvZljgVD3HC_brDqDNU4",
+  },
   openGraph: {
     title: "Modern Master | Premium Home Remodeling in New Jersey",
     description:
