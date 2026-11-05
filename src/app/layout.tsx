@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Modern Master | Premium Home Remodeling in New Jersey",
   description:
-    "Transform your home with Modern Master — Central New Jersey's premier remodeling contractor. Specializing in luxury bathrooms, kitchens, and full renovations. 20+ years of craftsmanship.",
+    "Transform your home with Modern Master — Central New Jersey's premier remodeling contractor. Specializing in luxury bathrooms, kitchens, and full renovations. 25+ years of craftsmanship.",
   alternates: {
     canonical: "/",
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Modern Master | Premium Home Remodeling in New Jersey",
     description:
-      "Transform your home with Modern Master — Central New Jersey's premier remodeling contractor. Specializing in luxury bathrooms, kitchens, and full renovations. 20+ years of craftsmanship.",
+      "Transform your home with Modern Master — Central New Jersey's premier remodeling contractor. Specializing in luxury bathrooms, kitchens, and full renovations. 25+ years of craftsmanship.",
     url: SITE_URL,
     siteName: "Modern Master",
     images: [

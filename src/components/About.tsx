@@ -25,7 +25,7 @@ export function About() {
 
                         <div className="space-y-6 font-sans text-text-secondary leading-relaxed font-light text-lg">
                             <p>
-                                For over 20 years, I&apos;ve been transforming homes across Central New Jersey.
+                                For over 25 years, I&apos;ve been transforming homes across Central New Jersey.
                                 Modern Master wasn&apos;t built on volume—it was built on a singular focus:
                                 delivering uncompromising quality in every corner, cut, and finish.
                             </p>

@@ -206,7 +206,7 @@ export const AVAILABILITY_CLAIM =
  * "NJ LIC. #13VH08744800". Fixed at four — don't add a fifth without asking.
  */
 export const SEALS = [
-  "20+ years", // About.tsx
+  "25+ years", // About.tsx
   "Licensed & insured", // TrustBar.tsx
   "BBB accredited", // Footer.tsx seal + van wrap badge
   "NJ HIC #13VH08744800", // van wrap
@@ -317,7 +317,7 @@ export const DIFFERENTIATORS = [
   },
   {
     n: "04",
-    t: "Twenty years of neighbours",
+    t: "Twenty-five years of neighbours",
     b: "Every job is within an hour of my own house in Hillsborough. Referrals are the whole business plan — you cannot outrun a bad one locally.",
   },
 ];

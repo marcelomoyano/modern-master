@@ -162,7 +162,7 @@ export function BathroomLead() {
             <div className="text-[12.5px] leading-[1.4] text-landing-muted">
               Owner &amp; lead craftsman
               <br />
-              Every bathroom, 20 years
+              Every bathroom, 25 years
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@ export function BathroomLead() {
             The bathroom gets finished. Your house stays livable.
           </h1>
           <p className="mt-4 text-pretty text-[15px] leading-[1.6] text-landing-body">
-            Twenty years of bathrooms in Central New Jersey. No salesman in your
+            Twenty-five years of bathrooms in Central New Jersey. No salesman in your
             kitchen, no crew you&apos;ve never met — you hire me, you get me, and
             you get your house back clean at the end of every day.
           </p>

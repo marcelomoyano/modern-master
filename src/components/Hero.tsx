@@ -39,7 +39,7 @@ export function Hero() {
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     className="font-sans text-lg md:text-xl text-text-secondary mb-10 max-w-2xl mx-auto font-light"
                 >
-                    Premium home remodeling in Central New Jersey. 20+ years of
+                    Premium home remodeling in Central New Jersey. 25+ years of
                     transforming spaces into something extraordinary.
                 </motion.p>
 
