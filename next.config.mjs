@@ -1,5 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        // /reports holds one-off client documents served straight out of
+        // /public — Geza gets the link by text message. They are not pages of
+        // the site: nothing links to them and they are not in the sitemap.
+        // This header is what actually keeps them out of Google. Note that
+        // disallowing /reports in robots.ts would BREAK that: a disallowed URL
+        // is never fetched, so the noindex would never be read.
+        source: "/reports/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // /morristown was a location page for a town Geza does not serve — it is

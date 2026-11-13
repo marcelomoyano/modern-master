@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  A client report, not a page of the site.
+
+  It is served straight out of /public, is linked from nowhere, and is kept out
+  of Google by the X-Robots-Tag header set for /reports/ in next.config.mjs plus
+  the noindex meta below. Do NOT add it to the sitemap, do not link to it from
+  any page, and do not disallow /reports/ in robots.ts — a disallowed URL is
+  never fetched, so the noindex header would never be read, which is the one
+  thing that actually keeps it out of the index.
+
+  Geza reads this on a phone, so the screen layout stacks; the print rules at the
+  bottom are what produce the one-page PDF in docs/.
+-->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Your Facebook Ads — What Changed This Week</title>
+<style>
+  :root {
+    --accent: #7B1E28;
+    --ink: #16130f;
+    --muted: #5c554d;
+    --soft: #6b645b;
+    --line: #e0dad2;
+    --paper: #faf7f3;
+    --faint: #8a827a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink); background: #fff;
+    font-size: 16px; line-height: 1.55;
+    margin: 0 auto; max-width: 860px; padding: 26px 18px 48px;
+    -webkit-text-size-adjust: 100%; overflow-wrap: break-word;
+  }
+
+  header { border-bottom: 2.5px solid var(--accent); padding-bottom: 10px; margin-bottom: 18px; }
+  .brand { font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+           color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  h1 { font-size: clamp(22px, 6.4vw, 27px); margin: 0 0 4px;
+       letter-spacing: -.01em; line-height: 1.2; }
+  .sub { color: var(--muted); font-size: 16px; }
+
+  .lede { background: var(--paper); border-left: 3px solid var(--accent);
+          padding: 14px 16px; margin-bottom: 18px; font-size: 16.5px; }
+  .lede b { color: var(--accent); }
+
+  h2 { font-size: 13px; letter-spacing: .13em; text-transform: uppercase;
+       color: var(--accent); font-weight: 700;
+       border-top: 1px solid var(--line); padding-top: 14px; margin: 24px 0 12px; }
+
+  .ads { display: flex; flex-wrap: wrap; gap: 14px; }
+  .ad { flex: 1 1 calc(50% - 7px); min-width: 0; }
+  .ad img { width: 100%; display: block; border: 1px solid #ddd6cd; }
+  .cap { font-size: 14px; color: var(--soft); margin-top: 6px; line-height: 1.4; }
+  .cap b { color: var(--ink); display: block; font-size: 15px; margin-bottom: 1px; }
+
+  p { margin: 0 0 10px; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 7px; }
+  li b { color: var(--ink); }
+
+  .two { display: flex; flex-direction: column; gap: 10px; }
+  .two > div { flex: 1; }
+
+  .form { border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;
+          background: var(--paper); margin-bottom: 10px; }
+  .form .q { font-weight: 700; margin-bottom: 8px; }
+  .bands { display: flex; flex-wrap: wrap; gap: 7px; }
+  .band { border: 1px solid #ddd6cd; background: #fff; border-radius: 4px;
+          padding: 5px 11px; font-size: 15px; }
+
+  .note { color: var(--soft); font-style: italic; margin-top: 10px; }
+
+  .ask { border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;
+         margin-top: 22px; }
+  .ask b { color: var(--accent); }
+  .ask ol { margin: 8px 0 0; padding-left: 20px; }
+  .ask li { margin-bottom: 6px; }
+
+  footer { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line);
+           color: var(--faint); font-size: 13px;
+           display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; }
+
+  /* Wide screens get the two-column reading layout the print version uses. */
+  @media (min-width: 720px) {
+    .two { flex-direction: row; gap: 24px; }
+    .ad { flex: 1 1 0; }
+  }
+
+  /* The one-page letter PDF in docs/ is rendered from this block. */
+  @media print {
+    @page { size: letter; margin: 0.3in 0.45in; }
+    body { font-size: 9.1pt; line-height: 1.29; max-width: none; padding: 0; zoom: 0.97; }
+    header { padding-bottom: 7px; margin-bottom: 12px; }
+    .brand { font-size: 8pt; margin-bottom: 5px; }
+    h1 { font-size: 17pt; }
+    .sub { font-size: 9.8pt; }
+    .lede { padding: 8px 12px; margin-bottom: 10px; font-size: 9.5pt; }
+    h2 { font-size: 8.8pt; padding-top: 6px; margin: 9px 0 5px; }
+    .ads { max-width: 76%; margin: 0 auto; gap: 8px; flex-wrap: nowrap; }
+    .ad { flex: 1 1 0; min-width: 0; }
+    .cap { font-size: 8.2pt; margin-top: 4px; line-height: 1.3; }
+    .cap b { font-size: 8.8pt; }
+    p { margin: 0 0 6px; }
+    ul { padding-left: 15px; }
+    li { margin-bottom: 3px; }
+    .two { flex-direction: row; gap: 18px; }
+    .form { padding: 9px 12px; font-size: 9.2pt; margin-bottom: 0; }
+    .form .q { margin-bottom: 4px; }
+    .bands { gap: 4px 6px; }
+    .band { padding: 2px 7px; font-size: 8.8pt; }
+    .note { font-size: 9.2pt; margin-top: 6px; }
+    .ask { padding: 8px 12px; margin-top: 9px; font-size: 9.2pt; }
+    .ask ol { margin: 5px 0 0; padding-left: 16px; }
+    .ask li { margin-bottom: 2px; }
+    footer { margin-top: 9px; padding-top: 6px; font-size: 8.4pt; flex-wrap: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Modern Master Remodeling</div>
+  <h1>Your Facebook ads, and the one thing we changed</h1>
+  <div class="sub">Where the adverts stand, in plain language.</div>
+</header>
+
+<div class="lede">
+  Start with the part that matters: <b>four enquiries, and one of them put you in
+  someone's house.</b> That is a good result, not a poor one — roughly one visit
+  for every four enquiries is what a working advert looks like, and the two who
+  went quiet are normal too. The adverts are doing their job. What we changed this
+  week is aimed at the quiet ones.
+</div>
+
+<h2>The four adverts running now</h2>
+<div class="ads">
+  <div class="ad">
+    <img src="img/pair1.jpg" alt="Master bath before and after">
+    <div class="cap"><b>Master Bath</b>Whirlpool tub out, freestanding tub in.</div>
+  </div>
+  <div class="ad">
+    <img src="img/pair2.jpg" alt="Hall bath before and after">
+    <div class="cap"><b>Tub to Shower</b>Pink tile and a curtain, now a tiled shower.</div>
+  </div>
+  <div class="ad">
+    <img src="img/pair4.jpg" alt="Master bath fully updated before and after">
+    <div class="cap"><b>Fully Updated</b>Same layout, frameless glass, new fixtures.</div>
+  </div>
+  <div class="ad">
+    <img src="img/pair5.jpg" alt="Walk-in shower conversion before and after">
+    <div class="cap"><b>Walk-In Shower</b>Tub out, walk-in shower with a bench.</div>
+  </div>
+</div>
+<p class="note">Each carries your name, number and "Licensed &amp; Insured" on the picture, so people
+see you even when they do not click. A fifth is paused — it spent money and brought nothing.</p>
+
+<h2>What we changed: one new question</h2>
+<div class="two">
+  <div>
+    <p>
+      Your form asked three things: what the project is, when they want to start,
+      and their name and number. Every enquiry arrived looking the same on your
+      phone — you could not tell a small half bath from a full primary bathroom
+      until you were already on the call. So we added one more question, using
+      <b>your own numbers</b>, the same ranges you wrote out in August:
+    </p>
+    <div class="form">
+      <div class="q">What budget have you set aside?</div>
+      <div class="bands">
+        <span class="band">Under $5,500</span>
+        <span class="band">$5,500 – $7,500</span>
+        <span class="band">$7,500 – $15,000</span>
+        <span class="band">$15,000 – $26,000</span>
+        <span class="band">$26,000 – $40,000</span>
+        <span class="band">Still working that out</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p><b>What this does for you.</b> Two things.</p>
+    <ul>
+      <li><b>You see the number before you call.</b> It sits next to the name in
+          your app. Four enquiries on a Monday morning, and you know which one to
+          ring first instead of working down the list blind.</li>
+      <li><b>Some people stop before they reach you.</b> Somebody with $3,000 in
+          mind, who was only curious, now sees the question and leaves. That is
+          one fewer call that was never going to be a job.</li>
+    </ul>
+    <p class="note">
+      Expect fewer enquiries than last month. That is the point of the change, not
+      a fault in it. You can only build two bathrooms a month — four good names
+      beats ten weak ones, and the quiet ones cost you the most time.
+    </p>
+  </div>
+</div>
+
+<h2>Two smaller things, and one question you asked</h2>
+<div class="two">
+  <div>
+    <ul>
+      <li><b>Facebook was allowed to delete your questions.</b> A setting was
+          switched on that let it drop parts of the form for people it thought
+          would not bother answering. It would have removed the budget question for
+          exactly the people we most need it from. Switched off — everyone
+          answers everything now.</li>
+      <li><b>After they press send, they now land on your own website</b>, on a
+          page that shows your work, your reviews and your number, instead of the
+          general home page. If they want to ring you straight away, they can.</li>
+    </ul>
+  </div>
+  <div>
+    <p>
+      <b>The "opportunity score" of 68.</b> It is not a score for your results and
+      it does not affect who sees your adverts. It is Facebook marking how many of
+      <i>its own</i> suggestions you accepted — and most of them are "spend more"
+      and "let us pick your audience". We turned several down on purpose: the
+      income targeting, the age limit, the town boundaries. Those are what keep
+      your money in the towns you asked for. <b>A 68 with four enquiries and a site
+      visit beats a 95 with none.</b> Ignore it.
+    </p>
+  </div>
+</div>
+
+<div class="ask">
+  <b>Three things we need from you</b>
+  <ol>
+    <li><b>Which of the four was the visit, and how did it go?</b> That tells us
+        which advert and which town actually produce work, and we put more behind it.</li>
+    <li><b>The two who went quiet — wrong number, or just never picked up?</b>
+        Those are two different problems with two different fixes.</li>
+    <li><b>Check your email.</b> Three more enquiries came through your website since
+        5 November, separately from Facebook, as emails to geza@modern-master.com.
+        Search for "Modern Master Website".</li>
+  </ol>
+</div>
+
+<footer>
+  <span>Modern Master Remodeling LLC &middot; 69 Nostrand Rd, Hillsborough, NJ 08844 &middot; (732) 694-9197</span>
+  <span>13 November 2026</span>
+</footer>
+
+</body>
+</html>
