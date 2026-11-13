@@ -25,11 +25,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Bathroom Remodeling in Central New Jersey | Modern Master",
   description:
-    "Twenty-five years of bathrooms in Central New Jersey, rated 5.0 across 32 Google reviews. Take the 40-second fit check and Geza calls you himself.",
+    "Twenty-five years of bathrooms in Central New Jersey, rated 5.0 across 35 Google reviews. Take the 40-second fit check and Geza calls you himself.",
   openGraph: {
     title: "The bathroom gets finished. Your house stays livable.",
     description:
-      "Twenty-five years of bathrooms in Central New Jersey, rated 5.0 across 32 Google reviews.",
+      "Twenty-five years of bathrooms in Central New Jersey, rated 5.0 across 35 Google reviews.",
     url: "/landing/bathroom",
     type: "website",
     images: ["/photos/after/bathroom-after-2.jpg"],

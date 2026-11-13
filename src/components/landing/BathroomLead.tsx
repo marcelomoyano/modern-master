@@ -15,14 +15,9 @@ import {
   BEFORE_AFTER_PAIRS,
   BUDGET_OPTIONS,
   CONSULT_NOTE,
-  AVAILABILITY_CLAIM,
-  CAPACITY_AS_OF,
   CAPACITY_CLAIM,
-  CURRENT_JOB_TOWN,
   DIFFERENTIATORS,
   GOOGLE_RATING,
-  NEXT_JOB_TOWN,
-  OPENINGS_CLAIM,
   PHONE_DISPLAY,
   PHONE_HREF,
   REVIEWS,
@@ -194,9 +189,9 @@ export function BathroomLead() {
             <span className="font-bold text-landing-bronze">
               {CAPACITY_CLAIM}.
             </span>{" "}
-            {OPENINGS_CLAIM} — as of {CAPACITY_AS_OF}, {AVAILABILITY_CLAIM}.
-            Currently building in {CURRENT_JOB_TOWN}, {NEXT_JOB_TOWN} after
-            that.
+            That is the whole schedule, which is why the start date I give
+            you is one I can keep. Call and I&apos;ll tell you where the next
+            opening falls.
           </div>
         </div>
 

@@ -86,9 +86,9 @@ export const NEXT_JOB_TOWN = "Monroe";
 /** Deep link to Modern Master's Google Business Profile review flow. */
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CfrEDv64xZ_FEAI/review";
 
-/** Read off the profile on 27 August 2026 with manager access. */
+/** Read off the profile on 12 November 2026 with manager access. */
 export const GOOGLE_RATING = "5.0";
-export const REVIEW_COUNT = 32;
+export const REVIEW_COUNT = 35;
 
 /**
  * Real Google reviews, quoted from the profile, each matched to a town by the
@@ -187,9 +187,18 @@ export const WRITTEN_TESTIMONIAL = {
  * my mistake.. 20-24 bathrooms what I was trying to mention." Which is what two
  * a month for a year comes to, so the two claims agree.
  *
- * AVAILABILITY_CLAIM is the line with a real expiry date on it. He gave those
- * dates on 2 September 2026 and by January they are false. Whoever is reading
- * this in November: go ask him again, or take the line off the page.
+ * AVAILABILITY_CLAIM was the line with a real expiry date on it. He gave those
+ * dates on 2 September 2026, and on 12 November 2026 the first of them had
+ * arrived, so the line came off the page — its own comment said to do exactly
+ * that. CAPACITY_AS_OF, OPENINGS_CLAIM, AVAILABILITY_CLAIM, CURRENT_JOB_TOWN
+ * and NEXT_JOB_TOWN are no longer rendered anywhere; they are kept so the
+ * dated wording is on record and so the block can go back up the day Geza
+ * gives fresh numbers. Only CAPACITY_CLAIM still ships, because two bathrooms
+ * a month is how he works rather than a date that passes.
+ *
+ * What replaced it on the page asks for the call instead of naming a month:
+ * the start date he gives is one he can keep, and the next opening is
+ * something he tells you on the phone. That cannot go stale.
  */
 export const CAPACITY_AS_OF = "September 2026";
 export const CAPACITY_CLAIM = "Two bathrooms a month";
