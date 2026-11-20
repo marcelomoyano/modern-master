@@ -101,6 +101,24 @@ export function trackContactClick(method: "phone" | "sms" | "email") {
   meta("track", "Contact", { content_name: method, content_category: page });
 }
 
+/**
+ * A tap on a booking button, which hands the visitor off to Geza's Google
+ * appointment schedule on a different domain.
+ *
+ * Worth its own event because it is the only conversion the site cannot see
+ * the end of: once they leave for calendar.app.google, whether they finished
+ * booking shows up in Geza's calendar and nowhere else. Counting the taps is
+ * what makes the gap measurable — taps far above bookings means the calendar
+ * is showing no usable times, which is a thing we can fix.
+ *
+ * Reported to Meta as a Schedule, which is the standard event for exactly
+ * this, so a campaign can be optimised towards it later if booking takes off.
+ */
+export function trackBookingClick(place: "landing_fit_check" | "homepage_contact") {
+  ga("booking_click", { place });
+  meta("track", "Schedule", { content_name: place });
+}
+
 /** A page view after a client-side navigation. The first one fires on load. */
 export function trackPageView() {
   meta("track", "PageView");

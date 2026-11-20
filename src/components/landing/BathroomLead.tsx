@@ -7,9 +7,11 @@ import { DraftRibbon } from "./DraftRibbon";
 import {
   TRACKING_READY,
   leadSource,
+  trackBookingClick,
   trackFitCheckStart,
   trackLead,
 } from "@/lib/analytics";
+import { BOOKING_COPY, BOOKING_READY, BOOKING_URL } from "@/lib/booking";
 import {
   ANCHOR_REVIEW,
   BEFORE_AFTER_PAIRS,
@@ -73,6 +75,26 @@ export function BathroomLead() {
 
   /** Index 0 is the below-floor band — see the comment on BUDGET_OPTIONS. */
   const underBudget = budget === BUDGET_OPTIONS[0].label;
+
+  /**
+   * A booked slot is offered to a qualified enquiry only.
+   *
+   * The budget question exists to protect Geza's time, and a calendar is time
+   * in its purest form: he can take about two bathrooms a month and every
+   * fifteen minutes on the phone is fifteen minutes off a tiled floor. An
+   * enquiry below his floor still reaches him and still gets a call back — it
+   * just does not get to reserve a slot ahead of someone whose job he can
+   * actually build.
+   */
+  const offerBooking = BOOKING_READY && !underBudget;
+
+  /**
+   * Their timing answer, read back mid-sentence. Lowercasing is what makes
+   * "Just planning" sit correctly after a comma, but it also turned the first
+   * option into "asap", which looks like a typo in the one message every
+   * converting lead sees. An acronym keeps its case.
+   */
+  const timingPhrase = timing === "ASAP" ? "ASAP" : timing.toLowerCase();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -215,8 +237,10 @@ export function BathroomLead() {
                 Let&apos;s see if we&apos;re right for each other.
               </div>
               <div className="mt-2 text-[13px] leading-[1.55] text-landing-cream/70">
-                Takes 40 seconds. If it&apos;s a fit, I call you myself within
-                one business day.
+                Takes 40 seconds.{" "}
+                {BOOKING_READY
+                  ? "If it's a fit, you pick a time at the end and I call you then."
+                  : "If it's a fit, I call you myself within one business day."}
               </div>
               <button
                 type="button"
@@ -378,12 +402,36 @@ export function BathroomLead() {
               <div className="mt-[10px] text-[13.5px] leading-[1.6] text-landing-cream/70">
                 {underBudget
                   ? "That budget sits below where I can do this work properly — I'll still call, and I'll point you to someone good."
-                  : `${scope}${town ? ` in ${town}` : ""}, ${timing.toLowerCase()}.`}
+                  : `${scope}${town ? ` in ${town}` : ""}, ${timingPhrase}.`}
               </div>
-              <div className="mt-[14px] text-[13.5px] leading-[1.6] text-landing-cream/70">
-                I&apos;ll call within one business day, and we&apos;ll walk your
-                bathroom together before anyone talks numbers.
-              </div>
+              {offerBooking ? (
+                <>
+                  <div className="mt-[14px] text-[13.5px] leading-[1.6] text-landing-cream/70">
+                    Your answers are on my phone already. Pick a time that
+                    suits you and I&apos;ll ring you then, instead of us
+                    trading missed calls while I&apos;m on a job.
+                  </div>
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("landing_fit_check")}
+                    className="mt-4 flex min-h-[48px] items-center justify-center rounded-[10px] bg-landing-bronze p-4 font-grotesk text-[15px] font-bold text-[#FFF8EE] transition-colors hover:bg-[#B07C3D]"
+                  >
+                    {BOOKING_COPY.cta}
+                  </a>
+                  <div className="mt-[10px] text-[11.5px] leading-[1.5] text-landing-cream/50">
+                    {BOOKING_COPY.nature} We walk your bathroom together
+                    afterwards, before anyone talks numbers. If no time there
+                    works, call me on {PHONE_DISPLAY}.
+                  </div>
+                </>
+              ) : (
+                <div className="mt-[14px] text-[13.5px] leading-[1.6] text-landing-cream/70">
+                  I&apos;ll call within one business day, and we&apos;ll walk
+                  your bathroom together before anyone talks numbers.
+                </div>
+              )}
             </div>
           )}
         </div>

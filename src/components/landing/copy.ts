@@ -417,16 +417,14 @@ export const BUDGET_OPTIONS = [
 
 export const TIMING_OPTIONS = ["ASAP", "3–6 months", "Just planning"];
 
-/**
- * UNVERIFIED — consult slots.
- * A static site has no calendar, so these are day-part preferences rather than
- * real appointments: nothing is held, and the copy says so.
+/*
+ * SLOT_PREFERENCES lived here: three day-part choices ("weekday morning",
+ * "Saturday", "weekday evening") written when a static site had no way to hold
+ * a real appointment. It was never rendered, and it is gone rather than
+ * revived, because asking which half of a day someone prefers and then still
+ * calling them whenever is worse than not asking. Real slots now come from
+ * Geza's own Google Calendar — see src/lib/booking.ts.
  */
-export const SLOT_PREFERENCES = [
-  { id: "weekday-morning", label: "Weekday morning", note: "before 11am" },
-  { id: "weekend", label: "Saturday", note: "weekend" },
-  { id: "weekday-evening", label: "Weekday evening", note: "after work" },
-];
 
 /* ------------------------------------------------------------------ */
 /* Web3Forms                                                           */

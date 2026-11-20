@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { leadSource, trackLead } from "@/lib/analytics";
+import { BookCall } from "./BookCall";
 
 const WEB3FORMS_ACCESS_KEY = "86b676a7-df89-4186-89d6-55e58261288d";
 
@@ -182,6 +183,11 @@ export function Contact() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="flex flex-col justify-center space-y-10"
                     >
+                        {/* Booking sits above the phone number, not instead of
+                            it — see the comment in BookCall. Renders nothing
+                            until the calendar link is live. */}
+                        <BookCall />
+
                         <div>
                             <h3 className="font-serif text-2xl text-text-primary mb-6">Contact Information</h3>
                             <p className="font-sans text-text-secondary font-light leading-relaxed mb-8">
