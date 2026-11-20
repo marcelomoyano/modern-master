@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  A client report, not a page of the site. Same rules as ads-nov-2026.html:
+  served straight out of /public, linked from nowhere, kept out of Google by
+  the X-Robots-Tag header set for /reports/ in next.config.mjs plus the meta
+  below. Do NOT add it to the sitemap and do NOT disallow /reports/ in
+  robots.ts — a disallowed URL is never fetched, so the noindex header would
+  never be read.
+
+  Numbers come from Google Keyword Planner, 20 Nov 2026, targeting Somerset
+  County, Hunterdon County, Princeton, South Brunswick and Monroe Township.
+  Planner returned them in Argentine pesos (the only Google Ads account we
+  have access to is Argentine); converted at 1,560 ARS/USD, the rate on the
+  day. The resulting dollar figures land squarely in the normal US range for
+  this trade, which is the sanity check. Geza sees dollars only.
+-->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Google — What the Numbers Say</title>
+<style>
+  :root {
+    --accent: #7B1E28;
+    --ink: #16130f;
+    --muted: #5c554d;
+    --soft: #6b645b;
+    --line: #e0dad2;
+    --paper: #faf7f3;
+    --faint: #8a827a;
+    --good: #2f6b43;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink); background: #fff;
+    font-size: 16px; line-height: 1.55;
+    margin: 0 auto; max-width: 860px; padding: 26px 18px 48px;
+    -webkit-text-size-adjust: 100%; overflow-wrap: break-word;
+  }
+
+  header { border-bottom: 2.5px solid var(--accent); padding-bottom: 10px; margin-bottom: 18px; }
+  .brand { font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+           color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  h1 { font-size: clamp(22px, 6.4vw, 27px); margin: 0 0 4px;
+       letter-spacing: -.01em; line-height: 1.2; }
+  .sub { color: var(--muted); font-size: 16px; }
+
+  .lede { background: var(--paper); border-left: 3px solid var(--accent);
+          padding: 14px 16px; margin-bottom: 18px; font-size: 16.5px; }
+  .lede b { color: var(--accent); }
+
+  h2 { font-size: 13px; letter-spacing: .13em; text-transform: uppercase;
+       color: var(--accent); font-weight: 700;
+       border-top: 1px solid var(--line); padding-top: 14px; margin: 24px 0 12px; }
+
+  p { margin: 0 0 10px; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 7px; }
+  li b { color: var(--ink); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th { text-align: left; font-size: 11.5px; text-transform: uppercase;
+       letter-spacing: .09em; color: var(--soft); font-weight: 700;
+       border-bottom: 1.5px solid var(--line); padding: 0 8px 6px 0; }
+  th:last-child, td:last-child { text-align: right; padding-right: 0; }
+  td { padding: 7px 8px 7px 0; border-bottom: 1px solid #efeae3; }
+  td.k { font-weight: 600; }
+  .big { background: var(--paper); }
+
+  .two { display: flex; flex-direction: column; gap: 10px; }
+  .two > div { flex: 1; }
+
+  .box { border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;
+         background: var(--paper); }
+  .box .q { font-weight: 700; margin-bottom: 6px; }
+
+  .math { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .math div { display: flex; justify-content: space-between; gap: 12px;
+              padding: 9px 14px; border-bottom: 1px solid #efeae3; }
+  .math div:last-child { border-bottom: 0; background: var(--paper); font-weight: 700; }
+  .math span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .note { color: var(--soft); font-style: italic; margin-top: 10px; }
+  .win { color: var(--good); font-weight: 700; }
+
+  .ask { border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;
+         margin-top: 22px; }
+  .ask b { color: var(--accent); }
+  .ask ol { margin: 8px 0 0; padding-left: 20px; }
+  .ask li { margin-bottom: 6px; }
+
+  footer { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line);
+           color: var(--faint); font-size: 13px;
+           display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; }
+
+  @media (min-width: 720px) {
+    .two { flex-direction: row; gap: 24px; }
+  }
+
+  /* The one-page letter PDF in docs/ is rendered from this block. */
+  @media print {
+    @page { size: letter; margin: 0.3in 0.45in; }
+    body { font-size: 8.4pt; line-height: 1.26; max-width: none; padding: 0; zoom: 0.83; }
+    header { padding-bottom: 6px; margin-bottom: 9px; }
+    .brand { font-size: 8pt; margin-bottom: 4px; }
+    h1 { font-size: 17pt; }
+    .sub { font-size: 9.8pt; }
+    .lede { padding: 8px 12px; margin-bottom: 10px; font-size: 9.4pt; }
+    h2 { font-size: 8.4pt; padding-top: 6px; margin: 8px 0 5px; }
+    p { margin: 0 0 5px; }
+    ul { padding-left: 15px; }
+    li { margin-bottom: 3px; }
+    table { font-size: 8.4pt; }
+    th { font-size: 7.4pt; padding-bottom: 4px; }
+    td { padding: 3px 8px 3px 0; }
+    .math div { padding: 4px 11px; }
+    .two { flex-direction: row; gap: 18px; }
+    .box { padding: 9px 12px; font-size: 9pt; }
+    .math div { padding: 5px 11px; font-size: 9pt; }
+    .note { font-size: 9pt; margin-top: 6px; }
+    .ask { padding: 8px 12px; margin-top: 10px; font-size: 9pt; }
+    .ask ol { margin: 4px 0 0; padding-left: 16px; }
+    .ask li { margin-bottom: 2px; }
+    footer { margin-top: 9px; padding-top: 6px; font-size: 8.4pt; flex-wrap: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Modern Master Remodeling</div>
+  <h1>Google: what the numbers actually say</h1>
+  <div class="sub">We checked before spending anything. Here is what we found.</div>
+</header>
+
+<div class="lede">
+  You said Google gets you calls, and you were right — your free Google listing
+  brought <b>16 calls in six months</b> without us spending a dollar. So before
+  putting money in, we pulled Google's own numbers for your towns. The short
+  answer: <b>worth doing, on a small budget, and it will bring you a few good
+  enquiries a month rather than a flood.</b> That is honest, and at two
+  bathrooms a month it may be all you need.
+</div>
+
+<h2>How many people are actually looking</h2>
+<p>
+  Across Somerset County, Hunterdon County, Princeton, South Brunswick and
+  Monroe Township — around two million people — this is what gets typed into
+  Google in a month:
+</p>
+<table>
+  <tr>
+    <th>What they type</th>
+    <th>Searches a month</th>
+    <th>Cost per click</th>
+  </tr>
+  <tr class="big">
+    <td class="k">bathroom remodeling</td>
+    <td>100 – 1,000</td>
+    <td>$9 – $38</td>
+  </tr>
+  <tr class="big">
+    <td class="k">bathroom remodel near me</td>
+    <td>100 – 1,000</td>
+    <td>$12 – $54</td>
+  </tr>
+  <tr>
+    <td class="k">bathroom renovation</td>
+    <td>10 – 100</td>
+    <td>$12 – $37</td>
+  </tr>
+  <tr>
+    <td class="k">tub to shower conversion</td>
+    <td>10 – 100</td>
+    <td>$6 – $29</td>
+  </tr>
+  <tr>
+    <td class="k">bathroom contractor</td>
+    <td>10 – 100</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td class="k">shower remodel</td>
+    <td>10 – 100</td>
+    <td>$8 – $58</td>
+  </tr>
+</table>
+<p class="note">
+  Those are Google's own figures for the top position. We are not guessing.
+</p>
+<p style="margin-top:10px">
+  <b>Read it honestly:</b> this is a steady trickle, not a crowd. Two people a
+  day in your whole area type the main phrase. That is normal for your trade,
+  and it is exactly why we will only ever pay for your own towns — the same
+  money spread across New Jersey buys you nothing.
+</p>
+
+<h2>What $500 buys</h2>
+<div class="two">
+  <div>
+    <div class="math">
+      <div><span>You spend</span><span>$500</span></div>
+      <div><span>Clicks that buys</span><span>about 30&ndash;35</span></div>
+      <div><span>Of those, people who get in touch</span><span>2&ndash;3</span></div>
+      <div><span>So each enquiry costs</span><span>$170&ndash;$250</span></div>
+    </div>
+    <p class="note">
+      Facebook brought you 4 enquiries for $365 — about $91 each. Google is
+      more expensive per enquiry. It buys a different person.
+    </p>
+  </div>
+  <div>
+    <p>
+      <b>Why pay more for fewer?</b> On Facebook you interrupt somebody
+      scrolling on the sofa. Some are curious, some are dreaming, two of your
+      four never picked the phone back up.
+    </p>
+    <p>
+      On Google, they typed <i>"bathroom remodel near me"</i> that morning.
+      Nobody types that by accident. They are further along, and they are
+      comparing two or three contractors right now — which is why being at the
+      top of that moment matters.
+    </p>
+  </div>
+</div>
+
+<h2>Two things in your favour</h2>
+<div class="two">
+  <div>
+    <div class="box">
+      <div class="q">Hardly anyone is bidding against you</div>
+      Google rates competition on the main phrase in your towns as
+      <span class="win">LOW</span>. In the map results only one competitor is
+      paying to be there. In a bigger city this would be a bloodbath — in
+      Hillsborough it is nearly empty.
+    </div>
+  </div>
+  <div>
+    <div class="box">
+      <div class="q">You are already second — for free</div>
+      Search "bathroom remodeling hillsborough nj" and you are the second
+      business listed, with <span class="win">5.0 stars from 35 people</span>.
+      You are not starting from nothing. We would be promoting a listing Google
+      already likes.
+    </div>
+  </div>
+</div>
+
+<h2>Two things you should know before deciding</h2>
+<ul>
+  <li><b>The $500 Google credit is matched, not free.</b> You spend $500, they
+      add $500. So it doubles your money, but you have to put the first $500
+      in. Worth having, but it is not a gift.</li>
+  <li><b>The pay-per-lead option is not open to you yet.</b> Google has a
+      version where you only pay when somebody actually contacts you, and you
+      can claim money back for bad leads. Plumbers in Hillsborough have it;
+      bathroom remodelers do not, not yet. We will keep checking, because that
+      would be the safest way for you to spend.</li>
+</ul>
+
+<h2>What we would do with it</h2>
+<ul>
+  <li><b>Your towns only.</b> Never the whole state. This is the single
+      biggest way money gets wasted, and it is the default setting.</li>
+  <li><b>Only people searching right now</b> — not people "interested in" your
+      area, which is how you end up paying for someone in Paramus.</li>
+  <li><b>Your phone number inside the ad</b>, so they can call without even
+      reaching the website.</li>
+  <li><b>Your booking link</b>, as soon as your calendar is set up, so the
+      person looking at ten at night can grab a time instead of disappearing.</li>
+  <li><b>Start small — around $15 a day for two weeks</b>, then look at what
+      actually came in before spending another dollar.</li>
+</ul>
+
+<div class="ask">
+  <b>What we need from you</b>
+  <ol>
+    <li><b>Are you comfortable putting $500 through Google over a month or
+        so?</b> That is the real question. If the answer is no, we leave it and
+        push the free listing harder instead — that is what produced the 16
+        calls.</li>
+    <li><b>The calendar link</b>, when you have made it. The website and the
+        Google listing are both waiting on it.</li>
+    <li><b>Keep asking happy customers for a review.</b> You have 35. The
+        competitor sitting above you has 83. That gap is the one thing here
+        that costs nothing and matters most.</li>
+  </ol>
+</div>
+
+<footer>
+  <span>Modern Master Remodeling LLC &middot; 69 Nostrand Rd, Hillsborough, NJ 08844 &middot; (732) 694-9197</span>
+  <span>20 November 2026</span>
+</footer>
+
+</body>
+</html>
