@@ -107,6 +107,11 @@ export function LocationPage({
         image: `${SITE_URL}${schemaImage}`,
         logo: `${SITE_URL}/logo.png`,
         priceRange: "$$$",
+        identifier: {
+            "@type": "PropertyValue",
+            name: "NJ Home Improvement Contractor Registration",
+            value: "13VH08744800",
+        },
         address: {
             "@type": "PostalAddress",
             streetAddress: "69 Nostrand Rd",

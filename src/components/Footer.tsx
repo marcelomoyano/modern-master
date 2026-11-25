@@ -79,6 +79,14 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>69 Nostrand Rd, Hillsborough NJ 08844</li>
+                            {/* New Jersey requires a home improvement
+                                contractor to show its registration number
+                                in advertising. Confirmed by Geza on
+                                25 November 2026; it is also on the van. */}
+                            <li className="text-sm">
+                                NJ Home Improvement Contractor Reg.{" "}
+                                <span className="whitespace-nowrap">#13VH08744800</span>
+                            </li>
                         </ul>
                     </div>
 

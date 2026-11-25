@@ -73,6 +73,11 @@ const localBusinessSchema = {
   telephone: "+1-732-694-9197",
   email: "geza@modern-master.com",
   priceRange: "$$$",
+  identifier: {
+    "@type": "PropertyValue",
+    name: "NJ Home Improvement Contractor Registration",
+    value: "13VH08744800",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "69 Nostrand Rd",
