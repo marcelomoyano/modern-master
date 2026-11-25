@@ -22,7 +22,11 @@ const PAIRS: BeforeAfterPair[] = [
         before: "/photos/before/IMG_9563.jpeg",
         after: "/photos/after/IMG_0134.jpeg",
         title: "Full Bathroom Remodel",
-    }
+    },
+    // The 2026 pairs are deliberately NOT here. This slider is 21:9 on desktop
+    // and those photos are portrait, so object-cover would crop them to a strip
+    // across the middle of each room. They run on /bathroom-remodeling instead,
+    // where the before/after grid is 4:5 and shows the whole room.
 ];
 
 export function BeforeAfter() {

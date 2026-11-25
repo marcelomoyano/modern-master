@@ -60,19 +60,25 @@ export function About() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative h-[600px] w-full"
+                        className="relative aspect-[4/3] w-full"
                     >
                         <div className="absolute inset-0 border border-white/10 translate-x-4 translate-y-4" />
                         <div className="absolute inset-0 z-10">
                             <Image
-                                src="/photos/before/house-before-4.jpg" // Using a prep photo to show the craftsman at work feel
-                                alt="Craftsmanship and preparation"
+                                // The point of this section is that the man who
+                                // quotes the job is the man who turns up to do
+                                // it, so the picture is Geza and his own van
+                                // rather than the anonymous prep shot that used
+                                // to sit here. The container is 4:3 to match the
+                                // photo: cropping it square cuts off either the
+                                // signwriting or Geza himself.
+                                src="/photos/geza-van.jpg"
+                                alt="Geza Papp standing beside the signwritten Modern Master Remodeling van"
                                 fill
                                 className="object-cover"
                                 sizes="(max-width: 1024px) 100vw, 50vw"
+                                priority={false}
                             />
-                            {/* Overlay for artistic effect */}
-                            <div className="absolute inset-0 bg-background-primary/20 mix-blend-multiply" />
                         </div>
 
                         {/* Decorative Corner Element */}

@@ -12,7 +12,9 @@ const CATEGORIES = [
     {
         id: "bathrooms",
         label: "Bathrooms",
-        count: 53,
+        // 54-58 are the two bathrooms Geza finished in 2026; their before
+        // shots are the newest pairs in BeforeAfter.tsx.
+        count: 58,
         altPrefix: "Custom bathroom remodel by Modern Master in Central New Jersey",
     },
     {
