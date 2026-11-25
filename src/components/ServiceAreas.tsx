@@ -10,7 +10,7 @@ import { MapPin } from "lucide-react";
 // screenshot, plus the towns his own Google reviews put him in.
 // If you change one list, change the other, and areaServed in app/layout.tsx.
 const AREAS: { name: string; href?: string }[] = [
-    { name: "Hillsborough" },
+    { name: "Hillsborough", href: "/hillsborough" },
     { name: "Montgomery" },
     { name: "Branchburg" },
     { name: "Bridgewater" },
